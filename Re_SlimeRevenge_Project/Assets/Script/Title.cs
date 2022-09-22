@@ -28,14 +28,14 @@ public class Title : MonoBehaviour
 
     public IEnumerator Text_Blinking_01()
     {
-        TouchToStart.DOFade(0.5f, 1);
+        TouchToStart.DOFade(0f, 1);
         yield return new WaitForSeconds(1f);
         StartCoroutine(Text_Blinking_02());
     }
 
     public IEnumerator Text_Blinking_02()
     {
-        TouchToStart.DOFade(0.5f, 1);
+        TouchToStart.DOFade(1f, 1);
         yield return new WaitForSeconds(1f);
         StartCoroutine(Text_Blinking_01());
     }
