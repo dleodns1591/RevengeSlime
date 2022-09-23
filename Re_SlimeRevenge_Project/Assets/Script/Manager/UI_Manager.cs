@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class UI_Manager : MonoBehaviour
 {
+    // HP : 굳건한 체력 / Respiration : 심호흡 / Defense : 탄성력 / Camouflage : 튼튼한 위장 / Intellect : 지능학습
+
     public static UI_Manager Inst;
 
     void Awake() => Inst = this;
@@ -13,25 +16,29 @@ public class UI_Manager : MonoBehaviour
     public TextMeshProUGUI Money_Txt;
 
     [Header("스킬레벨 텍스트")]
-    public TextMeshProUGUI HP_Level_Txt; // 체력
-    public TextMeshProUGUI Respiration_Level_Txt; // 심호흡
-    public TextMeshProUGUI Defense_Level_Txt; // 방어력
-    public TextMeshProUGUI Camouflage_Level_Txt; // 튼튼한 위장
-    public TextMeshProUGUI Intellect_Level_Txt; // 지능 학습
+    public TextMeshProUGUI HP_Level_Txt;
+    public TextMeshProUGUI Respiration_Level_Txt;
+    public TextMeshProUGUI Defense_Level_Txt; 
+    public TextMeshProUGUI Camouflage_Level_Txt;
+    public TextMeshProUGUI Intellect_Level_Txt; 
 
     [Header("스킬 가격 비용 텍스트")]
-    public TextMeshProUGUI HP_Price_Txt; // 체력
-    public TextMeshProUGUI Respiration_Price_Txt; // 심호흡
-    public TextMeshProUGUI Defense_Price_Txt; // 방어력
-    public TextMeshProUGUI Camouflage_Price_Txt; // 튼튼한 위장
-    public TextMeshProUGUI Intellect_Price_Txt; // 지능 학습
+    public TextMeshProUGUI HP_Price_Txt; 
+    public TextMeshProUGUI Respiration_Price_Txt; 
+    public TextMeshProUGUI Defense_Price_Txt; 
+    public TextMeshProUGUI Camouflage_Price_Txt;
+    public TextMeshProUGUI Intellect_Price_Txt;
 
     [Header("스킬 내용 텍스트")]
-    public TextMeshProUGUI HP_Content_Text; // 체력
-    public TextMeshProUGUI Respiration_Content_Txt; // 심호흡
-    public TextMeshProUGUI Defense_Content_Txt; // 방어력
-    public TextMeshProUGUI Camouflage_Content_Txt; // 튼튼한 위장
-    public TextMeshProUGUI Intellect_Content_Txt; // 지능 학습
+    public TextMeshProUGUI HP_Content_Text; 
+    public TextMeshProUGUI Respiration_Content_Txt; 
+    public TextMeshProUGUI Defense_Content_Txt; 
+    public TextMeshProUGUI Camouflage_Content_Txt; 
+    public TextMeshProUGUI Intellect_Content_Txt; 
+
+    [Header("스킬 화면")]
+    public GameObject SkillWindow_obj;
+    public GameObject StartBtn_obj;
 
     void Start()
     {
@@ -106,6 +113,17 @@ public class UI_Manager : MonoBehaviour
 
     void SkillContent_Text()
     {
-
+        HP_Content_Text.text = "최대 체력 : " + GameManager.Inst.Skill_HP;
+        Respiration_Content_Txt.text = "체력 감소 속도 : -" + GameManager.Inst.Skill_Respiration + "%";
+        Defense_Content_Txt.text = "방어력 : " + GameManager.Inst.Skill_Defense;
+        Camouflage_Content_Txt.text = "뼈로부터 얻는 체력 : +" + GameManager.Inst.Skill_Camouflage + "%";
+        Intellect_Content_Txt.text = "뼈로부터 얻는 경험치 : +" + GameManager.Inst.Skill_Intellect + "%";
     }
+
+    public void GameStart_Btn()
+    {
+        SkillWindow_obj.transform.DOLocalMoveX(1000, 1).SetEase(Ease.InBack);
+        StartBtn_obj.transform.DOLocalMoveY(-710, 1).SetEase(Ease.InBack);
+    }
+
 }

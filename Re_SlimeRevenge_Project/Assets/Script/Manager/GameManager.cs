@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         Cheat();
+        Skill();
     }
 
     private void Awake()
@@ -60,5 +61,14 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
             Money += 10000f;
+    }
+
+    private void Skill()
+    {
+        Skill_HP = (200 +(HP_Level * 5));
+        Skill_Respiration = Respiration_Level * 0.2f;
+        Skill_Defense = Defense_Level;
+        Skill_Camouflage = Camouflage_Level * 5;
+        Skill_Intellect = Intellect_Level * 6;
     }
 }
