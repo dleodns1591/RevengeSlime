@@ -10,6 +10,7 @@ public class Title : MonoBehaviour
     void Start()
     {
         StartCoroutine(Text_Blinking_01());
+
     }
 
     void Update()
