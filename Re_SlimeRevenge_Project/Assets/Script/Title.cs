@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+
 public class Title : MonoBehaviour
 {
-    public SpriteRenderer TouchToStart;
+    public SpriteRenderer touchStart;
 
     void Start()
     {
-        StartCoroutine(Text_Blinking_01());
-
+        touchStart.DOFade(0, 1).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
     }
 
     void Update()
@@ -22,23 +22,8 @@ public class Title : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            TouchToStart.DOPause();
+            touchStart.DOPause();
             SceneManager.LoadScene("Main");
         }
     }
-
-    public IEnumerator Text_Blinking_01()
-    {
-        TouchToStart.DOFade(0f, 1);
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(Text_Blinking_02());
-    }
-
-    public IEnumerator Text_Blinking_02()
-    {
-        TouchToStart.DOFade(1f, 1);
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(Text_Blinking_01());
-    }
-
 }

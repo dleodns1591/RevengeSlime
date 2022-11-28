@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 51797928}
   - component: {fileID: 51797927}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: RespirationPrice_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 93167557}
   - component: {fileID: 93167556}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CamouflagePrice_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -734,6 +734,7 @@ RectTransform:
   m_Children:
   - {fileID: 1150874026}
   - {fileID: 1380164768}
+  - {fileID: 1642853011}
   m_Father: {fileID: 572770246}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -779,7 +780,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 8.5, y: -17.3753}
+  m_AnchoredPosition: {x: 8.5, y: -17.375305}
   m_SizeDelta: {x: -17, y: -43.545}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &358751732
@@ -1078,7 +1079,7 @@ GameObject:
   - component: {fileID: 505592442}
   - component: {fileID: 505592441}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: intellectPrice_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1213,9 +1214,8 @@ GameObject:
   - component: {fileID: 547482521}
   - component: {fileID: 547482520}
   - component: {fileID: 547482519}
-  - component: {fileID: 547482522}
   m_Layer: 5
-  m_Name: Upgrade_Btn
+  m_Name: Respiration_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1255,7 +1255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1285,19 +1285,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 547482520}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 547482522}
-        m_TargetAssemblyTypeName: Skill_Upgrade, Assembly-CSharp
-        m_MethodName: Upgrade_Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &547482520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1336,19 +1324,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547482517}
   m_CullTransparentMesh: 1
---- !u!114 &547482522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547482517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b87cb1486c5e7543b550c8228351035, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skill_List: 1
 --- !u!1 &572770242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,10 +1372,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1417,8 +1392,8 @@ Canvas:
   m_GameObject: {fileID: 572770242}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 953186831}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1426,7 +1401,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1977862931
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &572770246
@@ -1442,11 +1417,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 358367993}
-  - {fileID: 1642853011}
   - {fileID: 1275026159}
   - {fileID: 1589712410}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1600,9 +1574,8 @@ GameObject:
   - component: {fileID: 751730331}
   - component: {fileID: 751730330}
   - component: {fileID: 751730329}
-  - component: {fileID: 751730332}
   m_Layer: 5
-  m_Name: Upgrade_Btn
+  m_Name: intellect_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1642,7 +1615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1672,19 +1645,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 751730330}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 751730332}
-        m_TargetAssemblyTypeName: Skill_Upgrade, Assembly-CSharp
-        m_MethodName: Upgrade_Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &751730330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1723,19 +1684,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 751730327}
   m_CullTransparentMesh: 1
---- !u!114 &751730332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751730327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b87cb1486c5e7543b550c8228351035, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skill_List: 4
 --- !u!1 &811689621
 GameObject:
   m_ObjectHideFlags: 0
@@ -2018,7 +1966,7 @@ GameObject:
   - component: {fileID: 896095320}
   - component: {fileID: 896095319}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: DefensePrice_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2223,7 +2171,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &958561305
 GameObject:
@@ -2452,7 +2400,7 @@ GameObject:
   - component: {fileID: 995513589}
   - component: {fileID: 995513588}
   m_Layer: 0
-  m_Name: Game_Manager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2470,22 +2418,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23906ec7e9fdff1409232ae2f61b658d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Money: 0
-  Skill_HP: 0
-  Skill_Respiration: 0
-  Skill_Defense: 0
-  Skill_Camouflage: 0
-  Skill_Intellect: 0
-  HP_Level: 0
-  Respiration_Level: 0
-  Defense_Level: 0
-  Camouflage_Level: 0
-  Intellect_Level: 0
-  HP_Price: 0
-  Respiration_Price: 0
-  Defense_Price: 0
-  Camouflage_Price: 0
-  Intellect_Price: 0
+  money: 0
+  skillHP: 0
+  skillRespiration: 0
+  skillDefense: 0
+  skillCamouflage: 0
+  skillIntellect: 0
+  hpLevel: 0
+  respirationLevel: 0
+  defenseLevel: 0
+  camouflageLevel: 0
+  intellectLevel: 0
+  hpPrice: 0
+  respirationPrice: 0
+  defensePrice: 0
+  camouflagePrice: 0
+  intellectPrice: 0
 --- !u!4 &995513589
 Transform:
   m_ObjectHideFlags: 0
@@ -2499,7 +2447,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1041473762
 GameObject:
@@ -2513,9 +2461,8 @@ GameObject:
   - component: {fileID: 1041473766}
   - component: {fileID: 1041473765}
   - component: {fileID: 1041473764}
-  - component: {fileID: 1041473767}
   m_Layer: 5
-  m_Name: Upgrade_Btn
+  m_Name: Camouflage_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2539,7 +2486,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 370.9431, y: -6}
+  m_AnchoredPosition: {x: 370.9431, y: 0}
   m_SizeDelta: {x: 84, y: 216}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1041473764
@@ -2555,7 +2502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2585,19 +2532,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1041473765}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1041473767}
-        m_TargetAssemblyTypeName: Skill_Upgrade, Assembly-CSharp
-        m_MethodName: Upgrade_Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1041473765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2636,19 +2571,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041473762}
   m_CullTransparentMesh: 1
---- !u!114 &1041473767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041473762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b87cb1486c5e7543b550c8228351035, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skill_List: 3
 --- !u!1 &1150874025
 GameObject:
   m_ObjectHideFlags: 0
@@ -2871,7 +2793,7 @@ GameObject:
   - component: {fileID: 1264220964}
   - component: {fileID: 1264220963}
   m_Layer: 0
-  m_Name: UI_Manager
+  m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2889,24 +2811,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5289e8da269a887479fff59ea0a4abee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Money_Txt: {fileID: 1642853012}
-  HP_Level_Txt: {fileID: 268288898}
-  Respiration_Level_Txt: {fileID: 882069067}
-  Defense_Level_Txt: {fileID: 972593112}
-  Camouflage_Level_Txt: {fileID: 1229146009}
-  Intellect_Level_Txt: {fileID: 811689623}
-  HP_Price_Txt: {fileID: 1603655722}
-  Respiration_Price_Txt: {fileID: 51797927}
-  Defense_Price_Txt: {fileID: 896095319}
-  Camouflage_Price_Txt: {fileID: 93167556}
-  Intellect_Price_Txt: {fileID: 505592441}
-  HP_Content_Text: {fileID: 593485579}
-  Respiration_Content_Txt: {fileID: 2129171903}
-  Defense_Content_Txt: {fileID: 1421341766}
-  Camouflage_Content_Txt: {fileID: 1924771616}
-  Intellect_Content_Txt: {fileID: 1510334507}
-  SkillWindow_obj: {fileID: 358367992}
-  StartBtn_obj: {fileID: 1275026158}
+  money: {fileID: 1642853012}
+  hpLevel: {fileID: 268288898}
+  respirationLevel: {fileID: 882069067}
+  defenseLevel: {fileID: 972593112}
+  camouflageLevel: {fileID: 1229146009}
+  intellectLevel: {fileID: 811689623}
+  hpPrice: {fileID: 1603655722}
+  respirationPrice: {fileID: 51797927}
+  defensePrice: {fileID: 896095319}
+  camouflagePrice: {fileID: 93167556}
+  intellectPrice: {fileID: 505592441}
+  hPContent: {fileID: 593485579}
+  respirationContent: {fileID: 2129171903}
+  defenseContent: {fileID: 1421341766}
+  camouflageContent: {fileID: 1924771616}
+  intellectContent: {fileID: 1510334507}
+  startBtn: {fileID: 1275026160}
+  hpBtn: {fileID: 1357106311}
+  respirationBtn: {fileID: 547482519}
+  defenseBtn: {fileID: 1779220139}
+  camouflageBtn: {fileID: 1041473764}
+  intellectBtn: {fileID: 751730329}
+  skillWindow: {fileID: 358367992}
+  startBtnObj: {fileID: 1275026158}
 --- !u!4 &1264220964
 Transform:
   m_ObjectHideFlags: 0
@@ -2920,7 +2848,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1275026158
 GameObject:
@@ -2954,7 +2882,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 572770246}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2974,7 +2902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -3004,19 +2932,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1275026161}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1264220963}
-        m_TargetAssemblyTypeName: UI_Manager, Assembly-CSharp
-        m_MethodName: GameStart_Btn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1275026161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3148,9 +3064,8 @@ GameObject:
   - component: {fileID: 1357106313}
   - component: {fileID: 1357106312}
   - component: {fileID: 1357106311}
-  - component: {fileID: 1357106314}
   m_Layer: 5
-  m_Name: Upgrade_Btn
+  m_Name: hpBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3190,7 +3105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -3220,19 +3135,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1357106312}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1357106314}
-        m_TargetAssemblyTypeName: Skill_Upgrade, Assembly-CSharp
-        m_MethodName: Upgrade_Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1357106312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3271,19 +3174,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357106309}
   m_CullTransparentMesh: 1
---- !u!114 &1357106314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1357106309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b87cb1486c5e7543b550c8228351035, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skill_List: 0
 --- !u!1 &1380164767
 GameObject:
   m_ObjectHideFlags: 0
@@ -3558,7 +3448,7 @@ Transform:
   - {fileID: 2070925994}
   - {fileID: 1838631234}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1508817185
 GameObject:
@@ -3841,7 +3731,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1537905546
 GameObject:
@@ -4145,7 +4035,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 572770246}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4222,7 +4112,7 @@ GameObject:
   - component: {fileID: 1603655723}
   - component: {fileID: 1603655722}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: hpPrice_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4591,8 +4481,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 572770246}
-  m_RootOrder: 1
+  m_Father: {fileID: 358367993}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4708,9 +4598,8 @@ GameObject:
   - component: {fileID: 1779220141}
   - component: {fileID: 1779220140}
   - component: {fileID: 1779220139}
-  - component: {fileID: 1779220142}
   m_Layer: 5
-  m_Name: Upgrade_Btn
+  m_Name: Defense_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4734,7 +4623,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 368, y: -0}
+  m_AnchoredPosition: {x: 368, y: 0}
   m_SizeDelta: {x: 84, y: 216}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1779220139
@@ -4750,7 +4639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -4780,19 +4669,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1779220140}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1779220142}
-        m_TargetAssemblyTypeName: Skill_Upgrade, Assembly-CSharp
-        m_MethodName: Upgrade_Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1779220140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4831,19 +4708,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1779220137}
   m_CullTransparentMesh: 1
---- !u!114 &1779220142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1779220137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b87cb1486c5e7543b550c8228351035, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skill_List: 2
 --- !u!1 &1830140476
 GameObject:
   m_ObjectHideFlags: 0

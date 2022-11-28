@@ -4,40 +4,53 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Inst;
+    public static GameManager instance;
 
     [Header("소지 금액")]
-    public float Money;
+    private float money;
+
+    public float _money
+    {
+        get { return money; }
+        set { money = value; }
+    }
 
     [Header("스킬")]
-    public float Skill_HP;
-    public float Skill_Respiration;
-    public float Skill_Defense;
-    public float Skill_Camouflage;
-    public float Skill_Intellect;
+    public float skillHP;
+    public float skillRespiration;
+    public float skillDefense;
+    public float skillCamouflage;
+    public float skillIntellect;
 
     [Header("스킬 레벨")]
-    public int HP_Level; // 굳건한 체력
-    public int Respiration_Level; // 심호흡
-    public int Defense_Level; // 탄성력
-    public int Camouflage_Level; // 튼튼한 위장
-    public int Intellect_Level; // 지능 학습
+    public int hpLevel; // 굳건한 체력
+    public int respirationLevel; // 심호흡
+    public int defenseLevel; // 탄성력
+    public int camouflageLevel; // 튼튼한 위장
+    public int intellectLevel; // 지능 학습
 
     [Header("스킬 가격")]
-    public float HP_Price;
-    public float Respiration_Price;
-    public float Defense_Price;
-    public float Camouflage_Price;
-    public float Intellect_Price;
+    public float hpPrice;
+    public float respirationPrice;
+    public float defensePrice;
+    public float camouflagePrice;
+    public float intellectPrice;
 
+    private bool isStartGame;
+
+    public bool _isStartGame
+    {
+        get { return isStartGame; }
+        set { isStartGame = value; }
+    }
 
     void Start()
     {
-        HP_Price = 30;
-        Respiration_Price = 100;
-        Defense_Price = 300;
-        Camouflage_Price = 150;
-        Intellect_Price = 150;
+        hpPrice = 30;
+        respirationPrice = 100;
+        defensePrice = 300;
+        camouflagePrice = 150;
+        intellectPrice = 150;
     }
 
     void Update()
@@ -46,29 +59,30 @@ public class GameManager : MonoBehaviour
         Skill();
     }
 
-    private void Awake()
+    void Awake()
     {
-        if (Inst == null)
+        if (instance == null)
         {
-            Inst = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
             Destroy(gameObject);
     }
 
-    public void Cheat()
+    void Skill()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-            Money += 10000f;
+        skillHP = (200 +(hpLevel * 5));
+        skillRespiration = respirationLevel * 0.2f;
+        skillDefense = defenseLevel;
+        skillCamouflage = camouflageLevel * 5;
+        skillIntellect = intellectLevel * 6;
     }
 
-    private void Skill()
+    void Cheat()
     {
-        Skill_HP = (200 +(HP_Level * 5));
-        Skill_Respiration = Respiration_Level * 0.2f;
-        Skill_Defense = Defense_Level;
-        Skill_Camouflage = Camouflage_Level * 5;
-        Skill_Intellect = Intellect_Level * 6;
+        if (Input.GetKeyDown(KeyCode.G))
+            money += 10000f;
     }
+
 }
