@@ -152,7 +152,10 @@ public class UIManager : MonoBehaviour
             int skillWindowPosX = 1000;
 
             GameManager.instance._isStartGame = true;
-            cameFire.transform.DOLocalMoveX(-cameFirePosX, 2.8f).SetEase(Ease.Linear);
+            cameFire.transform.DOLocalMoveX(-cameFirePosX, 2.8f).SetEase(Ease.Linear).OnComplete(() =>
+            {
+                Destroy(cameFire);
+            });
 
             skillWindow.transform.DOLocalMoveX(skillWindowPosX, waitTime).SetEase(Ease.InOutSine);
             startBtnObj.transform.DOLocalMoveY(-startBtnPosY, waitTime).SetEase(Ease.InOutSine);
