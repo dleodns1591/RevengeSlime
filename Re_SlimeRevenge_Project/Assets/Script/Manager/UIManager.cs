@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour
     #endregion
 
     [Header("모닥불")]
-    public GameObject cameFire;
+    [SerializeField] GameObject cameFire;
 
     [Header("스킬 화면")]
     [SerializeField] GameObject skillWindow;
@@ -152,6 +152,8 @@ public class UIManager : MonoBehaviour
             int skillWindowPosX = 1000;
 
             GameManager.instance._isStartGame = true;
+
+            Player.Instance.transform.DOLocalMoveX(-7, waitTime).SetEase(Ease.Linear);
             cameFire.transform.DOLocalMoveX(-cameFirePosX, 2.8f).SetEase(Ease.Linear).OnComplete(() =>
             {
                 Destroy(cameFire);
