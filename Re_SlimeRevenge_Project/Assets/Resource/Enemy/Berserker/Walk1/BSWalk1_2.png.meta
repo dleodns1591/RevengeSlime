@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -104,22 +104,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BSWalk_2_0
+      name: BSWalk1_2_0
       rect:
         serializedVersion: 2
         x: 130
         y: 87
-        width: 786
-        height: 1026
+        width: 874
+        height: 1048
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e6e659213b8d3d4fbc6ce82bb6837c0
-      internalID: 937426580
+      spriteID: b51f442e70678c24eb29f3249db70459
+      internalID: -1186599657
       vertices: []
       indices: 
       edges: []
@@ -135,8 +135,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BSWalk_2_0: 937426580
-      BSWalk_2_1: -1518133345
+      BSWalk1_2_0: -1186599657
+      BSWalk1_2_1: -1636328969
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

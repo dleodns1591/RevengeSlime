@@ -44,6 +44,14 @@ public class GameManager : MonoBehaviour
         set { isStartGame = value; }
     }
 
+    private int distance;
+
+    public int _distance
+    {
+        get { return distance; }
+        set { distance = value; }
+    }
+
     void Start()
     {
         hpPrice = 30;
@@ -57,6 +65,9 @@ public class GameManager : MonoBehaviour
     {
         Cheat();
         Skill();
+
+        if (isStartGame == true)
+            distance = (int)Time.time;
     }
 
     void Awake()
@@ -72,7 +83,7 @@ public class GameManager : MonoBehaviour
 
     void Skill()
     {
-        skillHP = (200 +(hpLevel * 5));
+        skillHP = (200 + (hpLevel * 5));
         skillRespiration = respirationLevel * 0.2f;
         skillDefense = defenseLevel;
         skillCamouflage = camouflageLevel * 5;

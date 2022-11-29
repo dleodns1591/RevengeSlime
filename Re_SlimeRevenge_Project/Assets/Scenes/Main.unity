@@ -1701,7 +1701,7 @@ GameObject:
   - component: {fileID: 779368871}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1765,7 +1765,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 632464759
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 622290601, guid: d622a70e47492e9479ea0d5f0c192f97, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5767,6 +5767,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2049253321}
+  - component: {fileID: 2049253322}
   m_Layer: 0
   m_Name: EnemySpawnManager
   m_TagString: Untagged
@@ -5789,6 +5790,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2049253322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049253320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc3bc4b7eafaa844b8d8481da1144c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy:
+  - {fileID: 4810867459633468967, guid: f38d2f7a960a78f4da627ca3bf89ff17, type: 3}
+  - {fileID: 5968893491681481154, guid: 12f9bc34b01748642a2b85d65f3aba3d, type: 3}
+  - {fileID: 1477922770303473738, guid: c7a4eb4c0b2cb7f47a5b59effe351321, type: 3}
+  - {fileID: 2747071428898637589, guid: 40f02a3634f831f45b5d2af455eec78f, type: 3}
+  - {fileID: 3288530849665026247, guid: 8bcb5958e183ad945a4ac053bd5a80c5, type: 3}
+  - {fileID: 2322360588560176347, guid: 0c77c0600cecbfe429d17347acf0c4a4, type: 3}
+  - {fileID: 6871536728073408327, guid: 43fab76dabd2b3f428f718dca0116d28, type: 3}
+  - {fileID: 7141671292232248036, guid: 0a2c1c0d65398c74b9ab6e7b4fb8ceab, type: 3}
+  distanceCheck: 0
 --- !u!1 &2069896241
 GameObject:
   m_ObjectHideFlags: 0
