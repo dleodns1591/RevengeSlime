@@ -11,7 +11,7 @@ public class EnemySpawn : MonoBehaviour
     void Start()
     {
         distanceCheck = 0;
-        StartCoroutine(Spawn());
+        //StartCoroutine(Spawn());
     }
 
     void Update()
@@ -20,6 +20,11 @@ public class EnemySpawn : MonoBehaviour
     }
 
     void FixedUpdate()
+    {
+        DistanceUp();
+    }
+
+    void DistanceUp()
     {
         int early = 25;
         int secondHalf = 30;
@@ -34,16 +39,13 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
-
-
     IEnumerator Spawn()
     {
-
         while (true)
         {
             if (GameManager.instance._isStartGame == true && distanceCheck <= GameManager.instance._distance)
             {
-                switch (distanceCheck)
+                switch (GameManager.instance._distance)
                 {
                     case 0:
                         break;

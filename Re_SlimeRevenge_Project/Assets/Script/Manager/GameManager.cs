@@ -5,16 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    float distanceTimer = 0;
 
-    [Header("소지 금액")]
-    private float money;
-
-    public float _money
-    {
-        get { return money; }
-        set { money = value; }
-    }
-
+    #region 스킬 관련
     [Header("스킬")]
     public float skillHP;
     public float skillRespiration;
@@ -35,6 +28,16 @@ public class GameManager : MonoBehaviour
     public float defensePrice;
     public float camouflagePrice;
     public float intellectPrice;
+    #endregion
+
+    [Header("소지 금액")]
+    private float money;
+
+    public float _money
+    {
+        get { return money; }
+        set { money = value; }
+    }
 
     private bool isStartGame;
 
@@ -65,9 +68,7 @@ public class GameManager : MonoBehaviour
     {
         Cheat();
         Skill();
-
-        if (isStartGame == true)
-            distance = (int)Time.time;
+        Distance();
     }
 
     void Awake()
@@ -88,6 +89,20 @@ public class GameManager : MonoBehaviour
         skillDefense = defenseLevel;
         skillCamouflage = camouflageLevel * 5;
         skillIntellect = intellectLevel * 6;
+    }
+
+    void Distance()
+    {
+        distanceTimer += Time.deltaTime;
+
+        if (isStartGame == true)
+        {
+            if (distanceTimer >= 0.8f)
+            {
+                distanceTimer = 0;
+                distance += 1;
+            }
+        }
     }
 
     void Cheat()

@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI intellectContent;
     #endregion
 
-    #region 메인 버튼
+    #region 버튼
     [Header("버튼")]
     [SerializeField] Button startBtn;
 
@@ -51,6 +51,27 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button camouflageBtn;
     [SerializeField] Button intellectBtn;
     #endregion
+
+    [Header("인게임UI")]
+    [SerializeField] GameObject ingame;
+    [SerializeField] TextMeshProUGUI distance;
+    [SerializeField] TextMeshProUGUI ingameMoney;
+    [SerializeField] Slider hpSlider;
+    [SerializeField] Slider levelSlider;
+
+    public int maxHP;
+    public int currentHP;
+    float sliderTimer;
+    bool isHPUSe;
+
+    [Header("특수능력")]
+    [SerializeField] Image ability;
+    [SerializeField] TextMeshProUGUI abilityText;
+
+    [SerializeField] float abilityCoolTime;
+    [SerializeField] float abilityCurrentCoolTime;
+    int abilityCount;
+    bool isAbilityUse;
 
     [Header("모닥불")]
     [SerializeField] GameObject cameFire;
@@ -66,14 +87,95 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
+        distance.text = GameManager.instance._distance.ToString();
+
         Amount_Text();
+        SpecialAbility();
 
         SkillLevel_Text();
         SkillPrice_Text();
         SkillContent_Text();
+
+        StartCoroutine(SliderBar());
     }
+
     void Amount_Text() => money.text = GameManager.instance._money.ToString();
 
+    IEnumerator SliderBar()
+    {
+        if (GameManager.instance._isStartGame == true)
+        {
+            sliderTimer += Time.deltaTime * 0.25f;
+
+            if (isHPUSe == false)
+            {
+                isHPUSe = true;
+                while (hpSlider.value > 0)
+                {
+                    yield return new WaitForSeconds(1f);
+                    hpSlider.value -= (15 - GameManager.instance.skillRespiration);
+                }
+                yield break;
+            }
+        }
+        else
+        {
+            hpSlider.maxValue = GameManager.instance.skillHP;
+            hpSlider.value = hpSlider.maxValue;
+        }
+
+    }
+
+    #region 특수능력
+    void SpecialAbility()
+    {
+        abilityText.text = abilityCount.ToString();
+
+        if (Input.GetKeyDown(KeyCode.Z) && abilityCount > 0)
+        {
+            --abilityCount;
+        }
+
+        if (GameManager.instance._isStartGame == true && abilityCount < 2)
+        {
+            if (isAbilityUse == false)
+            {
+                isAbilityUse = true;
+                ability.fillAmount = 1;
+                abilityCurrentCoolTime = abilityCoolTime;
+                StartCoroutine(CoolTime());
+                StartCoroutine(CoolTimeCounter());
+            }
+
+            if (abilityCurrentCoolTime == 0)
+            {
+                isAbilityUse = false;
+                ++abilityCount;
+            }
+        }
+    }
+
+    IEnumerator CoolTime()
+    {
+        while (ability.fillAmount > 0)
+        {
+            ability.fillAmount = abilityCurrentCoolTime / abilityCoolTime;
+            yield return null;
+        }
+        yield break;
+    }
+
+    IEnumerator CoolTimeCounter()
+    {
+        WaitForSeconds waitSec = new WaitForSeconds(1);
+        while (abilityCurrentCoolTime > 0)
+        {
+            yield return waitSec;
+            abilityCurrentCoolTime -= 1;
+        }
+        yield break;
+    }
+    #endregion
 
     #region 스킬 텍스트
     void SkillLevel_Text()
@@ -154,13 +256,23 @@ public class UIManager : MonoBehaviour
             GameManager.instance._isStartGame = true;
 
             Player.Instance.transform.DOLocalMoveX(-7, waitTime).SetEase(Ease.Linear);
-            cameFire.transform.DOLocalMoveX(-cameFirePosX, 2.8f).SetEase(Ease.Linear).OnComplete(() =>
+            cameFire.transform.DOLocalMoveX(-cameFirePosX, 1.7f).SetEase(Ease.Linear).OnComplete(() =>
             {
                 Destroy(cameFire);
             });
 
+            // 메인UI 치우기
             skillWindow.transform.DOLocalMoveX(skillWindowPosX, waitTime).SetEase(Ease.InOutSine);
             startBtnObj.transform.DOLocalMoveY(-startBtnPosY, waitTime).SetEase(Ease.InOutSine);
+
+            // 인게임UI 보이기
+            for (int i = 0; i <= 2; i++)
+            {
+                ingame.transform.GetChild(i).DOLocalMoveY(480, 1).SetEase(Ease.Linear);
+            }
+            ingame.transform.GetChild(3).DOLocalMoveY(-410, 1).SetEase(Ease.Linear);
+
+
         });
 
         hpBtn.onClick.AddListener(() =>
