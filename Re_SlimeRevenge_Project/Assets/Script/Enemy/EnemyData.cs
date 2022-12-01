@@ -6,13 +6,16 @@ using UnityEngine;
 public class EnemyData
 {
     public string enemyName;
-    public GameObject enemyPrefab;
-    public int weight;
+    public GameObject enemy;
+    public int hp;
+    public int attack;
+
 
     public EnemyData(EnemyData enemyData)
     {
         enemyName = enemyData.enemyName;
-        enemyPrefab = enemyData.enemyPrefab;
-        weight = enemyData.weight;
+        enemy = enemyData.enemy;
+        hp = enemyData.hp;
+        attack = enemyData.attack;
     }
 }

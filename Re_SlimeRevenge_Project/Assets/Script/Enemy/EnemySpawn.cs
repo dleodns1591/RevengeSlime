@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public List<GameObject> enemy = new List<GameObject>();
+    public List<EnemyData> enemy = new List<EnemyData>();
 
     [SerializeField] int distanceCheck;
 
     void Start()
     {
         distanceCheck = 0;
-        //StartCoroutine(Spawn());
+        StartCoroutine(Spawn());
     }
 
     void Update()
@@ -19,52 +19,163 @@ public class EnemySpawn : MonoBehaviour
 
     }
 
-    void FixedUpdate()
-    {
-        DistanceUp();
-    }
-
-    void DistanceUp()
-    {
-        int early = 25;
-        int secondHalf = 30;
-        int maxDistance = 170;
-
-        if (distanceCheck + 20 == GameManager.instance._distance)
-        {
-            if (distanceCheck <= maxDistance)
-                distanceCheck += early;
-            else
-                distanceCheck += secondHalf;
-        }
-    }
-
     IEnumerator Spawn()
     {
         while (true)
         {
-            if (GameManager.instance._isStartGame == true && distanceCheck <= GameManager.instance._distance)
+            if (GameManager.instance._isStartGame == true)
             {
-                switch (GameManager.instance._distance)
+                int randomSpawn = Random.Range(1, 101);
+                float randomPosY = Random.Range(-3.2f, 0.8f);
+
+                Vector2 spawnPos = new Vector2(11, randomPosY);
+
+                if (0 <= GameManager.instance._distance && GameManager.instance._distance < 20)
                 {
-                    case 0:
-                        break;
-                    case 20:
-                        break;
-                    case 45:
-                        break;
-                    case 70:
-                        break;
-                    case 95:
-                        break;
-                    case 120:
-                        break;
-                    case 145:
-                        break;
-                    case 170:
-                        break;
-                    case 200:
-                        break;
+                    yield return new WaitForSeconds(4.3f);
+
+                    if (0 <= randomSpawn && randomSpawn <= 40)
+                        Instantiate(enemy[0].enemy, spawnPos, Quaternion.identity);
+                    else
+                        Instantiate(enemy[1].enemy, spawnPos, Quaternion.identity);
+                }
+
+                else if (20 <= GameManager.instance._distance && GameManager.instance._distance < 45)
+                {
+                    yield return new WaitForSeconds(4);
+
+                    if (0 <= randomSpawn && randomSpawn <= 50)
+                        Instantiate(enemy[0].enemy, spawnPos, Quaternion.identity);
+                    else
+                        Instantiate(enemy[1].enemy, spawnPos, Quaternion.identity);
+                }
+
+                else if (45 <= GameManager.instance._distance && GameManager.instance._distance < 70)
+                {
+                    yield return new WaitForSeconds(3.7f);
+
+                    if (0 <= randomSpawn && randomSpawn <= 50)
+                        Instantiate(enemy[0].enemy, spawnPos, Quaternion.identity);
+                    else if (60 <= randomSpawn && randomSpawn <= 80)
+                        Instantiate(enemy[1].enemy, spawnPos, Quaternion.identity);
+                    else
+                        Instantiate(enemy[2].enemy, spawnPos, Quaternion.identity);
+                }
+
+                else if (70 <= GameManager.instance._distance && GameManager.instance._distance < 95)
+                {
+                    yield return new WaitForSeconds(3.4f);
+
+                    if (0 <= randomSpawn && randomSpawn <= 35)
+                        Instantiate(enemy[0].enemy, spawnPos, Quaternion.identity);
+                    else if (35 < randomSpawn && randomSpawn <= 65)
+                        Instantiate(enemy[1].enemy, spawnPos, Quaternion.identity);
+                    else if (65 < randomSpawn && randomSpawn <= 90)
+                        Instantiate(enemy[2].enemy, spawnPos, Quaternion.identity);
+                    else
+                        Instantiate(enemy[3].enemy, spawnPos, Quaternion.identity);
+                }
+
+                else if (95 <= GameManager.instance._distance && GameManager.instance._distance < 120)
+                {
+                    yield return new WaitForSeconds(3f);
+
+                    if (0 <= randomSpawn && randomSpawn <= 30)
+                        Instantiate(enemy[0].enemy, spawnPos, Quaternion.identity);
+                    else if (30 < randomSpawn && randomSpawn <= 50)
+                        Instantiate(enemy[1].enemy, spawnPos, Quaternion.identity);
+                    else if (50 < randomSpawn && randomSpawn <= 75)
+                        Instantiate(enemy[2].enemy, spawnPos, Quaternion.identity);
+                    else if (75 < randomSpawn && randomSpawn <= 85)
+                        Instantiate(enemy[3].enemy, spawnPos, Quaternion.identity);
+                    else
+                        Instantiate(enemy[4].enemy, spawnPos, Quaternion.identity);
+                }
+
+                else if (120 <= GameManager.instance._distance && GameManager.instance._distance < 145)
+                {
+                    yield return new WaitForSeconds(2.8f);
+
+                    if (0 <= randomSpawn && randomSpawn <= 10)
+                        Instantiate(enemy[0].enemy, spawnPos, Quaternion.identity);
+                    else if (10 < randomSpawn && randomSpawn <= 30)
+                        Instantiate(enemy[1].enemy, spawnPos, Quaternion.identity);
+                    else if (30 < randomSpawn && randomSpawn <= 50)
+                        Instantiate(enemy[2].enemy, spawnPos, Quaternion.identity);
+                    else if (50 < randomSpawn && randomSpawn <= 60)
+                        Instantiate(enemy[3].enemy, spawnPos, Quaternion.identity);
+                    else if (60 < randomSpawn && randomSpawn <= 70)
+                        Instantiate(enemy[4].enemy, spawnPos, Quaternion.identity);
+                    else if (70 < randomSpawn && randomSpawn <= 85)
+                        Instantiate(enemy[5].enemy, spawnPos, Quaternion.identity);
+                    else
+                        Instantiate(enemy[7].enemy, spawnPos, Quaternion.identity);
+                }
+
+                else if (145 <= GameManager.instance._distance && GameManager.instance._distance < 170)
+                {
+                    yield return new WaitForSeconds(2.6f);
+
+                    if (0 <= randomSpawn && randomSpawn <= 10)
+                        Instantiate(enemy[0].enemy, spawnPos, Quaternion.identity);
+                    else if (10 < randomSpawn && randomSpawn <= 25)
+                        Instantiate(enemy[1].enemy, spawnPos, Quaternion.identity);
+                    else if (25 < randomSpawn && randomSpawn <= 50)
+                        Instantiate(enemy[2].enemy, spawnPos, Quaternion.identity);
+                    else if (50 < randomSpawn && randomSpawn <= 60)
+                        Instantiate(enemy[3].enemy, spawnPos, Quaternion.identity);
+                    else if (60 < randomSpawn && randomSpawn <= 70)
+                        Instantiate(enemy[4].enemy, spawnPos, Quaternion.identity);
+                    else if (70 < randomSpawn && randomSpawn <= 80)
+                        Instantiate(enemy[5].enemy, spawnPos, Quaternion.identity);
+                    else if (80 < randomSpawn && randomSpawn <= 85)
+                        Instantiate(enemy[6].enemy, spawnPos, Quaternion.identity);
+                    else
+                        Instantiate(enemy[7].enemy, spawnPos, Quaternion.identity);
+                }
+
+                else if (170 <= GameManager.instance._distance && GameManager.instance._distance < 200)
+                {
+                    yield return new WaitForSeconds(2.4f);
+
+                    if (0 <= randomSpawn && randomSpawn <= 10)
+                        Instantiate(enemy[0].enemy, spawnPos, Quaternion.identity);
+                    else if (10 < randomSpawn && randomSpawn <= 25)
+                        Instantiate(enemy[1].enemy, spawnPos, Quaternion.identity);
+                    else if (25 < randomSpawn && randomSpawn <= 45)
+                        Instantiate(enemy[2].enemy, spawnPos, Quaternion.identity);
+                    else if (45 < randomSpawn && randomSpawn <= 55)
+                        Instantiate(enemy[3].enemy, spawnPos, Quaternion.identity);
+                    else if (55 < randomSpawn && randomSpawn <= 65)
+                        Instantiate(enemy[4].enemy, spawnPos, Quaternion.identity);
+                    else if (65 < randomSpawn && randomSpawn <= 80)
+                        Instantiate(enemy[5].enemy, spawnPos, Quaternion.identity);
+                    else if (80 < randomSpawn && randomSpawn <= 90)
+                        Instantiate(enemy[6].enemy, spawnPos, Quaternion.identity);
+                    else
+                        Instantiate(enemy[7].enemy, spawnPos, Quaternion.identity);
+                }
+
+                else if (200 <= GameManager.instance._distance)
+                {
+                    yield return new WaitForSeconds(2);
+
+                    if (0 <= randomSpawn && randomSpawn <= 10)
+                        Instantiate(enemy[0].enemy, spawnPos, Quaternion.identity);
+                    else if (10 < randomSpawn && randomSpawn <= 20)
+                        Instantiate(enemy[1].enemy, spawnPos, Quaternion.identity);
+                    else if (20 < randomSpawn && randomSpawn <= 40)
+                        Instantiate(enemy[2].enemy, spawnPos, Quaternion.identity);
+                    else if (40 < randomSpawn && randomSpawn <= 50)
+                        Instantiate(enemy[3].enemy, spawnPos, Quaternion.identity);
+                    else if (50 < randomSpawn && randomSpawn <= 60)
+                        Instantiate(enemy[4].enemy, spawnPos, Quaternion.identity);
+                    else if (60 < randomSpawn && randomSpawn <= 75)
+                        Instantiate(enemy[5].enemy, spawnPos, Quaternion.identity);
+                    else if (75 < randomSpawn && randomSpawn <= 90)
+                        Instantiate(enemy[6].enemy, spawnPos, Quaternion.identity);
+                    else
+                        Instantiate(enemy[7].enemy, spawnPos, Quaternion.identity);
                 }
             }
             else

@@ -7358,14 +7358,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
-  - {fileID: 4810867459633468967, guid: f38d2f7a960a78f4da627ca3bf89ff17, type: 3}
-  - {fileID: 5968893491681481154, guid: 12f9bc34b01748642a2b85d65f3aba3d, type: 3}
-  - {fileID: 1477922770303473738, guid: c7a4eb4c0b2cb7f47a5b59effe351321, type: 3}
-  - {fileID: 2747071428898637589, guid: 40f02a3634f831f45b5d2af455eec78f, type: 3}
-  - {fileID: 3288530849665026247, guid: 8bcb5958e183ad945a4ac053bd5a80c5, type: 3}
-  - {fileID: 2322360588560176347, guid: 0c77c0600cecbfe429d17347acf0c4a4, type: 3}
-  - {fileID: 6871536728073408327, guid: 43fab76dabd2b3f428f718dca0116d28, type: 3}
-  - {fileID: 7141671292232248036, guid: 0a2c1c0d65398c74b9ab6e7b4fb8ceab, type: 3}
+  - enemyName: "\uB274\uBE441"
+    enemy: {fileID: 4810867459633468967, guid: f38d2f7a960a78f4da627ca3bf89ff17, type: 3}
+    hp: 1
+    attack: 0
+  - enemyName: "\uB274\uBE442"
+    enemy: {fileID: 5968893491681481154, guid: 12f9bc34b01748642a2b85d65f3aba3d, type: 3}
+    hp: 1
+    attack: 0
+  - enemyName: "\uBC29\uD328\uBCD1"
+    enemy: {fileID: 1477922770303473738, guid: c7a4eb4c0b2cb7f47a5b59effe351321, type: 3}
+    hp: 2
+    attack: 0
+  - enemyName: "\uBAA9\uCC45"
+    enemy: {fileID: 2747071428898637589, guid: 40f02a3634f831f45b5d2af455eec78f, type: 3}
+    hp: 1
+    attack: 40
+  - enemyName: "\uAC80\uC0AC"
+    enemy: {fileID: 3288530849665026247, guid: 8bcb5958e183ad945a4ac053bd5a80c5, type: 3}
+    hp: 2
+    attack: 20
+  - enemyName: "\uAD81\uC218"
+    enemy: {fileID: 2322360588560176347, guid: 0c77c0600cecbfe429d17347acf0c4a4, type: 3}
+    hp: 2
+    attack: 10
+  - enemyName: "\uC911\uAC11\uBCD1"
+    enemy: {fileID: 6871536728073408327, guid: 43fab76dabd2b3f428f718dca0116d28, type: 3}
+    hp: 3
+    attack: 0
+  - enemyName: "\uAD11\uC804\uC0AC"
+    enemy: {fileID: 7141671292232248036, guid: 0a2c1c0d65398c74b9ab6e7b4fb8ceab, type: 3}
+    hp: 2
+    attack: 30
   distanceCheck: 0
 --- !u!1 &2069896241
 GameObject:
