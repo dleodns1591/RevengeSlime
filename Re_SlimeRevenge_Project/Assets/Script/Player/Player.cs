@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Player : Singleton<Player>
 {
+    public SpriteRenderer spriteRenderer;
+
     public enum EState
     {
         Walk,
@@ -18,7 +21,7 @@ public class Player : Singleton<Player>
 
     void Start()
     {
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -35,13 +38,9 @@ public class Player : Singleton<Player>
         if (GameManager.instance._isStartGame == true)
         {
             if (Input.GetKey(KeyCode.Space))
-            {
                 transform.Translate(0, moveSpeed * Time.deltaTime, 0);
-            }
             else
-            {
                 transform.Translate(0, -moveSpeed * Time.deltaTime, 0);
-            }
         }
     }
 }

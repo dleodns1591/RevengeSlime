@@ -6,11 +6,8 @@ public class EnemySpawn : MonoBehaviour
 {
     public List<EnemyData> enemy = new List<EnemyData>();
 
-    [SerializeField] int distanceCheck;
-
     void Start()
     {
-        distanceCheck = 0;
         StartCoroutine(Spawn());
     }
 
@@ -29,6 +26,8 @@ public class EnemySpawn : MonoBehaviour
                 float randomPosY = Random.Range(-3.2f, 0.8f);
 
                 Vector2 spawnPos = new Vector2(11, randomPosY);
+
+                Debug.Log(randomPosY);
 
                 if (0 <= GameManager.instance._distance && GameManager.instance._distance < 20)
                 {

@@ -59,8 +59,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] Slider hpSlider;
     [SerializeField] Slider levelSlider;
 
-    public int maxHP;
-    public int currentHP;
     float sliderTimer;
     bool isHPUSe;
 
