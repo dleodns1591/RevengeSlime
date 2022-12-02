@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5968893491681481152}
   - component: {fileID: 5968893491681481153}
   - component: {fileID: 1437585460270852778}
+  - component: {fileID: -9069335008564949624}
   m_Layer: 0
   m_Name: Noob2
   m_TagString: Enemy
@@ -146,5 +147,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eenemy: 1
+  espeed: 0
   hp: 1
   attack: 0
+  isCollsionAttack: 0
+  bigBoon: 1
+  smallBoon: 0
+  animator: {fileID: 0}
+--- !u!114 &-9069335008564949624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5968893491681481154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fce24d6dc4bdb5489f835a04f1acd6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

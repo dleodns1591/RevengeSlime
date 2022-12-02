@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3288530849665026245}
   - component: {fileID: 3288530849665026244}
   - component: {fileID: -1390792148275993841}
+  - component: {fileID: 6723455402178579049}
   m_Layer: 0
   m_Name: Swordman
   m_TagString: Enemy
@@ -146,5 +147,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eenemy: 4
+  espeed: 1
   hp: 2
   attack: 20
+  isCollsionAttack: 1
+  bigBone: 1
+  smallBone: 1
+  animator: {fileID: 0}
+--- !u!114 &6723455402178579049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3288530849665026247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fce24d6dc4bdb5489f835a04f1acd6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

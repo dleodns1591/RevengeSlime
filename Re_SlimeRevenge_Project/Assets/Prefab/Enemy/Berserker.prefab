@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7141671292232248038}
   - component: {fileID: 7141671292232248039}
   - component: {fileID: 7091813286252954221}
+  - component: {fileID: -3696878417590064730}
   m_Layer: 0
   m_Name: Berserker
   m_TagString: Enemy
@@ -146,5 +147,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eenemy: 7
+  espeed: 2
   hp: 2
   attack: 30
+  isCollsionAttack: 1
+  bigBone: 1
+  smallBone: 2
+  animator: {fileID: 0}
+--- !u!114 &-3696878417590064730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7141671292232248036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fce24d6dc4bdb5489f835a04f1acd6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

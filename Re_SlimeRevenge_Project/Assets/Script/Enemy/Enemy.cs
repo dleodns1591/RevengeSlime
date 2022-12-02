@@ -19,15 +19,29 @@ public class Enemy : MonoBehaviour
         HeavyCavalry,
         Berserker,
     }
+    
+    public enum Espeed
+    {
+        Slow,
+        Usual,
+        Fast,
+    }
+
+    [Header("수치적 데이터")]
     public Eenemy eenemy;
+    public Espeed espeed;
 
     public int hp;
     public int attack;
-    public int moveSpeed;
+    public bool isCollsionAttack;
+    public int bigBone;
+    public int smallBone;
+
+    public Animator animator;
 
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -58,9 +72,9 @@ public class Enemy : MonoBehaviour
                 Player.Instance.tag = "Player";
             }
 
-            if (hp > 0)
+            if (hp > 1)
             {
-                //넉백
+                
             }
             else
             {

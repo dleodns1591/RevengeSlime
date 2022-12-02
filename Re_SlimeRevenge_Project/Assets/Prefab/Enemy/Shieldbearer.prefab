@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1477922770303473736}
   - component: {fileID: 1477922770303473737}
   - component: {fileID: 5338037515042172377}
+  - component: {fileID: 5496952627309836739}
   m_Layer: 0
   m_Name: Shieldbearer
   m_TagString: Enemy
@@ -146,5 +147,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eenemy: 2
+  espeed: 1
   hp: 2
   attack: 0
+  isCollsionAttack: 0
+  bigBoon: 1
+  smallBoon: 1
+  animator: {fileID: 0}
+--- !u!114 &5496952627309836739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477922770303473738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fce24d6dc4bdb5489f835a04f1acd6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

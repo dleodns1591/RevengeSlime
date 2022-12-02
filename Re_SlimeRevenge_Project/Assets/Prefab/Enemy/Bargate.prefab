@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2747071428898637576}
   - component: {fileID: 8003435741691037732}
   - component: {fileID: 2566740450860977636}
+  - component: {fileID: -3091170741974009990}
   m_Layer: 0
   m_Name: Bargate
   m_TagString: Enemy
@@ -226,5 +227,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eenemy: 3
+  espeed: 0
   hp: 1
   attack: 40
+  isCollsionAttack: 1
+  bigBone: 0
+  smallBone: 0
+  animator: {fileID: 0}
+--- !u!95 &-3091170741974009990
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2747071428898637589}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 612057b2db19a764fa0281f698e5e133, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
