@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour
     public int bigBone;
     public int smallBone;
     private float moveSpeed;
+    public bool isKnockBack;
     public bool isCollsionAttack;
 
 
@@ -72,10 +73,12 @@ public class Enemy : MonoBehaviour
             case EMove.None:
                 break;
             case EMove.BackMove:
+                isKnockBack = true;
                 if ((int)rb2D.velocity.x <= 0)
                     emove = EMove.ForwardMove;
                 break;
             case EMove.ForwardMove:
+                isKnockBack = false;
                 transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
                 break;
         }
@@ -125,13 +128,12 @@ public class Enemy : MonoBehaviour
 
             else
             {
+                //넉백
+                emove = EMove.BackMove;
+                rb2D.AddForce(new Vector2(7, 0), ForceMode2D.Impulse);
+
                 if (isCollsionAttack == true)
                 {
-                    emove = EMove.BackMove;
-
-                    //넉백
-                    rb2D.AddForce(new Vector2(7, 0), ForceMode2D.Impulse); 
-
                     // 공격력 만큼 플레이어 체력 차감
                     Player.Instance.currentHp -= attack;
 
