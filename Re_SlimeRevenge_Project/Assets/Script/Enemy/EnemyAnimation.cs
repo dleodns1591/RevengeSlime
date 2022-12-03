@@ -41,22 +41,22 @@ public class EnemyAnimation : MonoBehaviour
                 break;
 
             case Enemy.Eenemy.HeavyCavalry:
-                animator.SetBool("isKnockBack", Enemy.instance.isKnockBack);
-
-                if (Enemy.instance.emove == Enemy.EMove.ForwardMove)
-                    animator.SetInteger("Walk", Enemy.instance.hp);
-                else if (Enemy.instance.emove == Enemy.EMove.BackMove)
-                    animator.SetInteger("KnockBack", Enemy.instance.hp + 1);
+                EnemyState();
                 break;
 
             case Enemy.Eenemy.Berserker:
-                animator.SetBool("isKnockBack", Enemy.instance.isKnockBack);
-
-                if (Enemy.instance.emove == Enemy.EMove.ForwardMove)
-                    animator.SetInteger("Walk", Enemy.instance.hp);
-                else if (Enemy.instance.emove == Enemy.EMove.BackMove)
-                    animator.SetInteger("KnockBack", Enemy.instance.hp + 1);
+                EnemyState();
                 break;
         }
+    }
+
+    void EnemyState()
+    {
+        animator.SetBool("isKnockBack", Enemy.instance.isKnockBack);
+
+        if (Enemy.instance.emove == Enemy.EMove.ForwardMove)
+            animator.SetInteger("Walk", Enemy.instance.hp);
+        else if (Enemy.instance.emove == Enemy.EMove.BackMove)
+            animator.SetInteger("KnockBack", Enemy.instance.hp + 1);
     }
 }
