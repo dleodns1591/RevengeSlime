@@ -151,7 +151,6 @@ MonoBehaviour:
   espeed: 2
   hp: 2
   attack: 30
-  moveSpeed: -5
   bigBone: 1
   smallBone: 2
   isKnockBack: 0

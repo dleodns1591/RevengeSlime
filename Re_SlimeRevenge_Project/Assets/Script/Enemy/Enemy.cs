@@ -44,19 +44,19 @@ public class Enemy : MonoBehaviour
     public int bigBone;
     public int smallBone;
     private float moveSpeed;
-    public bool isKnockBack;
     public bool isCollsionAttack;
-    bool isMoveCheck = false;
 
 
     Animator animator;
     Rigidbody2D rb2D;
+    SpriteRenderer spriteRenderer;
 
 
     void Start()
     {
-        animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -97,27 +97,48 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
+        float waitTime = 0.5f;
         int playerInvincibility = 3;
 
         if (collision.CompareTag("Player"))
         {
             --hp;
+
             if (hp == 0)
             {
+                emove = EMove.None;
+                Player.Instance.eState = Player.EState.Eat;
+                transform.DOScale(new Vector2(0.1f, 0.1f), waitTime);
+                transform.DORotate(new Vector3(0, 0, -180), waitTime);
+                transform.DOLocalMove(new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y), waitTime).OnComplete(() =>
+                {
+                    transform.DOKill();
+                    spriteRenderer.DOFade(0, 0);
 
+                    // 뼈소환
+                });
+
+                yield return new WaitForSeconds(2f);
+                Player.Instance.eState = Player.EState.Walk;
+                Destroy(gameObject);
             }
 
             else
             {
-                if (attack > 0)
+                if (isCollsionAttack == true)
                 {
                     emove = EMove.BackMove;
-                    rb2D.AddForce(new Vector2(7, 0), ForceMode2D.Impulse);
+
+                    //넉백
+                    rb2D.AddForce(new Vector2(7, 0), ForceMode2D.Impulse); 
+
+                    // 공격력 만큼 플레이어 체력 차감
                     Player.Instance.currentHp -= attack;
 
+                    // 무적 처리
                     Player.Instance.eState = Player.EState.Shock;
                     Player.Instance.tag = "invincibility";
-                    Player.Instance.spriteRenderer.DOFade(0.5f, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+                    Player.Instance.spriteRenderer.DOFade(0.5f, waitTime).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
 
                     yield return new WaitForSeconds(playerInvincibility);
 
