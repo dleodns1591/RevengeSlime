@@ -2506,6 +2506,7 @@ MonoBehaviour:
   getPlayerHP: 0
   getExperienceValue: 0
   specialAbility: 2
+  specialAbilityCount: 0
 --- !u!50 &779368870
 Rigidbody2D:
   serializedVersion: 4

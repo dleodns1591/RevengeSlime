@@ -29,7 +29,9 @@ public class Player : Singleton<Player>
     public int experienceValue;
     public int getPlayerHP;
     public int getExperienceValue;
+
     public int specialAbility = 2;
+    public int specialAbilityCount;
 
 
 
@@ -41,6 +43,7 @@ public class Player : Singleton<Player>
     void Update()
     {
         PlayerState();
+        StartCoroutine(PlayerSkill());
     }
 
     private void FixedUpdate()
@@ -74,6 +77,20 @@ public class Player : Singleton<Player>
             currentHp = maxHp;
             defense = (int)GameManager.instance.skillDefense;
             hpReductionSpeed = GameManager.instance.skillRespiration;
+        }
+    }
+
+    // 플레이어 특수능력
+    IEnumerator PlayerSkill()
+    {
+        if (Input.GetKeyDown(KeyCode.Z) && specialAbilityCount > 0)
+        {
+            --specialAbilityCount;
+            eState = EState.Skill;
+
+            yield return new WaitForSeconds(1f);
+
+            eState = EState.Walk;
         }
     }
 }

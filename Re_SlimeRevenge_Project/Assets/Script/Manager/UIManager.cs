@@ -59,7 +59,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] Slider hpSlider;
     [SerializeField] Slider levelSlider;
 
-    float sliderTimer;
     bool isHPUSe = false;
 
     [Header("특수능력")]
@@ -68,7 +67,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] float abilityCoolTime;
     [SerializeField] float abilityCurrentCoolTime;
-    int abilityCount;
     bool isAbilityUse;
 
     [Header("모닥불")]
@@ -95,7 +93,6 @@ public class UIManager : MonoBehaviour
         SkillContent_Text();
 
         StartCoroutine(SliderBar());
-        //SliderBar();
     }
 
     void Amount_Text() => money.text = GameManager.instance._money.ToString();
@@ -123,14 +120,10 @@ public class UIManager : MonoBehaviour
     #region 특수능력
     void SpecialAbility()
     {
-        abilityText.text = abilityCount.ToString();
+        abilityText.text = Player.Instance.specialAbilityCount.ToString();
 
-        if (Input.GetKeyDown(KeyCode.Z) && abilityCount > 0)
-        {
-            --abilityCount;
-        }
 
-        if (GameManager.instance._isStartGame == true && abilityCount < Player.Instance.specialAbility)
+        if (GameManager.instance._isStartGame == true && Player.Instance.specialAbilityCount < Player.Instance.specialAbility)
         {
             if (isAbilityUse == false)
             {
@@ -144,7 +137,7 @@ public class UIManager : MonoBehaviour
             if (abilityCurrentCoolTime == 0)
             {
                 isAbilityUse = false;
-                ++abilityCount;
+                ++Player.Instance.specialAbilityCount;
             }
         }
     }
