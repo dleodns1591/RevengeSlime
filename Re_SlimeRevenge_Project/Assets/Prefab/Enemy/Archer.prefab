@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2322360588560176345}
   - component: {fileID: 2322360588560176344}
   - component: {fileID: 2674335511884288837}
-  - component: {fileID: -5664596710251597131}
+  - component: {fileID: -8951248232751282297}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Enemy
@@ -147,22 +147,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eenemy: 5
+  emove: 2
   espeed: 1
   hp: 2
   attack: 10
-  isCollsionAttack: 0
+  moveSpeed: 0
   bigBone: 1
   smallBone: 1
-  animator: {fileID: 0}
---- !u!114 &-5664596710251597131
-MonoBehaviour:
+  isKnockBack: 0
+  isCollsionAttack: 0
+--- !u!50 &-8951248232751282297
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2322360588560176347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fce24d6dc4bdb5489f835a04f1acd6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6

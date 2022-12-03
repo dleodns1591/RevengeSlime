@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3288530849665026245}
   - component: {fileID: 3288530849665026244}
   - component: {fileID: -1390792148275993841}
-  - component: {fileID: 6723455402178579049}
+  - component: {fileID: 5421019665156859580}
   m_Layer: 0
   m_Name: Swordman
   m_TagString: Enemy
@@ -147,22 +147,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eenemy: 4
+  emove: 2
   espeed: 1
   hp: 2
   attack: 20
-  isCollsionAttack: 1
+  moveSpeed: 0
   bigBone: 1
   smallBone: 1
-  animator: {fileID: 0}
---- !u!114 &6723455402178579049
-MonoBehaviour:
+  isKnockBack: 0
+  isCollsionAttack: 1
+--- !u!50 &5421019665156859580
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3288530849665026247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fce24d6dc4bdb5489f835a04f1acd6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6

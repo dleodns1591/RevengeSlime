@@ -111,7 +111,7 @@ public class UIManager : MonoBehaviour
                 isHPUSe = true;
                 while (hpSlider.value > 0)
                 {
-                    yield return new WaitForSeconds(waitTime);
+                    yield return new WaitForSeconds(waitTime + Player.Instance.hpReductionSpeed);
                     Player.Instance.currentHp -= 1;
                 }
                 yield break;

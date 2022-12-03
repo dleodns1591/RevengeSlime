@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7141671292232248038}
   - component: {fileID: 7141671292232248039}
   - component: {fileID: 7091813286252954221}
-  - component: {fileID: -3696878417590064730}
+  - component: {fileID: 6057483953822264064}
   m_Layer: 0
   m_Name: Berserker
   m_TagString: Enemy
@@ -98,7 +98,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.3, y: -3.2}
@@ -147,22 +147,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eenemy: 7
+  emove: 2
   espeed: 2
   hp: 2
   attack: 30
-  isCollsionAttack: 1
+  moveSpeed: -5
   bigBone: 1
   smallBone: 2
-  animator: {fileID: 0}
---- !u!114 &-3696878417590064730
-MonoBehaviour:
+  isKnockBack: 0
+  isCollsionAttack: 1
+--- !u!50 &6057483953822264064
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7141671292232248036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fce24d6dc4bdb5489f835a04f1acd6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6
