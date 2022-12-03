@@ -2497,7 +2497,15 @@ MonoBehaviour:
   dontdestroy: 0
   spriteRenderer: {fileID: 0}
   eState: 0
+  maxHp: 0
+  currentHp: 0
+  hpReductionSpeed: 1
+  defense: 0
   moveSpeed: 5
+  experienceValue: 50
+  getPlayerHP: 0
+  getExperienceValue: 0
+  specialAbility: 2
 --- !u!50 &779368870
 Rigidbody2D:
   serializedVersion: 4

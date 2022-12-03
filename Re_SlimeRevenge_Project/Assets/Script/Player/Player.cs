@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class Player : Singleton<Player>
 {
-    public SpriteRenderer spriteRenderer;
 
     public enum EState
     {
@@ -15,9 +14,24 @@ public class Player : Singleton<Player>
         Eat,
         Die,
     }
+
+    public SpriteRenderer spriteRenderer;
+    private bool isStateCheck = false;
+
+    [Header("수치적 데이터")]
     public EState eState;
 
+    public float maxHp;
+    public float currentHp;
+    public float hpReductionSpeed;
+    public int defense;
     public int moveSpeed;
+    public int experienceValue;
+    public int getPlayerHP;
+    public int getExperienceValue;
+    public int specialAbility = 2;
+
+
 
     void Start()
     {
@@ -26,6 +40,7 @@ public class Player : Singleton<Player>
 
     void Update()
     {
+        PlayerState();
     }
 
     private void FixedUpdate()
@@ -33,6 +48,9 @@ public class Player : Singleton<Player>
         PlayerMove();
     }
 
+
+
+    // 플레이어 이동
     void PlayerMove()
     {
         if (GameManager.instance._isStartGame == true)
@@ -41,6 +59,21 @@ public class Player : Singleton<Player>
                 transform.Translate(0, moveSpeed * Time.deltaTime, 0);
             else
                 transform.Translate(0, -moveSpeed * Time.deltaTime, 0);
+        }
+    }
+
+    // 플레이어 데이터
+    void PlayerState()
+    {
+        maxHp = GameManager.instance.skillHP;
+
+        if (GameManager.instance._isStartGame == true && isStateCheck == false)
+        {
+            isStateCheck = true;
+
+            currentHp = maxHp;
+            defense = (int)GameManager.instance.skillDefense;
+            hpReductionSpeed = GameManager.instance.skillRespiration;
         }
     }
 }

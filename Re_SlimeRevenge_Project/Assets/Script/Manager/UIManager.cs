@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Slider levelSlider;
 
     float sliderTimer;
-    bool isHPUSe;
+    bool isHPUSe = false;
 
     [Header("특수능력")]
     [SerializeField] Image ability;
@@ -95,6 +95,7 @@ public class UIManager : MonoBehaviour
         SkillContent_Text();
 
         StartCoroutine(SliderBar());
+        //SliderBar();
     }
 
     void Amount_Text() => money.text = GameManager.instance._money.ToString();
@@ -103,25 +104,20 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.instance._isStartGame == true)
         {
-            sliderTimer += Time.deltaTime * 0.25f;
+            hpSlider.value = Mathf.Lerp(hpSlider.value, Player.Instance.currentHp / Player.Instance.maxHp, Time.deltaTime * 10);
 
             if (isHPUSe == false)
             {
                 isHPUSe = true;
                 while (hpSlider.value > 0)
                 {
-                    yield return new WaitForSeconds(1f);
-                    hpSlider.value -= (15 - GameManager.instance.skillRespiration);
+                    yield return new WaitForSeconds(waitTime);
+                    Player.Instance.currentHp -= 1;
                 }
                 yield break;
             }
-        }
-        else
-        {
-            hpSlider.maxValue = GameManager.instance.skillHP;
-            hpSlider.value = hpSlider.maxValue;
-        }
 
+        }
     }
 
     #region 특수능력
@@ -134,7 +130,7 @@ public class UIManager : MonoBehaviour
             --abilityCount;
         }
 
-        if (GameManager.instance._isStartGame == true && abilityCount < 2)
+        if (GameManager.instance._isStartGame == true && abilityCount < Player.Instance.specialAbility)
         {
             if (isAbilityUse == false)
             {

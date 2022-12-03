@@ -33,9 +33,10 @@ public class Enemy : MonoBehaviour
 
     public int hp;
     public int attack;
-    public bool isCollsionAttack;
     public int bigBone;
     public int smallBone;
+    public bool isKnockBack;
+    public bool isCollsionAttack;
 
     public Animator animator;
 
