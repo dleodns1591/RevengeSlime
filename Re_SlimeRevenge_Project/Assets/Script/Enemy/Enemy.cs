@@ -149,6 +149,8 @@ public class Enemy : MonoBehaviour
     {
         float waitTime = 0.5f;
         int playerInvincibility = 3;
+        
+        float bone = ((40 * bigBone) + (10 * smallBone));
 
         if (collision.CompareTag("Player"))
         {
@@ -165,7 +167,8 @@ public class Enemy : MonoBehaviour
                 {
                     transform.DOKill();
 
-                    // 뼈소환
+                    Player.Instance.currentHp += bone;
+                    Player.Instance.currentExperience += bone;
                 });
 
                 yield return new WaitForSeconds(2f);
@@ -182,7 +185,7 @@ public class Enemy : MonoBehaviour
                 if (isCollsionAttack == true)
                 {
                     // 공격력 만큼 플레이어 체력 차감
-                    Player.Instance.currentHp -= attack;
+                    Player.Instance.currentHp -= (attack - Player.Instance.defense);
 
                     // 무적 처리
                     Player.Instance.eState = Player.EState.Shock;

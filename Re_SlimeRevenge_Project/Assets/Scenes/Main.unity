@@ -2502,9 +2502,8 @@ MonoBehaviour:
   hpReductionSpeed: 0
   defense: 0
   moveSpeed: 5
-  experienceValue: 50
-  getPlayerHP: 0
-  getExperienceValue: 0
+  maxExperience: 50
+  currentExperience: 0
   specialAbility: 2
   specialAbilityCount: 0
 --- !u!50 &779368870

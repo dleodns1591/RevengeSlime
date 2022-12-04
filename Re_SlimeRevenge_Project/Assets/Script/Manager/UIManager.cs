@@ -92,12 +92,13 @@ public class UIManager : MonoBehaviour
         SkillPrice_Text();
         SkillContent_Text();
 
-        StartCoroutine(SliderBar());
+        LevelBar();
+        StartCoroutine(HpBar());
     }
 
     void Amount_Text() => money.text = GameManager.instance._money.ToString();
 
-    IEnumerator SliderBar()
+    IEnumerator HpBar()
     {
         if (GameManager.instance._isStartGame == true)
         {
@@ -114,6 +115,16 @@ public class UIManager : MonoBehaviour
                 yield break;
             }
 
+        }
+    }
+
+    void LevelBar()
+    {
+        levelSlider.value = Mathf.Lerp(levelSlider.value, Player.Instance.currentExperience / Player.Instance.maxExperience, Time.deltaTime * 10);
+        if (Player.Instance.currentExperience == Player.Instance.maxExperience)
+        {
+            //Player.Instance.currentExperience = 0;
+            //스킬창 소환
         }
     }
 
@@ -146,7 +157,6 @@ public class UIManager : MonoBehaviour
     {
         while (ability.fillAmount > 0)
         {
-            //ability.fillAmount = abilityCurrentCoolTime / abilityCoolTime;
             ability.fillAmount = Mathf.Lerp(ability.fillAmount, abilityCurrentCoolTime / abilityCoolTime, Time.deltaTime * 10);
             yield return null;
         }

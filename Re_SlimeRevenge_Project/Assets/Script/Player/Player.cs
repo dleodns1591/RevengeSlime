@@ -26,9 +26,10 @@ public class Player : Singleton<Player>
     public float hpReductionSpeed;
     public int defense;
     public int moveSpeed;
-    public int experienceValue;
-    public int getPlayerHP;
-    public int getExperienceValue;
+    public float maxExperience;
+    public float currentExperience;
+    //public int getPlayerHP;
+    //public int getExperienceValue;
 
     public int specialAbility = 2;
     public int specialAbilityCount;
