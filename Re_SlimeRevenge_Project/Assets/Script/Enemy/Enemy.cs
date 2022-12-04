@@ -48,6 +48,9 @@ public class Enemy : MonoBehaviour
     public bool isKnockBack;
     public bool isCollsionAttack;
 
+    [Space(10)]
+    bool isArrow;
+    public GameObject arrow;
 
     Animator animator;
     Rigidbody2D rb2D;
@@ -133,7 +136,12 @@ public class Enemy : MonoBehaviour
                     if (1 < archerAttackTimer && hp == 2)
                     {
                         animator.SetBool("Attack", true);
-                        //È­»ì
+
+                        if (isArrow == false)
+                        {
+                            isArrow = true;
+                            Instantiate(arrow, new Vector2(transform.localPosition.x - 0.55f, transform.localPosition.y - 0.5f), Quaternion.identity, transform);
+                        }
 
                         if (1.5f < archerAttackTimer)
                         {
@@ -173,7 +181,7 @@ public class Enemy : MonoBehaviour
         float waitTime = 0.5f;
         int playerInvincibility = 3;
 
-        float bone = ((40 * bigBone) + (10 * smallBone));
+        float bone = ((20 * bigBone) + (10 * smallBone));
 
         if (collision.CompareTag("Player"))
         {
