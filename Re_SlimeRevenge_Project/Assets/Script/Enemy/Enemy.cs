@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour
     public int bigBone;
     public int smallBone;
     private float moveSpeed;
+    private float archerAttackTimer = 0.0f;
     public bool isKnockBack;
     public bool isCollsionAttack;
 
@@ -102,6 +103,8 @@ public class Enemy : MonoBehaviour
     #region 적 애니메이션
     private void StateAnimation()
     {
+        archerAttackTimer += Time.deltaTime;
+
         switch (eenemy)
         {
             case Eenemy.Shieldbearer:
@@ -126,7 +129,22 @@ public class Enemy : MonoBehaviour
                 animator.SetBool("isKnockBack", isKnockBack);
 
                 if (emove == EMove.ForwardMove)
-                    animator.SetInteger("Walk", hp);
+                {
+                    if (1 < archerAttackTimer && hp == 2)
+                    {
+                        animator.SetBool("Attack", true);
+                        //화살
+
+                        if (1.5f < archerAttackTimer)
+                        {
+                            animator.SetBool("Attack", false);
+                            archerAttackTimer = 0;
+                        }
+                    }
+                    else
+                        animator.SetInteger("Walk", hp);
+
+                }
                 break;
 
             case Eenemy.HeavyCavalry:
