@@ -112,9 +112,14 @@ public class Enemy : MonoBehaviour
                 animator.SetBool("isKnockBack", isKnockBack);
 
                 if (emove == EMove.ForwardMove)
-                    animator.SetInteger("Walk", hp);
+                {
+                    if (transform.position.x >= -7.8f)
+                        animator.SetInteger("Walk", hp);
+                    else
+                        animator.SetBool("Attack", true);
+                }
                 else if (emove == EMove.BackMove)
-                    animator.SetBool("isKnockBack", isKnockBack);
+                    animator.SetBool("Attack", false);
                 break;
 
             case Eenemy.Archer:
@@ -149,7 +154,7 @@ public class Enemy : MonoBehaviour
     {
         float waitTime = 0.5f;
         int playerInvincibility = 3;
-        
+
         float bone = ((40 * bigBone) + (10 * smallBone));
 
         if (collision.CompareTag("Player"))
