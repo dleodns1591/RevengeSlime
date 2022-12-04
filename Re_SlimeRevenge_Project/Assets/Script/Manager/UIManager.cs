@@ -146,7 +146,8 @@ public class UIManager : MonoBehaviour
     {
         while (ability.fillAmount > 0)
         {
-            ability.fillAmount = abilityCurrentCoolTime / abilityCoolTime;
+            //ability.fillAmount = abilityCurrentCoolTime / abilityCoolTime;
+            ability.fillAmount = Mathf.Lerp(ability.fillAmount, abilityCurrentCoolTime / abilityCoolTime, Time.deltaTime * 10);
             yield return null;
         }
         yield break;

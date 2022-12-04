@@ -158,12 +158,12 @@ public class Enemy : MonoBehaviour
             {
                 emove = EMove.None;
                 Player.Instance.eState = Player.EState.Eat;
+                spriteRenderer.DOFade(0, waitTime);
                 transform.DOScale(new Vector2(0.1f, 0.1f), waitTime);
                 transform.DORotate(new Vector3(0, 0, -180), waitTime);
                 transform.DOLocalMove(new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y), waitTime).OnComplete(() =>
                 {
                     transform.DOKill();
-                    spriteRenderer.DOFade(0, 0);
 
                     // ª¿º“»Ø
                 });
