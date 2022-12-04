@@ -63,6 +63,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         EnemyMove();
+        StateAnimation();
     }
 
 
@@ -97,6 +98,52 @@ public class Enemy : MonoBehaviour
 
         }
     }
+
+    #region 적 애니메이션
+    private void StateAnimation()
+    {
+        switch (eenemy)
+        {
+            case Eenemy.Shieldbearer:
+                animator.SetInteger("Idle", hp);
+                break;
+
+            case Eenemy.Swordman:
+                animator.SetBool("isKnockBack", isKnockBack);
+
+                if (emove == EMove.ForwardMove)
+                    animator.SetInteger("Walk", hp);
+                else if (emove == EMove.BackMove)
+                    animator.SetBool("isKnockBack", isKnockBack);
+                break;
+
+            case Eenemy.Archer:
+                animator.SetBool("isKnockBack", isKnockBack);
+
+                if (emove == EMove.ForwardMove)
+                    animator.SetInteger("Walk", hp);
+                break;
+
+            case Eenemy.HeavyCavalry:
+                EnemyState();
+                break;
+
+            case Eenemy.Berserker:
+                EnemyState();
+                break;
+        }
+    }
+
+    void EnemyState()
+    {
+        animator.SetBool("isKnockBack", instance.isKnockBack);
+
+        if (emove == EMove.ForwardMove)
+            animator.SetInteger("Walk", hp);
+        else if (emove == EMove.BackMove)
+            animator.SetInteger("KnockBack", hp + 1);
+    }
+    #endregion
 
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {

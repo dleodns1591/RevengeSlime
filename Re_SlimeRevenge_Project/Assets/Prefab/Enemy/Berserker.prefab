@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7141671292232248039}
   - component: {fileID: 7091813286252954221}
   - component: {fileID: 6057483953822264064}
-  - component: {fileID: 3246101260475648287}
   m_Layer: 0
   m_Name: Berserker
   m_TagString: Enemy
@@ -177,15 +176,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!114 &3246101260475648287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7141671292232248036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38370ad3ee9232d419886668f753a959, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

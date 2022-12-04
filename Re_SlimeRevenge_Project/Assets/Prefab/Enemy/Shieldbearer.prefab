@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 1477922770303473750}
   - component: {fileID: 1477922770303473751}
   - component: {fileID: 1477922770303473736}
-  - component: {fileID: 1477922770303473737}
-  - component: {fileID: 5338037515042172377}
   - component: {fileID: 7201609391061625354}
-  - component: {fileID: -3544175804362403232}
+  - component: {fileID: 5338037515042172377}
+  - component: {fileID: 1477922770303473737}
   m_Layer: 0
   m_Name: Shieldbearer
   m_TagString: Enemy
@@ -115,47 +114,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.3, y: 3.6}
   m_EdgeRadius: 0
---- !u!95 &1477922770303473737
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1477922770303473738}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a28a1bc84fd78884bbeac0532bd20ed5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5338037515042172377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1477922770303473738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676501b2a1d5edd44b2efd18fa385e4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eenemy: 2
-  emove: 2
-  espeed: 1
-  hp: 2
-  attack: 0
-  bigBone: 0
-  smallBone: 0
-  isKnockBack: 0
-  isCollsionAttack: 0
 --- !u!50 &7201609391061625354
 Rigidbody2D:
   serializedVersion: 4
@@ -177,7 +135,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!114 &-3544175804362403232
+--- !u!114 &5338037515042172377
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,6 +144,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 1477922770303473738}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38370ad3ee9232d419886668f753a959, type: 3}
+  m_Script: {fileID: 11500000, guid: 676501b2a1d5edd44b2efd18fa385e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eenemy: 2
+  emove: 2
+  espeed: 1
+  hp: 2
+  attack: 0
+  bigBone: 0
+  smallBone: 0
+  isKnockBack: 0
+  isCollsionAttack: 0
+--- !u!95 &1477922770303473737
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477922770303473738}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a28a1bc84fd78884bbeac0532bd20ed5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -27,8 +27,6 @@ public class EnemySpawn : MonoBehaviour
 
                 Vector2 spawnPos = new Vector2(11, randomPosY);
 
-                Debug.Log(randomPosY);
-
                 if (0 <= GameManager.instance._distance && GameManager.instance._distance < 20)
                 {
                     yield return new WaitForSeconds(4.3f);
