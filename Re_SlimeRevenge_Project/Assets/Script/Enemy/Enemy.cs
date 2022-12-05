@@ -104,7 +104,7 @@ public class Enemy : MonoBehaviour
     }
 
     #region 적 애니메이션
-    private void StateAnimation()
+      private void StateAnimation()
     {
         archerAttackTimer += Time.deltaTime;
 
@@ -172,7 +172,7 @@ public class Enemy : MonoBehaviour
         if (emove == EMove.ForwardMove)
             animator.SetInteger("Walk", hp);
         else if (emove == EMove.BackMove)
-            animator.SetInteger("KnockBack", hp + 1);
+            animator.SetInteger("KnockBack", hp);
     }
     #endregion
 
