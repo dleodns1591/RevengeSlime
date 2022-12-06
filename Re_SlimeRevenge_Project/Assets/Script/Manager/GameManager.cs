@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IListener
 {
     public static GameManager instance;
     float distanceTimer = 0;
@@ -111,4 +111,8 @@ public class GameManager : MonoBehaviour
             money += 10000f;
     }
 
+    public void Event(EventType type)
+    {
+
+    }
 }
