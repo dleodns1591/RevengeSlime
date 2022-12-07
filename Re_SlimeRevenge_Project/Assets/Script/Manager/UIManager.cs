@@ -121,12 +121,13 @@ public class UIManager : MonoBehaviour
     void LevelBar()
     {
         levelSlider.value = Mathf.Lerp(levelSlider.value, Player.Instance.currentExperience / Player.Instance.maxExperience, Time.deltaTime * 10);
-        if (Player.Instance.currentExperience == Player.Instance.maxExperience)
+        if (Player.Instance.currentExperience >= Player.Instance.maxExperience)
         {
+            Player.Instance.currentExperience = 0;
+
             Time.timeScale = 0;
             GameObject summon = Instantiate(skillWindowPick) as GameObject;
             summon.transform.SetParent(GameObject.Find("Canvas").transform, false);
-            //스킬창 소환
         }
     }
 

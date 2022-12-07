@@ -50,6 +50,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     void Start()
     {
+        //Time.timeScale = 0;
         StartCoroutine(SkillWindowOpen());
     }
 
@@ -82,6 +83,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
 
         isOpenCheck = true;
+        //yield return new WaitForSecondsRealtime(0.1f);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
