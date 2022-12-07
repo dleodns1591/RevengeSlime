@@ -15,6 +15,8 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
     public EskillWindow eskillWindow;
 
+    public GameObject skillWindow;
+
     [Header("¿ÞÂÊ")]
     public Image selectBarTop;
     public Image mouseRangeTop;
@@ -41,12 +43,10 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public const int windowWidth = 545;
     public const int windowHeight = 845;
-    public const float barOpenSpeed = 0.46f;
-    public const float barCloseSpeed = 0.4f;
+    public const float barSpeed = 0.4f;
 
     float timer = 0.0f;
     bool isOpenCheck = false;
-    bool isCloseCheck = false;
 
     void Start()
     {
@@ -62,14 +62,14 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         int barOpenPosY = 440;
 
-        barUpTop.transform.DOLocalMoveY(barOpenPosY, barOpenSpeed).SetEase(Ease.Linear);
-        barDownTop.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear);
+        barUpTop.transform.DOLocalMoveY(barOpenPosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
+        barDownTop.transform.DOLocalMoveY(-barOpenPosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
-        barUpAmong.transform.DOLocalMoveY(barOpenPosY, barOpenSpeed).SetEase(Ease.Linear);
-        barDownAmong.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear);
+        barUpAmong.transform.DOLocalMoveY(barOpenPosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
+        barDownAmong.transform.DOLocalMoveY(-barOpenPosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
-        barUpBottom.transform.DOLocalMoveY(barOpenPosY, barOpenSpeed).SetEase(Ease.Linear);
-        barDownBottom.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear);
+        barUpBottom.transform.DOLocalMoveY(barOpenPosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
+        barDownBottom.transform.DOLocalMoveY(-barOpenPosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
         while (timer < 1)
         {
@@ -91,13 +91,13 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             switch (eskillWindow)
             {
                 case EskillWindow.Top:
-                    selectBarTop.DOFade(1, 0.2f).SetEase(Ease.Linear);
+                    selectBarTop.DOFade(1, 0.2f).SetEase(Ease.Linear).SetUpdate(true);
                     break;
                 case EskillWindow.Among:
-                    selectBarAmong.DOFade(1, 0.2f).SetEase(Ease.Linear);
+                    selectBarAmong.DOFade(1, 0.2f).SetEase(Ease.Linear).SetUpdate(true);
                     break;
                 case EskillWindow.Bottom:
-                    selectBarBottom.DOFade(1, 0.2f).SetEase(Ease.Linear);
+                    selectBarBottom.DOFade(1, 0.2f).SetEase(Ease.Linear).SetUpdate(true);
                     break;
             }
         }
@@ -111,13 +111,13 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             switch (eskillWindow)
             {
                 case EskillWindow.Top:
-                    selectBarTop.DOFade(0, 0.2f).SetEase(Ease.Linear);
+                    selectBarTop.DOFade(0, 0.2f).SetEase(Ease.Linear).SetUpdate(true);
                     break;
                 case EskillWindow.Among:
-                    selectBarAmong.DOFade(0, 0.2f).SetEase(Ease.Linear);
+                    selectBarAmong.DOFade(0, 0.2f).SetEase(Ease.Linear).SetUpdate(true);
                     break;
                 case EskillWindow.Bottom:
-                    selectBarBottom.DOFade(0, 0.2f).SetEase(Ease.Linear);
+                    selectBarBottom.DOFade(0, 0.2f).SetEase(Ease.Linear).SetUpdate(true);
                     break;
             }
         }
@@ -125,6 +125,8 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        Time.timeScale = 1;
+        Player.Instance.currentExperience = 0;
         StartCoroutine(SkillWindowClose());
     }
 
@@ -142,51 +144,71 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             case EskillWindow.Top:
                 selectBarTop.DOFade(0, 0).SetEase(Ease.Linear);
 
-                barUpTop.transform.DOLocalMoveY(barClosePosY, barCloseSpeed).SetEase(Ease.Linear);
-                barDownTop.transform.DOLocalMoveY(-barClosePosY, barCloseSpeed).SetEase(Ease.Linear);
+                barUpTop.transform.DOLocalMoveY(barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
+                barDownTop.transform.DOLocalMoveY(-barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
-                windowAmong.transform.DOLocalMoveY(1200, 0.5f);
-                windowBottom.transform.DOLocalMoveY(1200, 0.5f);
+                windowAmong.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
+                windowBottom.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
 
                 while (timer < 1)
                 {
                     rectSkillTop.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(windowHeight, 0, timer));
                     yield return null;
                 }
+
+
+                barUpTop.transform.DOKill();
+                barDownTop.transform.DOKill();
+                windowAmong.transform.DOKill();
+                windowBottom.transform.DOKill();
+
+                Destroy(skillWindow);
                 break;
 
             case EskillWindow.Among:
                 selectBarAmong.DOFade(0, 0).SetEase(Ease.Linear);
-                isCloseCheck = true;
 
-                barUpAmong.transform.DOLocalMoveY(barClosePosY, barCloseSpeed).SetEase(Ease.Linear);
-                barDownAmong.transform.DOLocalMoveY(-barClosePosY, barCloseSpeed).SetEase(Ease.Linear);
+                barUpAmong.transform.DOLocalMoveY(barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
+                barDownAmong.transform.DOLocalMoveY(-barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
-                windowTop.transform.DOLocalMoveY(1200, 0.5f);
-                windowBottom.transform.DOLocalMoveY(1200, 0.5f);
+                windowTop.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
+                windowBottom.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
 
                 while (timer < 1)
                 {
                     rectSkillAmong.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(windowHeight, 0, timer));
                     yield return null;
                 }
+
+                barUpAmong.transform.DOKill();
+                barDownAmong.transform.DOKill();
+                windowTop.transform.DOKill();
+                windowBottom.transform.DOKill();
+
+                Destroy(skillWindow);
                 break;
 
             case EskillWindow.Bottom:
                 selectBarBottom.DOFade(0, 0).SetEase(Ease.Linear);
-                isCloseCheck = true;
 
-                barUpBottom.transform.DOLocalMoveY(barClosePosY, barCloseSpeed).SetEase(Ease.Linear);
-                barDownBottom.transform.DOLocalMoveY(-barClosePosY, barCloseSpeed).SetEase(Ease.Linear);
+                barUpBottom.transform.DOLocalMoveY(barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
+                barDownBottom.transform.DOLocalMoveY(-barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
-                windowTop.transform.DOLocalMoveY(1200, 0.5f);
-                windowAmong.transform.DOLocalMoveY(1200, 0.5f);
+                windowTop.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
+                windowAmong.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
 
                 while (timer < 1)
                 {
                     rectSkillBottom.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(windowHeight, 0, timer));
                     yield return null;
                 }
+
+                barUpBottom.transform.DOKill();
+                barDownBottom.transform.DOKill();
+                windowTop.transform.DOKill();
+                windowAmong.transform.DOKill();
+
+                Destroy(skillWindow);
                 break;
         }
     }

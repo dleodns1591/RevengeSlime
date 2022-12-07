@@ -54,11 +54,11 @@ public class UIManager : MonoBehaviour
 
     [Header("인게임UI")]
     [SerializeField] GameObject ingame;
+    [SerializeField] GameObject skillWindowPick;
     [SerializeField] TextMeshProUGUI distance;
     [SerializeField] TextMeshProUGUI ingameMoney;
     [SerializeField] Slider hpSlider;
     [SerializeField] Slider levelSlider;
-
     bool isHPUSe = false;
 
     [Header("특수능력")]
@@ -123,7 +123,9 @@ public class UIManager : MonoBehaviour
         levelSlider.value = Mathf.Lerp(levelSlider.value, Player.Instance.currentExperience / Player.Instance.maxExperience, Time.deltaTime * 10);
         if (Player.Instance.currentExperience == Player.Instance.maxExperience)
         {
-            //Player.Instance.currentExperience = 0;
+            Time.timeScale = 0;
+            GameObject summon = Instantiate(skillWindowPick) as GameObject;
+            summon.transform.SetParent(GameObject.Find("Canvas").transform, false);
             //스킬창 소환
         }
     }
