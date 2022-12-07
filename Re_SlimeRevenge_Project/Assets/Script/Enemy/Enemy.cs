@@ -104,7 +104,7 @@ public class Enemy : MonoBehaviour
     }
 
     #region 적 애니메이션
-      private void StateAnimation()
+    private void StateAnimation()
     {
         archerAttackTimer += Time.deltaTime;
 
@@ -140,12 +140,13 @@ public class Enemy : MonoBehaviour
                         if (isArrow == false)
                         {
                             isArrow = true;
-                            Instantiate(arrow, new Vector2(transform.localPosition.x - 0.55f, transform.localPosition.y - 0.5f), Quaternion.identity, transform);
+                            Instantiate(arrow, new Vector2(transform.localPosition.x - 0.55f, transform.localPosition.y - 0.5f), Quaternion.identity);
                         }
 
                         if (1.5f < archerAttackTimer)
                         {
                             animator.SetBool("Attack", false);
+                            isArrow = false;
                             archerAttackTimer = 0;
                         }
                     }
