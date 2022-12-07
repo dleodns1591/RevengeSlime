@@ -1177,7 +1177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &279899983
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1211,19 +1211,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eskillWindow: 1
-  selectBarTop: {fileID: 0}
+  selectBarTop: {fileID: 628599918}
+  mouseRangeTop: {fileID: 793831786}
+  windowTop: {fileID: 972522917}
   barUpTop: {fileID: 1469796787}
   barDownTop: {fileID: 1264043749}
   rectSkillTop: {fileID: 919484300}
   selectBarAmong: {fileID: 1111814135}
+  mouseRangeAmong: {fileID: 279899985}
+  windowAmong: {fileID: 455636874}
   barUpAmong: {fileID: 35905138}
   barDownAmong: {fileID: 1224942999}
   rectSkillAmong: {fileID: 417550101}
-  selectBarBottom: {fileID: 0}
+  selectBarBottom: {fileID: 837147376}
+  mouseRangeBottom: {fileID: 895009113}
+  windowBottom: {fileID: 890059509}
   barUpBottom: {fileID: 1084324188}
   barDownBottom: {fileID: 623590200}
   rectSkillBottom: {fileID: 433470626}
-  windowSize: {x: 0, y: 0}
 --- !u!114 &279899985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3147,18 +3152,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eskillWindow: 0
   selectBarTop: {fileID: 628599918}
+  mouseRangeTop: {fileID: 793831786}
+  windowTop: {fileID: 972522917}
   barUpTop: {fileID: 1469796787}
   barDownTop: {fileID: 1264043749}
   rectSkillTop: {fileID: 919484300}
   selectBarAmong: {fileID: 0}
+  mouseRangeAmong: {fileID: 279899985}
+  windowAmong: {fileID: 455636874}
   barUpAmong: {fileID: 35905138}
   barDownAmong: {fileID: 1224942999}
   rectSkillAmong: {fileID: 417550101}
   selectBarBottom: {fileID: 0}
+  mouseRangeBottom: {fileID: 895009113}
+  windowBottom: {fileID: 890059509}
   barUpBottom: {fileID: 1084324188}
   barDownBottom: {fileID: 623590200}
   rectSkillBottom: {fileID: 433470626}
-  windowSize: {x: 545, y: 845}
 --- !u!114 &793831786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3911,7 +3921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &895009111
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3945,19 +3955,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eskillWindow: 2
-  selectBarTop: {fileID: 0}
+  selectBarTop: {fileID: 628599918}
+  mouseRangeTop: {fileID: 793831786}
+  windowTop: {fileID: 972522917}
   barUpTop: {fileID: 1469796787}
   barDownTop: {fileID: 1264043749}
   rectSkillTop: {fileID: 919484300}
-  selectBarAmong: {fileID: 0}
+  selectBarAmong: {fileID: 1111814135}
+  mouseRangeAmong: {fileID: 279899985}
+  windowAmong: {fileID: 455636874}
   barUpAmong: {fileID: 35905138}
   barDownAmong: {fileID: 1224942999}
   rectSkillAmong: {fileID: 417550101}
   selectBarBottom: {fileID: 837147376}
+  mouseRangeBottom: {fileID: 895009113}
+  windowBottom: {fileID: 890059509}
   barUpBottom: {fileID: 1084324188}
   barDownBottom: {fileID: 623590200}
   rectSkillBottom: {fileID: 433470626}
-  windowSize: {x: 10000, y: 10000}
 --- !u!114 &895009113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4206,7 +4221,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 545, y: 845}
+  m_SizeDelta: {x: 545, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &919484301
 MonoBehaviour:
@@ -4236,7 +4251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
