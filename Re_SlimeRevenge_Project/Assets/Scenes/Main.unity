@@ -4380,63 +4380,76 @@ MonoBehaviour:
     skillDescription: "\uCCB4\uB825\uAC10\uC18C \uC18D\uB3C4\uB97C \uC904\uC778\uB2E4."
     skillLevel: 0
     skillIcon: {fileID: 21300000, guid: 49bc2f7d2369ada48b06b6e883056ef8, type: 3}
+    eskill: 1
   - skillName: "\uAC70\uBD81\uC774 \uB4F1\uAECD\uC9C8"
     skillDescription: "\uBC29\uC5B4\uB825\uC774 \uC99D\uAC00\uD55C\uB2E4."
     skillLevel: 0
     skillIcon: {fileID: 21300000, guid: 114ddf354830bca4a81a2ac27d315ea2, type: 3}
+    eskill: 2
   - skillName: "\uADFC\uC721 \uC6B4\uB3D9"
     skillDescription: "\uCD5C\uB300 \uCCB4\uB825\uC774 \uC99D\uAC00\uD55C\uB2E4."
     skillLevel: 0
     skillIcon: {fileID: 21300000, guid: 76356ca77b137b74386598a30d6e3676, type: 3}
+    eskill: 3
   - skillName: "\uD3EC\uC2DD\uC790"
     skillDescription: "\uC801 \uCC98\uCE58 \uC2DC, \uD68D\uB4DD \uACBD\uD5D8\uCE58\uAC00
       \uC99D\uAC00\uD55C\uB2E4."
     skillLevel: 0
     skillIcon: {fileID: 21300000, guid: 9ef39910c0558a6439ceba63a485a256, type: 3}
+    eskill: 4
   - skillName: "\uC9C4\uC218\uC131\uCC2C"
     skillDescription: "\uC801 \uCC98\uCE58 \uC2DC, \uD68D\uB4DD \uCCB4\uB825\uC774
       \uC99D\uAC00\uD55C\uB2E4."
     skillLevel: 0
     skillIcon: {fileID: 21300000, guid: 96d266a6375de184e9443614e4b6f6ff, type: 3}
+    eskill: 5
   - skillName: "\uC5D0\uB108\uC9C0\uD0C4"
     skillDescription: "\uC801\uC5D0\uAC8C \uC720\uB3C4\uB418\uB294 \uC5D0\uB108\uC9C0\uD0C4\uC744
       \uBC1C\uC0AC\uD55C\uB2E4."
     skillLevel: 0
     skillIcon: {fileID: 21300000, guid: 884b7ad5968102c4988123505be95c72, type: 3}
+    eskill: 6
   - skillName: "\uC2AC\uB77C\uC784\uD0C4"
     skillDescription: "\uBE60\uB974\uAC8C \uB0A0\uC544\uAC00\uB294 \uC2AC\uB77C\uC784\uD0C4\uC744
       \uBC1C\uC0AC\uD55C\uB2E4."
     skillLevel: 0
     skillIcon: {fileID: 21300000, guid: eefcac922c1eb694ca59f878d5998de0, type: 3}
+    eskill: 7
   - skillName: "\uBF08 \uCD95\uC81C"
     skillDescription: "\uC801 \uCC98\uCE58 \uC2DC, \uC0DD\uC131\uD558\uB294 \uBF08\uAC00
       \uB9CE\uC544\uC9C4\uB2E4."
     skillLevel: 0
     skillIcon: {fileID: 21300000, guid: d06d4e58ef815f54da41c6e81ff75e78, type: 3}
+    eskill: 8
   - skillName: "\uC2DD\uD0D0 \uB3CC\uC9C4"
     skillDescription: "\uC55E\uC73C\uB85C \uBE60\uB974\uAC8C \uC774\uB3D9\uD558\uBA70
       \uBAA8\uB4E0 \uC801\uC744 \uBA39\uB294\uB2E4."
     skillLevel: 0
     skillIcon: {fileID: 21300000, guid: 053ae43276b76174d8d43c0d7405d7f6, type: 3}
+    eskill: 9
   - skillName: "\uBD80\uD65C"
     skillDescription: "1\uBC88 \uBD80\uD65C\uD55C\uB2E4."
     skillLevel: 0
     skillIcon: {fileID: 21300000, guid: 1797bf5ce31223444af3001b49e97822, type: 3}
+    eskill: 10
   skillTop:
     skillName: 
     skillDescription: 
     skillLevel: 0
     skillIcon: {fileID: 0}
+    eskill: 0
   skillAmong:
     skillName: 
     skillDescription: 
     skillLevel: 0
     skillIcon: {fileID: 0}
+    eskill: 0
   skillBottom:
     skillName: 
     skillDescription: 
     skillLevel: 0
     skillIcon: {fileID: 0}
+    eskill: 0
 --- !u!4 &1249920579
 Transform:
   m_ObjectHideFlags: 0

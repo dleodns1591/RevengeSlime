@@ -6,6 +6,8 @@ using TMPro;
 
 public class SkillUI : MonoBehaviour
 {
+    public static SkillUI instance;
+
     [Header("¿ÞÂÊ")]
     public TextMeshProUGUI nameTop;
     public TextMeshProUGUI levelTop;
@@ -34,6 +36,11 @@ public class SkillUI : MonoBehaviour
         
     }
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     public void SkillCard(SkillData skillData, int skillIndex)
     {
         switch (skillIndex)
@@ -45,7 +52,6 @@ public class SkillUI : MonoBehaviour
                 nameTop.text = SkillManager.instance.skillTop.skillName;
                 levelTop.text = "Lv. " + SkillManager.instance.skillTop.skillLevel;
                 descriptionTop.text = SkillManager.instance.skillTop.skillDescription;
-
                 break;
 
             case 1:

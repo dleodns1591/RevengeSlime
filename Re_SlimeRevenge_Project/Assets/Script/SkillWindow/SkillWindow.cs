@@ -129,10 +129,10 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         Time.timeScale = 1;
         Player.Instance.currentExperience = 0;
-        StartCoroutine(SkillWindowClose());
+        StartCoroutine(SkillWindowClick());
     }
 
-    IEnumerator SkillWindowClose()
+    IEnumerator SkillWindowClick()
     {
         timer = 0;
         int barClosePosY = 35;
@@ -144,6 +144,53 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         switch (eskillWindow)
         {
             case EskillWindow.Top:
+                for (int i = 0; i < SkillManager.instance.skill.Count; i++)
+                {
+                    if (SkillManager.instance.skill[i].skillName == SkillManager.instance.skillTop.skillName)
+                        ++SkillManager.instance.skill[i].skillLevel;
+                }
+
+                switch (SkillManager.instance.skillTop.eskill)
+                {
+                    case SkillData.Eskill.Vitality:
+                        Debug.Log("²öÁú±ä »ý¸í·Â");
+                        break;
+
+                    case SkillData.Eskill.Shell:
+                        Debug.Log("°ÅºÏÀÌ µî²®Áú");
+                        break;
+
+                    case SkillData.Eskill.Exercise:
+                        Debug.Log("±ÙÀ°¿îµ¿");
+                        break;
+
+                    case SkillData.Eskill.Predator:
+                        Debug.Log("Æ÷½ÄÀÚ");
+                        break;
+
+                    case SkillData.Eskill.EnergyBomb:
+                        Debug.Log("¿¡³ÊÁöÅº");
+                        break;
+
+                    case SkillData.Eskill.SlimeBomb:
+                        Debug.Log("½½¶óÀÓÅº");
+                        break;
+
+                    case SkillData.Eskill.BoneFestival:
+                        Debug.Log("»À ÃàÁ¦");
+                        break;
+
+                    case SkillData.Eskill.Gluttonous:
+                        Debug.Log("½ÄÅ½ µ¹Áø");
+                        break;
+
+                    case SkillData.Eskill.Resurrection:
+                        Debug.Log("ºÎÈ°");
+                        break;
+                }
+
+
+                #region Ã¢ ´Ý±â
                 selectBarTop.DOFade(0, 0).SetEase(Ease.Linear);
 
                 barUpTop.transform.DOLocalMoveY(barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
@@ -158,16 +205,23 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                     yield return null;
                 }
 
-
                 barUpTop.transform.DOKill();
                 barDownTop.transform.DOKill();
                 windowAmong.transform.DOKill();
                 windowBottom.transform.DOKill();
 
                 Destroy(skillWindow);
+                #endregion
                 break;
 
             case EskillWindow.Among:
+                for (int i = 0; i < SkillManager.instance.skill.Count; i++)
+                {
+                    if (SkillManager.instance.skill[i].skillName == SkillManager.instance.skillAmong.skillName)
+                        ++SkillManager.instance.skill[i].skillLevel;
+                }
+
+                #region Ã¢ ´Ý±â
                 selectBarAmong.DOFade(0, 0).SetEase(Ease.Linear);
 
                 barUpAmong.transform.DOLocalMoveY(barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
@@ -188,9 +242,17 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 windowBottom.transform.DOKill();
 
                 Destroy(skillWindow);
+                #endregion
                 break;
 
             case EskillWindow.Bottom:
+                for (int i = 0; i < SkillManager.instance.skill.Count; i++)
+                {
+                    if (SkillManager.instance.skill[i].skillName == SkillManager.instance.skillBottom.skillName)
+                        ++SkillManager.instance.skill[i].skillLevel;
+                }
+
+                #region Ã¢ ´Ý±â
                 selectBarBottom.DOFade(0, 0).SetEase(Ease.Linear);
 
                 barUpBottom.transform.DOLocalMoveY(barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
@@ -211,6 +273,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 windowAmong.transform.DOKill();
 
                 Destroy(skillWindow);
+                #endregion
                 break;
         }
     }

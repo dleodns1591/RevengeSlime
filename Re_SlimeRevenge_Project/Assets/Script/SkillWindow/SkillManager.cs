@@ -15,11 +15,12 @@ public class SkillManager : MonoBehaviour
 
     void Start()
     {
-        AddSkill();
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+            AddSkill();
 
     }
 
@@ -33,14 +34,14 @@ public class SkillManager : MonoBehaviour
         GameObject summon = Instantiate(skillWindowPick) as GameObject;
         summon.transform.SetParent(GameObject.Find("Canvas").transform, false);
 
-        var ui = summon.GetComponent<SkillUI>();
-
+        var skillUI = summon.GetComponent<SkillUI>();
         int skillIndex = 0;
 
         for (int i = 0; i < 3; i++)
         {
             int skillRandom = Random.Range(0, skill.Count);
-            ui.SkillCard(skill[skillRandom], skillIndex++);
+
+            skillUI.SkillCard(skill[skillRandom], skillIndex++);
         }
     }
 }
