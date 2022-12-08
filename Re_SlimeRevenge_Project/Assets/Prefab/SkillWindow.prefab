@@ -1232,30 +1232,18 @@ MonoBehaviour:
   barUpTop: {fileID: 4980858065623746285}
   barDownTop: {fileID: 4980858065166799291}
   rectSkillTop: {fileID: 4980858065108721874}
-  nameTop: {fileID: 1041794937802530766}
-  levelTop: {fileID: 2202090858869644383}
-  descriptionTop: {fileID: 4995832249959480465}
-  iconTop: {fileID: 4619945422623511880}
   selectBarAmong: {fileID: 4980858065319049385}
   mouseRangeAmong: {fileID: 4980858064464853007}
   windowAmong: {fileID: 4980858064356221140}
   barUpAmong: {fileID: 4980858064239069484}
   barDownAmong: {fileID: 4980858065130418889}
   rectSkillAmong: {fileID: 4980858064335575115}
-  nameAmong: {fileID: 8049031816834958179}
-  levelAmong: {fileID: 1386558495037958061}
-  descriptionAmong: {fileID: 9163388621528710910}
-  iconAmong: {fileID: 2085414581582888156}
   selectBarBottom: {fileID: 4980858064989719982}
   mouseRangeBottom: {fileID: 4980858065066071559}
   windowBottom: {fileID: 4980858065062653355}
   barUpBottom: {fileID: 4980858065271041538}
   barDownBottom: {fileID: 4980858064792251494}
   rectSkillBottom: {fileID: 4980858064319671292}
-  nameBottom: {fileID: 3663435026048645845}
-  levelBottom: {fileID: 6716132894227531904}
-  descriptionBottom: {fileID: 8642697461606167267}
-  iconBottom: {fileID: 1147477176328945311}
 --- !u!1 &4980858064686020389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,30 +1417,18 @@ MonoBehaviour:
   barUpTop: {fileID: 4980858065623746285}
   barDownTop: {fileID: 4980858065166799291}
   rectSkillTop: {fileID: 4980858065108721874}
-  nameTop: {fileID: 1041794937802530766}
-  levelTop: {fileID: 2202090858869644383}
-  descriptionTop: {fileID: 4995832249959480465}
-  iconTop: {fileID: 4619945422623511880}
   selectBarAmong: {fileID: 0}
   mouseRangeAmong: {fileID: 4980858064464853007}
   windowAmong: {fileID: 4980858064356221140}
   barUpAmong: {fileID: 4980858064239069484}
   barDownAmong: {fileID: 4980858065130418889}
   rectSkillAmong: {fileID: 4980858064335575115}
-  nameAmong: {fileID: 8049031816834958179}
-  levelAmong: {fileID: 1386558495037958061}
-  descriptionAmong: {fileID: 9163388621528710910}
-  iconAmong: {fileID: 2085414581582888156}
   selectBarBottom: {fileID: 0}
   mouseRangeBottom: {fileID: 4980858065066071559}
   windowBottom: {fileID: 4980858065062653355}
   barUpBottom: {fileID: 4980858065271041538}
   barDownBottom: {fileID: 4980858064792251494}
   rectSkillBottom: {fileID: 4980858064319671292}
-  nameBottom: {fileID: 3663435026048645845}
-  levelBottom: {fileID: 6716132894227531904}
-  descriptionBottom: {fileID: 8642697461606167267}
-  iconBottom: {fileID: 1147477176328945311}
 --- !u!1 &4980858064792251494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,30 +1834,18 @@ MonoBehaviour:
   barUpTop: {fileID: 4980858065623746285}
   barDownTop: {fileID: 4980858065166799291}
   rectSkillTop: {fileID: 4980858065108721874}
-  nameTop: {fileID: 1041794937802530766}
-  levelTop: {fileID: 2202090858869644383}
-  descriptionTop: {fileID: 4995832249959480465}
-  iconTop: {fileID: 4619945422623511880}
   selectBarAmong: {fileID: 4980858065319049385}
   mouseRangeAmong: {fileID: 4980858064464853007}
   windowAmong: {fileID: 4980858064356221140}
   barUpAmong: {fileID: 4980858064239069484}
   barDownAmong: {fileID: 4980858065130418889}
   rectSkillAmong: {fileID: 4980858064335575115}
-  nameAmong: {fileID: 8049031816834958179}
-  levelAmong: {fileID: 1386558495037958061}
-  descriptionAmong: {fileID: 9163388621528710910}
-  iconAmong: {fileID: 2085414581582888156}
   selectBarBottom: {fileID: 4980858064989719982}
   mouseRangeBottom: {fileID: 4980858065066071559}
   windowBottom: {fileID: 4980858065062653355}
   barUpBottom: {fileID: 4980858065271041538}
   barDownBottom: {fileID: 4980858064792251494}
   rectSkillBottom: {fileID: 4980858064319671292}
-  nameBottom: {fileID: 3663435026048645845}
-  levelBottom: {fileID: 6716132894227531904}
-  descriptionBottom: {fileID: 8642697461606167267}
-  iconBottom: {fileID: 1147477176328945311}
 --- !u!1 &4980858065108721877
 GameObject:
   m_ObjectHideFlags: 0
@@ -2215,6 +2179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4980858065256848697}
+  - component: {fileID: 6650855163250504897}
   m_Layer: 5
   m_Name: SkillWindow
   m_TagString: Untagged
@@ -2249,6 +2214,30 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6650855163250504897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4980858065256848696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f701b98a9c26e4a9a076493d65ec71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameTop: {fileID: 1041794937802530766}
+  levelTop: {fileID: 2202090858869644383}
+  descriptionTop: {fileID: 4995832249959480465}
+  iconTop: {fileID: 4619945422623511880}
+  nameAmong: {fileID: 8049031816834958179}
+  levelAmong: {fileID: 1386558495037958061}
+  descriptionAmong: {fileID: 9163388621528710910}
+  iconAmong: {fileID: 2085414581582888156}
+  nameBottom: {fileID: 3663435026048645845}
+  levelBottom: {fileID: 6716132894227531904}
+  descriptionBottom: {fileID: 8642697461606167267}
+  iconBottom: {fileID: 1147477176328945311}
 --- !u!1 &4980858065271041538
 GameObject:
   m_ObjectHideFlags: 0

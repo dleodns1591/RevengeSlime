@@ -6,7 +6,7 @@ public class SkillManager : MonoBehaviour
 {
     public static SkillManager instance;
 
-    public GameObject skillUI;
+    public GameObject skillWindowPick;
     public List<SkillData> skill = new List<SkillData>();
 
     public SkillData skillTop;
@@ -30,7 +30,10 @@ public class SkillManager : MonoBehaviour
 
     public void AddSkill()
     {
-        var ui =  skillUI.GetComponent<SkillUI>();
+        GameObject summon = Instantiate(skillWindowPick) as GameObject;
+        summon.transform.SetParent(GameObject.Find("Canvas").transform, false);
+
+        var ui = summon.GetComponent<SkillUI>();
 
         int skillIndex = 0;
 

@@ -126,8 +126,7 @@ public class UIManager : MonoBehaviour
             Player.Instance.currentExperience = 0;
 
             Time.timeScale = 0;
-            GameObject summon = Instantiate(skillWindowPick) as GameObject;
-            summon.transform.SetParent(GameObject.Find("Canvas").transform, false);
+            SkillManager.instance.AddSkill();
         }
     }
 
