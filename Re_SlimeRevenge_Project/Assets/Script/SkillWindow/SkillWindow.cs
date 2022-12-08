@@ -52,6 +52,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     void Start()
     {
         StartCoroutine(SkillWindowOpen());
+
     }
 
     void Update()
@@ -154,18 +155,28 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 {
                     case SkillData.Eskill.Vitality:
                         Debug.Log("끈질긴 생명력");
+                        Player.Instance.hpReductionSpeed += 0.1f;
                         break;
 
                     case SkillData.Eskill.Shell:
                         Debug.Log("거북이 등껍질");
+                        Player.Instance.defense += 2;
                         break;
 
                     case SkillData.Eskill.Exercise:
                         Debug.Log("근육운동");
+                        Player.Instance.currentHp += ((Player.Instance.maxHp * 20) / 100);
                         break;
 
+
                     case SkillData.Eskill.Predator:
+                        Player.Instance.getExperience += 0.15f;
                         Debug.Log("포식자");
+                        break;
+
+                    case SkillData.Eskill.SumptuousFeast:
+                        Debug.Log("진수성찬");
+                        Player.Instance.getExperience += 0.2f;
                         break;
 
                     case SkillData.Eskill.EnergyBomb:

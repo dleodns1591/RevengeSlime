@@ -199,8 +199,8 @@ public class Enemy : MonoBehaviour
                 {
                     transform.DOKill();
 
-                    Player.Instance.currentHp += bone;
-                    Player.Instance.currentExperience += bone;
+                    Player.Instance.currentHp += bone + Player.Instance.getHP;
+                    Player.Instance.currentExperience += bone + Player.Instance.getExperience;
                 });
 
                 yield return new WaitForSeconds(2f);

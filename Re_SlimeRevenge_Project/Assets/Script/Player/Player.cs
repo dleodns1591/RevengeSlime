@@ -28,8 +28,8 @@ public class Player : Singleton<Player>
     public int moveSpeed;
     public float maxExperience;
     public float currentExperience;
-    //public int getPlayerHP;
-    //public int getExperienceValue;
+    public float getHP;
+    public float getExperience;
 
     public int specialAbility = 2;
     public int specialAbilityCount;
