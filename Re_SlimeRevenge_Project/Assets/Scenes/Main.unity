@@ -2504,6 +2504,8 @@ MonoBehaviour:
   moveSpeed: 5
   maxExperience: 50
   currentExperience: 0
+  getHP: 0
+  getExperience: 0
   specialAbility: 2
   specialAbilityCount: 0
 --- !u!50 &779368870
