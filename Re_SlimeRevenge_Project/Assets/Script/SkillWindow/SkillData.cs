@@ -8,7 +8,7 @@ public class SkillData
     public string skillName;
     public string skillDescription;
     public int skillLevel;
-    public GameObject skillIcon;
+    public Sprite skillIcon;
 
     public SkillData(SkillData skillData)
     {

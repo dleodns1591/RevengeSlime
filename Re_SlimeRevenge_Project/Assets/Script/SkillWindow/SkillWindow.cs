@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 
 public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -57,6 +58,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         timer += Time.unscaledDeltaTime * 2.5f;
     }
+
 
     IEnumerator SkillWindowOpen()
     {
