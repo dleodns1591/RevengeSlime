@@ -140,7 +140,7 @@ public class Enemy : MonoBehaviour
                         if (isArrow == false && transform.position.x >= -5)
                         {
                             isArrow = true;
-                            Instantiate(arrow, new Vector2(transform.localPosition.x - 0.55f, transform.localPosition.y - 0.5f), Quaternion.identity);
+                            Instantiate(arrow, new Vector2(transform.localPosition.x + 0.5f, transform.localPosition.y - 0.5f), Quaternion.identity);
                         }
 
                         if (1.5f < archerAttackTimer)
