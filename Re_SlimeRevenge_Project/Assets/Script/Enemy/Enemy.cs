@@ -204,6 +204,10 @@ public class Enemy : MonoBehaviour
                 });
 
                 yield return new WaitForSeconds(2f);
+                Player.Instance.tag = "Player";
+                Player.Instance.spriteRenderer.DOKill();
+                Player.Instance.spriteRenderer.DOFade(1, 0);
+
                 Player.Instance.eState = Player.EState.Walk;
                 Destroy(gameObject);
             }
