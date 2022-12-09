@@ -11,7 +11,7 @@ public class Arrow : MonoBehaviour
 
     void Start()
     {
-        //Attack();
+        Attack();
     }
 
     void Update()
