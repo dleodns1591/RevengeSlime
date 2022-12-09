@@ -137,7 +137,7 @@ public class Enemy : MonoBehaviour
                     {
                         animator.SetBool("Attack", true);
 
-                        if (isArrow == false)
+                        if (isArrow == false && transform.position.x >= -5)
                         {
                             isArrow = true;
                             Instantiate(arrow, new Vector2(transform.localPosition.x - 0.55f, transform.localPosition.y - 0.5f), Quaternion.identity);
