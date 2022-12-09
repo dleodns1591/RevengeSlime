@@ -6,6 +6,8 @@ using DG.Tweening;
 public class Arrow : MonoBehaviour
 {
     public const int attack = 10;
+    public const float speed = 0.07f;
+    bool isCheck = false;
 
     void Start()
     {
@@ -14,6 +16,8 @@ public class Arrow : MonoBehaviour
 
     void Update()
     {
+        if (isCheck == true)
+            transform.Translate(Vector2.left * speed);
     }
 
     void Attack()
@@ -24,17 +28,24 @@ public class Arrow : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle - 180, Vector3.forward);
         transform.DOMove(Player.Instance.transform.position, 1f).SetEase(Ease.Linear).OnComplete(() =>
         {
-            Destroy(gameObject);
+            isCheck = true;
         });
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             transform.DOKill();
 
             Player.Instance.currentHp -= attack;
+            Destroy(gameObject);
+        }
+
+        if (collision.CompareTag("DestroyBox"))
+        {
+            transform.DOKill();
             Destroy(gameObject);
         }
     }

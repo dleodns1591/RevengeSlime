@@ -240,5 +240,8 @@ public class Enemy : MonoBehaviour
 
 
         }
+
+        if (collision.CompareTag("DestroyBox"))
+            Destroy(gameObject);
     }
 }

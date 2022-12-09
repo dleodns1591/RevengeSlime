@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - invincibility
+  - DestroyBox
   layers:
   - Default
   - TransparentFX
