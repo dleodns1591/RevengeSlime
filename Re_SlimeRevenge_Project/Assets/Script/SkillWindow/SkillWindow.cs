@@ -19,28 +19,28 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public GameObject skillWindow;
 
     [Header("왼쪽")]
-    public Image selectBarTop;
-    public Image mouseRangeTop;
-    public GameObject windowTop;
-    public GameObject barUpTop;
-    public GameObject barDownTop;
-    public RectTransform rectSkillTop;
+    [SerializeField] Image selectBarTop;
+    [SerializeField] Image mouseRangeTop;
+    [SerializeField] GameObject windowTop;
+    [SerializeField] GameObject barUpTop;
+    [SerializeField] GameObject barDownTop;
+    [SerializeField] RectTransform rectSkillTop;
 
     [Header("가운데")]
-    public Image selectBarAmong;
-    public Image mouseRangeAmong;
-    public GameObject windowAmong;
-    public GameObject barUpAmong;
-    public GameObject barDownAmong;
-    public RectTransform rectSkillAmong;
+    [SerializeField] Image selectBarAmong;
+    [SerializeField] Image mouseRangeAmong;
+    [SerializeField] GameObject windowAmong;
+    [SerializeField] GameObject barUpAmong;
+    [SerializeField] GameObject barDownAmong;
+    [SerializeField] RectTransform rectSkillAmong;
 
     [Header("오른쪽")]
-    public Image selectBarBottom;
-    public Image mouseRangeBottom;
-    public GameObject windowBottom;
-    public GameObject barUpBottom;
-    public GameObject barDownBottom;
-    public RectTransform rectSkillBottom;
+    [SerializeField] Image selectBarBottom;
+    [SerializeField] Image mouseRangeBottom;
+    [SerializeField] GameObject windowBottom;
+    [SerializeField] GameObject barUpBottom;
+    [SerializeField] GameObject barDownBottom;
+    [SerializeField] RectTransform rectSkillBottom;
 
     public const int windowWidth = 545;
     public const int windowHeight = 845;
@@ -52,14 +52,12 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     void Start()
     {
         StartCoroutine(SkillWindowOpen());
-
     }
 
     void Update()
     {
         timer += Time.unscaledDeltaTime * 2.5f;
     }
-
 
     IEnumerator SkillWindowOpen()
     {
@@ -83,7 +81,6 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             rectSkillBottom.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(0, windowHeight, timer));
             yield return null;
         }
-
         isOpenCheck = true;
     }
 
@@ -104,7 +101,6 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                     break;
             }
         }
-
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -168,10 +164,9 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         Player.Instance.currentHp += ((Player.Instance.maxHp * 20) / 100);
                         break;
 
-
                     case SkillData.Eskill.Predator:
-                        Player.Instance.getExperience += 0.15f;
                         Debug.Log("포식자");
+                        Player.Instance.getExperience += 0.15f;
                         break;
 
                     case SkillData.Eskill.SumptuousFeast:
