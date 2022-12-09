@@ -50,9 +50,9 @@ TagManager:
   - name: Arrow
     uniqueID: 946600141
     locked: 0
-  - name: UI
-    uniqueID: 2317104365
-    locked: 0
   - name: Player
     uniqueID: 632464759
+    locked: 0
+  - name: UI
+    uniqueID: 2317104365
     locked: 0

@@ -120,7 +120,9 @@ public class Enemy : MonoBehaviour
                 if (emove == EMove.ForwardMove)
                 {
                     if (transform.position.x <= -4.5f)
+                    {
                         animator.SetBool("Attack", true);
+                    }
                     else
                         animator.SetInteger("Walk", hp);
                 }
