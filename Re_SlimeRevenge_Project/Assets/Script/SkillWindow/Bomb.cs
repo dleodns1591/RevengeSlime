@@ -31,6 +31,7 @@ public class Bomb : MonoBehaviour
             case EBomb.SlimeBomb:
                 transform.DOMoveX(20, 5).SetEase(Ease.Linear).OnComplete(() =>
                 {
+                    transform.DOKill();
                     Destroy(gameObject);
                 });
                 break;

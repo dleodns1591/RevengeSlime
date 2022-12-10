@@ -178,8 +178,8 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         Debug.Log("¿¡³ÊÁöÅº");
                         if (SkillManager.instance.isEnergyBombClick == false)
                         {
-                            Instantiate(SkillManager.instance.energyBomb, Player.Instance.transform.position, Quaternion.identity);
                             SkillManager.instance.isEnergyBombClick = true;
+                            Instantiate(SkillManager.instance.energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
                         }
                         else
                             SkillManager.instance.energyBombCoolTime -= 1;
@@ -189,8 +189,8 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         Debug.Log("½½¶óÀÓÅº");
                         if (SkillManager.instance.isSlimeBombClick == false)
                         {
-                            Instantiate(SkillManager.instance.slimeBomb, Player.Instance.transform.position, Quaternion.identity);
                             SkillManager.instance.isSlimeBombClick = true;
+                            Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
                         }
                         else
                             SkillManager.instance.slimeBombCoolTime -= 1;
@@ -241,6 +241,68 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         ++SkillManager.instance.skill[i].skillLevel;
                 }
 
+                switch (SkillManager.instance.skillAmong.eskill)
+                {
+                    case SkillData.Eskill.Vitality:
+                        Debug.Log("²öÁú±ä »ý¸í·Â");
+                        Player.Instance.hpReductionSpeed += 0.1f;
+                        break;
+
+                    case SkillData.Eskill.Shell:
+                        Debug.Log("°ÅºÏÀÌ µî²®Áú");
+                        Player.Instance.defense += 2;
+                        break;
+
+                    case SkillData.Eskill.Exercise:
+                        Debug.Log("±ÙÀ°¿îµ¿");
+                        Player.Instance.currentHp += ((Player.Instance.maxHp * 20) / 100);
+                        break;
+
+                    case SkillData.Eskill.Predator:
+                        Debug.Log("Æ÷½ÄÀÚ");
+                        Player.Instance.getExperience += 0.15f;
+                        break;
+
+                    case SkillData.Eskill.SumptuousFeast:
+                        Debug.Log("Áø¼ö¼ºÂù");
+                        Player.Instance.getExperience += 0.2f;
+                        break;
+
+                    case SkillData.Eskill.EnergyBomb:
+                        Debug.Log("¿¡³ÊÁöÅº");
+                        if (SkillManager.instance.isEnergyBombClick == false)
+                        {
+                            SkillManager.instance.isEnergyBombClick = true;
+                            Instantiate(SkillManager.instance.energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
+                        }
+                        else
+                            SkillManager.instance.energyBombCoolTime -= 1;
+                        break;
+
+                    case SkillData.Eskill.SlimeBomb:
+                        Debug.Log("½½¶óÀÓÅº");
+                        if (SkillManager.instance.isSlimeBombClick == false)
+                        {
+                            SkillManager.instance.isSlimeBombClick = true;
+                            Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
+                        }
+                        else
+                            SkillManager.instance.slimeBombCoolTime -= 1;
+                        break;
+
+                    case SkillData.Eskill.BoneFestival:
+                        Debug.Log("»À ÃàÁ¦");
+                        break;
+
+                    case SkillData.Eskill.Gluttonous:
+                        Debug.Log("½ÄÅ½ µ¹Áø");
+                        break;
+
+                    case SkillData.Eskill.Resurrection:
+                        Debug.Log("ºÎÈ°");
+                        break;
+                }
+
                 #region Ã¢ ´Ý±â
                 selectBarAmong.DOFade(0, 0).SetEase(Ease.Linear);
 
@@ -270,6 +332,68 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 {
                     if (SkillManager.instance.skill[i].skillName == SkillManager.instance.skillBottom.skillName)
                         ++SkillManager.instance.skill[i].skillLevel;
+                }
+
+                switch (SkillManager.instance.skillBottom.eskill)
+                {
+                    case SkillData.Eskill.Vitality:
+                        Debug.Log("²öÁú±ä »ý¸í·Â");
+                        Player.Instance.hpReductionSpeed += 0.1f;
+                        break;
+
+                    case SkillData.Eskill.Shell:
+                        Debug.Log("°ÅºÏÀÌ µî²®Áú");
+                        Player.Instance.defense += 2;
+                        break;
+
+                    case SkillData.Eskill.Exercise:
+                        Debug.Log("±ÙÀ°¿îµ¿");
+                        Player.Instance.currentHp += ((Player.Instance.maxHp * 20) / 100);
+                        break;
+
+                    case SkillData.Eskill.Predator:
+                        Debug.Log("Æ÷½ÄÀÚ");
+                        Player.Instance.getExperience += 0.15f;
+                        break;
+
+                    case SkillData.Eskill.SumptuousFeast:
+                        Debug.Log("Áø¼ö¼ºÂù");
+                        Player.Instance.getExperience += 0.2f;
+                        break;
+
+                    case SkillData.Eskill.EnergyBomb:
+                        Debug.Log("¿¡³ÊÁöÅº");
+                        if (SkillManager.instance.isEnergyBombClick == false)
+                        {
+                            SkillManager.instance.isEnergyBombClick = true;
+                            Instantiate(SkillManager.instance.energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
+                        }
+                        else
+                            SkillManager.instance.energyBombCoolTime -= 1;
+                        break;
+
+                    case SkillData.Eskill.SlimeBomb:
+                        Debug.Log("½½¶óÀÓÅº");
+                        if (SkillManager.instance.isSlimeBombClick == false)
+                        {
+                            SkillManager.instance.isSlimeBombClick = true;
+                            Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.Euler(0, -180, 0));
+                        }
+                        else
+                            SkillManager.instance.slimeBombCoolTime -= 1;
+                        break;
+
+                    case SkillData.Eskill.BoneFestival:
+                        Debug.Log("»À ÃàÁ¦");
+                        break;
+
+                    case SkillData.Eskill.Gluttonous:
+                        Debug.Log("½ÄÅ½ µ¹Áø");
+                        break;
+
+                    case SkillData.Eskill.Resurrection:
+                        Debug.Log("ºÎÈ°");
+                        break;
                 }
 
                 #region Ã¢ ´Ý±â

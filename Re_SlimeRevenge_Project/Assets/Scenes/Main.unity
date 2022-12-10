@@ -2319,7 +2319,7 @@ GameObject:
   - component: {fileID: 779368870}
   - component: {fileID: 779368869}
   - component: {fileID: 779368871}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -7038,7 +7038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1882032967
 RectTransform:
   m_ObjectHideFlags: 0

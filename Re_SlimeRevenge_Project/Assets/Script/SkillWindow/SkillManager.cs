@@ -51,14 +51,14 @@ public class SkillManager : MonoBehaviour
         {
             isSlimeBombCheck = true;
             yield return new WaitForSeconds(slimeBombCoolTime);
-            Instantiate(slimeBomb, Player.Instance.transform.position, Quaternion.identity);
+            Instantiate(slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
         }
 
         if (isEnergyBombClick == true && isEnergyBombCheck == false)
         {
             isEnergyBombCheck = true;
             yield return new WaitForSeconds(energyBombCoolTime);
-            Instantiate(energyBomb, Player.Instance.transform.position, Quaternion.identity);
+            Instantiate(energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
         }
     }
 

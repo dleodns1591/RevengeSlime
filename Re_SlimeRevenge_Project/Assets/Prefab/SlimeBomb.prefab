@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1652771716152962183}
   - component: {fileID: 806214097677786736}
   - component: {fileID: 1299524599}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlimeBomb
   m_TagString: Bomb
   m_Icon: {fileID: 0}
