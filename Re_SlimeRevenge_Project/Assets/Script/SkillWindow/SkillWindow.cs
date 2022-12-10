@@ -176,10 +176,28 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                     case SkillData.Eskill.EnergyBomb:
                         Debug.Log("에너지탄");
+                        if (SkillManager.instance.isEnergyBombCheck == false)
+                        {
+                            Instantiate(SkillManager.instance.energyBomb, Player.Instance.transform.position, Quaternion.identity);
+                            SkillManager.instance.isEnergyBombCheck = true;
+                        }
+                        else
+                        {
+                            // 쿨타임 줄여주기
+                        }
                         break;
 
                     case SkillData.Eskill.SlimeBomb:
                         Debug.Log("슬라임탄");
+                        if (SkillManager.instance.isSlimeBombCheck == false)
+                        {
+                            Instantiate(SkillManager.instance.slimeBomb, Player.Instance.transform.position, Quaternion.identity);
+                            SkillManager.instance.isSlimeBombCheck = true;
+                        }
+                        else
+                        {
+                            // 쿨타임 줄여주기
+                        }
                         break;
 
                     case SkillData.Eskill.BoneFestival:

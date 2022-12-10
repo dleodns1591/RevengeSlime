@@ -13,6 +13,13 @@ public class SkillManager : MonoBehaviour
     public SkillData skillAmong;
     public SkillData skillBottom;
 
+    [Header("스킬 카드")]
+    public GameObject slimeBomb;
+    public GameObject energyBomb;
+
+    public bool isSlimeBombCheck;
+    public bool isEnergyBombCheck;
+
     void Start()
     {
     }
