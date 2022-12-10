@@ -247,8 +247,15 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag("Bomb"))
         {
             --hp;
-            emove = EMove.BackMove;
-            rb2D.AddForce(new Vector2(7, 0), ForceMode2D.Impulse);
+            if (hp == 0)
+            {
+                //ª¿ º“»Ø
+            }
+            else
+            {
+                emove = EMove.BackMove;
+                rb2D.AddForce(new Vector2(7, 0), ForceMode2D.Impulse);
+            }
         }
     }
 }
