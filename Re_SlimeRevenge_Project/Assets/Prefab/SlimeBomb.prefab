@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1652771716152962182}
   - component: {fileID: 1652771716152962183}
   - component: {fileID: 806214097677786736}
+  - component: {fileID: 1299524599}
   m_Layer: 0
   m_Name: SlimeBomb
-  m_TagString: SlimeBomb
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,3 +123,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.11
+--- !u!114 &1299524599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652771716152962184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84a6d6b84b1bcd4ba5d852adfd84b0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eBomb: 0

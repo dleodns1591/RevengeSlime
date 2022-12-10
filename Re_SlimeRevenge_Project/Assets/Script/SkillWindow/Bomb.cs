@@ -17,11 +17,11 @@ public class Bomb : MonoBehaviour
     void Start()
     {
         enemySpawn = GameObject.Find("EnemySpawnManager");
-        Attack();
     }
 
     void Update()
     {
+        Attack();
     }
 
     void Attack()
@@ -29,7 +29,10 @@ public class Bomb : MonoBehaviour
         switch (eBomb)
         {
             case EBomb.SlimeBomb:
-                
+                transform.DOMoveX(20, 5).SetEase(Ease.Linear).OnComplete(() =>
+                {
+                    Destroy(gameObject);
+                });
                 break;
 
             case EBomb.EnergyBomb:
@@ -43,6 +46,8 @@ public class Bomb : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
+            transform.DOKill();
+
             Destroy(gameObject);
         }
     }

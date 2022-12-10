@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3637980366169932635}
   - component: {fileID: 3637980366169932632}
   - component: {fileID: 3979745419524928928}
+  - component: {fileID: 1151475463}
   m_Layer: 0
   m_Name: EnergyBomb
-  m_TagString: EnergyBomb
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,3 +123,16 @@ CircleCollider2D:
   m_Offset: {x: 0.18, y: -0.15}
   serializedVersion: 2
   m_Radius: 0.71
+--- !u!114 &1151475463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3637980366169932633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84a6d6b84b1bcd4ba5d852adfd84b0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eBomb: 1

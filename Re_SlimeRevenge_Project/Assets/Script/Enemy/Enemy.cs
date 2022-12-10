@@ -243,5 +243,12 @@ public class Enemy : MonoBehaviour
 
         if (collision.CompareTag("DestroyBox"))
             Destroy(gameObject);
+
+        if (collision.CompareTag("Bomb"))
+        {
+            --hp;
+            emove = EMove.BackMove;
+            rb2D.AddForce(new Vector2(7, 0), ForceMode2D.Impulse);
+        }
     }
 }
