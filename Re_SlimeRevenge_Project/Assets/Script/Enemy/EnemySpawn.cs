@@ -23,7 +23,7 @@ public class EnemySpawn : MonoBehaviour
             if (GameManager.instance._isStartGame == true)
             {
                 int randomSpawn = Random.Range(1, 101);
-                float randomPosY = Random.Range(-3.2f, 0.8f);
+                float randomPosY = Random.Range(-3.5f, 0f);
 
                 Vector2 spawnPos = new Vector2(11, randomPosY);
 

@@ -4565,8 +4565,10 @@ MonoBehaviour:
     eskill: 0
   slimeBomb: {fileID: 1652771716152962184, guid: 3a3b64c312482254299ac27de195e9c8, type: 3}
   energyBomb: {fileID: 3637980366169932633, guid: 067eab0a89fc5904499e47b8a15a8a78, type: 3}
-  isSlimeBombCheck: 0
-  isEnergyBombCheck: 0
+  slimeBombCoolTime: 0
+  energyBombCoolTime: 0
+  isSlimeBombClick: 0
+  isEnergyBombClick: 0
 --- !u!4 &1249920579
 Transform:
   m_ObjectHideFlags: 0
@@ -7036,7 +7038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1882032967
 RectTransform:
   m_ObjectHideFlags: 0
