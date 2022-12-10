@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
         None,
         BackMove,
         ForwardMove,
+        Die
     }
 
     public enum Espeed
@@ -85,6 +86,9 @@ public class Enemy : MonoBehaviour
             case EMove.ForwardMove:
                 isKnockBack = false;
                 transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
+                break;
+            case EMove.Die:
+                transform.DOLocalMove(new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), 0.5f);
                 break;
         }
 
@@ -190,18 +194,15 @@ public class Enemy : MonoBehaviour
 
             if (hp == 0)
             {
-                emove = EMove.None;
+                emove = EMove.Die;
                 Player.Instance.eState = Player.EState.Eat;
                 spriteRenderer.DOFade(0, waitTime);
                 transform.DOScale(new Vector2(0.1f, 0.1f), waitTime);
                 transform.DORotate(new Vector3(0, 0, -180), waitTime);
-                transform.DOLocalMove(new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y), waitTime).OnComplete(() =>
-                {
-                    transform.DOKill();
 
-                    Player.Instance.currentHp += bone + Player.Instance.getHP;
-                    Player.Instance.currentExperience += bone + Player.Instance.getExperience;
-                });
+
+                Player.Instance.currentHp += bone + Player.Instance.getHP;
+                Player.Instance.currentExperience += bone + Player.Instance.getExperience;
 
                 yield return new WaitForSeconds(2f);
                 Player.Instance.tag = "Player";
@@ -209,6 +210,7 @@ public class Enemy : MonoBehaviour
                 Player.Instance.spriteRenderer.DOFade(1, 0);
 
                 Player.Instance.eState = Player.EState.Walk;
+                transform.DOKill();
                 Destroy(gameObject);
             }
 

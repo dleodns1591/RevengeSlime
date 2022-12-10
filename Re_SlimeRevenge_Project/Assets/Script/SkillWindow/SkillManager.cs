@@ -51,7 +51,7 @@ public class SkillManager : MonoBehaviour
         {
             isSlimeBombCheck = true;
             yield return new WaitForSeconds(slimeBombCoolTime);
-            Instantiate(slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
+            Instantiate(slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.Euler(0, -180, 0));
         }
 
         if (isEnergyBombClick == true && isEnergyBombCheck == false)
