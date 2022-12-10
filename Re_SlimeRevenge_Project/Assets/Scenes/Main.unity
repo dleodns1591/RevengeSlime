@@ -4563,6 +4563,10 @@ MonoBehaviour:
     skillLevel: 0
     skillIcon: {fileID: 0}
     eskill: 0
+  slimeBomb: {fileID: 1652771716152962184, guid: 3a3b64c312482254299ac27de195e9c8, type: 3}
+  energyBomb: {fileID: 3637980366169932633, guid: 067eab0a89fc5904499e47b8a15a8a78, type: 3}
+  isSlimeBombCheck: 0
+  isEnergyBombCheck: 0
 --- !u!4 &1249920579
 Transform:
   m_ObjectHideFlags: 0
