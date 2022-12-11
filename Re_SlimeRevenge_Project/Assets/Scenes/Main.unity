@@ -4569,6 +4569,8 @@ MonoBehaviour:
   energyBombCoolTime: 0
   isSlimeBombClick: 0
   isEnergyBombClick: 0
+  isSlimeBombCheck: 0
+  isEnergyBombCheck: 0
 --- !u!4 &1249920579
 Transform:
   m_ObjectHideFlags: 0
@@ -7038,7 +7040,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1882032967
 RectTransform:
   m_ObjectHideFlags: 0

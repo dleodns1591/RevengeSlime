@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class Player : Singleton<Player>
 {
-
     public enum EState
     {
         Walk,
