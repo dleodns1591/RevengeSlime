@@ -115,6 +115,9 @@ public class UIManager : MonoBehaviour
                 yield break;
             }
 
+            if (Player.Instance.currentHp > Player.Instance.maxHp)
+                Player.Instance.currentHp = Player.Instance.maxHp;
+
         }
     }
 
