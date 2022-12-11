@@ -42,8 +42,8 @@ public class Enemy : MonoBehaviour
 
     public int hp;
     public int attack;
-    public int bigBone;
-    public int smallBone;
+    public int bigBoneNum;
+    public int smallBoneNum;
     private float moveSpeed;
     private float archerAttackTimer = 0.0f;
     public bool isKnockBack;
@@ -53,9 +53,14 @@ public class Enemy : MonoBehaviour
     bool isArrow;
     public GameObject arrow;
 
+    [Space(10)]
+    public GameObject bigBone;
+    public GameObject smallBone;
+
     Animator animator;
     Rigidbody2D rb2D;
     SpriteRenderer spriteRenderer;
+
 
 
     void Start()
@@ -186,7 +191,7 @@ public class Enemy : MonoBehaviour
         float waitTime = 0.5f;
         int playerInvincibility = 3;
 
-        float bone = ((20 * bigBone) + (10 * smallBone));
+        float bone = ((20 * bigBoneNum) + (10 * smallBoneNum));
 
         if (collision.CompareTag("Player"))
         {
@@ -251,6 +256,27 @@ public class Enemy : MonoBehaviour
             --hp;
             if (hp == 0)
             {
+                transform.DOKill();
+                Destroy(gameObject);
+
+                if (bigBoneNum > 0)
+                {
+                    for (int i = 0; i < bigBoneNum; i++)
+                    {
+                        int randomRot = Random.Range(-180, 0);
+                        Instantiate(bigBone, transform.position, Quaternion.Euler(0, 0, randomRot));
+                    }
+                }
+
+                if (smallBoneNum > 0)
+                {
+                    for (int i = 0; i < smallBoneNum; i++)
+                    {
+                        int randomRot = Random.Range(-180, 0);
+                        Instantiate(smallBone, transform.position, Quaternion.Euler(0,0, randomRot));
+                    }
+                }
+
                 //»À ¼ÒÈ¯
             }
             else

@@ -32,6 +32,7 @@ public class Bomb : MonoBehaviour
                 transform.DOMoveX(20, 5).SetEase(Ease.Linear).OnComplete(() =>
                 {
                     transform.DOKill();
+                    SkillManager.instance.isSlimeBombCheck = false;
                     Destroy(gameObject);
                 });
                 break;
@@ -48,7 +49,16 @@ public class Bomb : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             transform.DOKill();
+            switch (eBomb)
+            {
+                case EBomb.SlimeBomb:
+                    SkillManager.instance.isSlimeBombCheck = false;
+                    break;
 
+                case EBomb.EnergyBomb:
+                    SkillManager.instance.isEnergyBombCheck = false;
+                    break;
+            }
             Destroy(gameObject);
         }
     }

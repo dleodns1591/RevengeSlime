@@ -23,8 +23,8 @@ public class SkillManager : MonoBehaviour
     public bool isSlimeBombClick;
     public bool isEnergyBombClick;
 
-    bool isSlimeBombCheck;
-    bool isEnergyBombCheck;
+    public bool isSlimeBombCheck;
+    public bool isEnergyBombCheck;
 
     void Start()
     {

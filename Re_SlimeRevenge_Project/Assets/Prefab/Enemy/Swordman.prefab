@@ -151,11 +151,13 @@ MonoBehaviour:
   espeed: 1
   hp: 2
   attack: 20
-  bigBone: 1
-  smallBone: 1
+  bigBoneNum: 1
+  smallBoneNum: 1
   isKnockBack: 0
   isCollsionAttack: 1
   arrow: {fileID: 0}
+  bigBone: {fileID: 4766282369913508785, guid: c89cca9ce438f754f806f75052b7dfe3, type: 3}
+  smallBone: {fileID: 4855608360805593000, guid: 82483cd7142336d4c8c4aea701fdbf8d, type: 3}
 --- !u!50 &5421019665156859580
 Rigidbody2D:
   serializedVersion: 4
