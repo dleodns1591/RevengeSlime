@@ -13,9 +13,22 @@ public class Bone : MonoBehaviour
     public Ebone ebone;
     [SerializeField] int speed;
 
+    const float bigBoneSize = 0.15f;
+    const float smallBoneSize = 0.2f;
+
     void Start()
     {
-        
+        transform.DOScale(0, 0);
+
+        switch (ebone)
+        {
+            case Ebone.BigBone:
+                transform.DOScale(new Vector2(bigBoneSize, bigBoneSize), 0.5f);
+                break;
+            case Ebone.SmallBone:
+                transform.DOScale(new Vector2(smallBoneSize, smallBoneSize), 0.5f);
+                break;
+        }
     }
 
     void Update()
