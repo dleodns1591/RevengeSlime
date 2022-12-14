@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
     Animator animator;
     Rigidbody2D rb2D;
     SpriteRenderer spriteRenderer;
-
+    BoxCollider2D boxCollider2D;
 
 
     void Start()
@@ -68,6 +68,7 @@ public class Enemy : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     void Update()
@@ -93,6 +94,7 @@ public class Enemy : MonoBehaviour
                 transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
                 break;
             case EMove.Die:
+                boxCollider2D.enabled = false;
                 transform.DOLocalMove(new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), 0.5f);
                 break;
         }
@@ -273,7 +275,7 @@ public class Enemy : MonoBehaviour
                     for (int i = 0; i < smallBoneNum; i++)
                     {
                         int randomRot = Random.Range(-180, 0);
-                        Instantiate(smallBone, transform.position, Quaternion.Euler(0,0, randomRot));
+                        Instantiate(smallBone, transform.position, Quaternion.Euler(0, 0, randomRot));
                     }
                 }
 

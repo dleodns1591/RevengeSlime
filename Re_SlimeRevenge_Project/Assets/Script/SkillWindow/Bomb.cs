@@ -38,7 +38,7 @@ public class Bomb : MonoBehaviour
                 break;
 
             case EBomb.EnergyBomb:
-                transform.DOMove(enemySpawn.transform.GetChild(enemySpawn.transform.childCount -1).position, 1f).SetEase(Ease.Linear);
+                transform.DOMove(enemySpawn.transform.GetChild(enemySpawn.transform.childCount - 1).position, 1f).SetEase(Ease.Linear);
                 break;
         }
 

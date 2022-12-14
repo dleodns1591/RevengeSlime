@@ -38,6 +38,7 @@ public class Player : Singleton<Player>
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
     }
 
     void Update()
