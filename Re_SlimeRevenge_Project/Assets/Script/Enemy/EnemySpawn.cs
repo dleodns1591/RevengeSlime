@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySpawn : MonoBehaviour
 {
     public List<EnemyData> enemy = new List<EnemyData>();
+    public static EnemySpawn instance;
 
     void Start()
     {
@@ -14,6 +15,11 @@ public class EnemySpawn : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private void Awake()
+    {
+        instance = this;
     }
 
     IEnumerator Spawn()

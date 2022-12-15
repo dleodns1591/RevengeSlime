@@ -15,7 +15,8 @@ public class Player : Singleton<Player>
     }
 
     public SpriteRenderer spriteRenderer;
-    private bool isStateCheck = false;
+    bool isStateCheck = false;
+    bool isReuse = false;
 
     [Header("수치적 데이터")]
     public EState eState;
@@ -52,8 +53,6 @@ public class Player : Singleton<Player>
         PlayerMove();
     }
 
-
-
     // 플레이어 이동
     void PlayerMove()
     {
@@ -84,13 +83,18 @@ public class Player : Singleton<Player>
     // 플레이어 특수능력
     IEnumerator PlayerSkill()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && specialAbilityCount > 0)
+
+        if (Input.GetKeyDown(KeyCode.Z) && /*specialAbilityCount > 0 &&*/ isReuse == false)
         {
+            isReuse = true;
+
             --specialAbilityCount;
             eState = EState.Skill;
 
+
             yield return new WaitForSeconds(1f);
 
+            isReuse = false;
             eState = EState.Walk;
         }
     }
