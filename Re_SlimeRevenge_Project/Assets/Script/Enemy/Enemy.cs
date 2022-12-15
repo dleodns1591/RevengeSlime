@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour
     public int attack;
     public int bigBoneNum;
     public int smallBoneNum;
+    public int boneFestivalNum;
     private float moveSpeed;
     private float archerAttackTimer = 0.0f;
     public bool isKnockBack;
@@ -270,7 +271,7 @@ public class Enemy : MonoBehaviour
                     }
                 }
 
-                if (smallBoneNum > 0)
+                if (smallBoneNum + SkillManager.instance.skill[7].skillLevel > 0)
                 {
                     for (int i = 0; i < smallBoneNum; i++)
                     {

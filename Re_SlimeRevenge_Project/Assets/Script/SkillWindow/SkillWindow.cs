@@ -178,8 +178,8 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         Debug.Log("ø°≥ ¡ˆ≈∫");
                         if (SkillManager.instance.isEnergyBombClick == false)
                         {
-                            Instantiate(SkillManager.instance.energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
                             SkillManager.instance.isEnergyBombClick = true;
+                            Instantiate(SkillManager.instance.energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
                         }
                         else
                             SkillManager.instance.energyBombCoolTime -= 1;
@@ -189,8 +189,8 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         Debug.Log("ΩΩ∂Û¿”≈∫");
                         if (SkillManager.instance.isSlimeBombClick == false)
                         {
-                            Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
                             SkillManager.instance.isSlimeBombClick = true;
+                            Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
                         }
                         else
                             SkillManager.instance.slimeBombCoolTime -= 1;
@@ -362,25 +362,31 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         break;
 
                     case SkillData.Eskill.EnergyBomb:
-                        Debug.Log("ø°≥ ¡ˆ≈∫");
                         if (SkillManager.instance.isEnergyBombClick == false)
                         {
+                            Debug.Log("ø°≥ ¡ˆ≈∫");
                             SkillManager.instance.isEnergyBombClick = true;
                             Instantiate(SkillManager.instance.energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
                         }
                         else
+                        {
+                            Debug.Log("ø°≥ ¡ˆ≈∫ ƒ≈∏¿” ∞®º“");
                             SkillManager.instance.energyBombCoolTime -= 1;
+                        }
                         break;
 
                     case SkillData.Eskill.SlimeBomb:
-                        Debug.Log("ΩΩ∂Û¿”≈∫");
                         if (SkillManager.instance.isSlimeBombClick == false)
                         {
+                            Debug.Log("ΩΩ∂Û¿”≈∫");
                             SkillManager.instance.isSlimeBombClick = true;
                             Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.Euler(0, -180, 0));
                         }
                         else
+                        {
+                            Debug.Log("ΩΩ∂Û¿”≈∫ ƒ≈∏¿” ∞®º“");
                             SkillManager.instance.slimeBombCoolTime -= 1;
+                        }
                         break;
 
                     case SkillData.Eskill.BoneFestival:

@@ -26,10 +26,14 @@ public class SkillManager : MonoBehaviour
     public bool isSlimeBombCheck;
     public bool isEnergyBombCheck;
 
+    GameObject enemySpawn;
+
     void Start()
     {
         energyBombCoolTime = 10;
         slimeBombCoolTime = 7;
+
+        enemySpawn = GameObject.Find("EnemySpawnManager");
     }
 
     void Update()
@@ -54,12 +58,13 @@ public class SkillManager : MonoBehaviour
             Instantiate(slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.Euler(0, -180, 0));
         }
 
-        if (isEnergyBombClick == true && isEnergyBombCheck == false)
+        if (isEnergyBombClick == true && isEnergyBombCheck == false && enemySpawn.transform.childCount - 1 > 0)
         {
             isEnergyBombCheck = true;
             yield return new WaitForSeconds(energyBombCoolTime);
             Instantiate(energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
         }
+
     }
 
     public void AddSkill()

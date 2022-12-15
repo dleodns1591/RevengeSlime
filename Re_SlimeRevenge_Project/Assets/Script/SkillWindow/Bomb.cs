@@ -12,7 +12,7 @@ public class Bomb : MonoBehaviour
     }
 
     [SerializeField] EBomb eBomb;
-    [SerializeField] GameObject enemySpawn;
+    GameObject enemySpawn;
 
     void Start()
     {

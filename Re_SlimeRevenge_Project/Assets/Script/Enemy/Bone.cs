@@ -11,7 +11,6 @@ public class Bone : MonoBehaviour
         SmallBone,
     }
     public Ebone ebone;
-    [SerializeField] int speed;
 
     const float bigBoneSize = 0.15f;
     const float smallBoneSize = 0.2f;
@@ -33,7 +32,12 @@ public class Bone : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
+
+        transform.DOLocalMoveX(-11, 4).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            transform.DOKill();
+            Destroy(gameObject);
+        });
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
