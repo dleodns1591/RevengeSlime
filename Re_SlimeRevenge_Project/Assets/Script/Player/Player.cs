@@ -88,17 +88,22 @@ public class Player : Singleton<Player>
             --specialAbilityCount;
             eState = EState.Skill;
 
-            for (int i = 0; i <= EnemySpawn.instance.transform.childCount - 1;)
+            for (int i = 0; i <= EnemySpawn.instance.transform.childCount - 1; i++)
             {
-                if (transform.position.x + EnemySpawn.instance.transform.GetChild(i).transform.position.x <= -2)
+                if (transform.position.x <= EnemySpawn.instance.transform.GetChild(i).transform.position.x)
                 {
-                    Debug.Log("x°Å¸® µÊ");
+                    if (transform.position.x + EnemySpawn.instance.transform.GetChild(i).transform.position.x <= -2)
+                    {
+                        Debug.Log(i);
+                        Debug.Log("x°Å¸® µÊ");
+                    }
+                    else
+                    {
+                        Debug.Log("¾ÈµÊ");
+                    }
+                    break;
                 }
-                else
-                    i++;
             }
-
-
 
             yield return new WaitForSeconds(1f);
 
