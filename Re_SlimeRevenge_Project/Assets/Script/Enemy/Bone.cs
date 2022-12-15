@@ -33,11 +33,7 @@ public class Bone : MonoBehaviour
 
     void Update()
     {
-        transform.DOLocalMoveX(-11, 2).SetEase(Ease.Linear).OnComplete(() =>
-        {
-            transform.DOKill();
-            Destroy(gameObject);
-        });
+        transform.Translate(Vector2.left * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
