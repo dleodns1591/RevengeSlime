@@ -34,8 +34,6 @@ public class Player : Singleton<Player>
     public int specialAbility = 2;
     public int specialAbilityCount;
 
-
-
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -83,13 +81,23 @@ public class Player : Singleton<Player>
     // 플레이어 특수능력
     IEnumerator PlayerSkill()
     {
-
         if (Input.GetKeyDown(KeyCode.Z) && /*specialAbilityCount > 0 &&*/ isReuse == false)
         {
             isReuse = true;
 
             --specialAbilityCount;
             eState = EState.Skill;
+
+            for (int i = 0; i <= EnemySpawn.instance.transform.childCount - 1;)
+            {
+                if (transform.position.x + EnemySpawn.instance.transform.GetChild(i).transform.position.x <= -2)
+                {
+                    Debug.Log("x거리 됨");
+                }
+                else
+                    i++;
+            }
+
 
 
             yield return new WaitForSeconds(1f);
