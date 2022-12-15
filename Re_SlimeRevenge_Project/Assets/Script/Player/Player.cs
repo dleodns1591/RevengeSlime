@@ -81,7 +81,9 @@ public class Player : Singleton<Player>
     // ÇÃ·¹ÀÌ¾î Æ¯¼ö´É·Â
     IEnumerator PlayerSkill()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && /*specialAbilityCount > 0 &&*/ isReuse == false)
+        float posY = 0.5f;
+
+        if (Input.GetKeyDown(KeyCode.Z) && specialAbilityCount > 0 && isReuse == false)
         {
             isReuse = true;
 
@@ -90,19 +92,25 @@ public class Player : Singleton<Player>
 
             for (int i = 0; i <= EnemySpawn.instance.transform.childCount - 1; i++)
             {
-                if (transform.position.x <= EnemySpawn.instance.transform.GetChild(i).transform.position.x)
+                Transform enemyPos = EnemySpawn.instance.transform.GetChild(i).transform;
+
+                if (enemyPos.position.x <= -3)
                 {
-                    if (transform.position.x + EnemySpawn.instance.transform.GetChild(i).transform.position.x <= -2)
+                    if (transform.position.y >= enemyPos.position.y && transform.position.y - enemyPos.position.y <= posY)
                     {
-                        Debug.Log(i);
-                        Debug.Log("x°Å¸® µÊ");
+                        enemyPos.transform.DOKill();
+                        Destroy(enemyPos.gameObject);
                     }
                     else
                     {
-                        Debug.Log("¾ÈµÊ");
+                        enemyPos.transform.DOKill();
+                        Destroy(enemyPos.gameObject);
                     }
+
                     break;
                 }
+                else
+                    Debug.Log("¾ÈµÊ");
             }
 
             yield return new WaitForSeconds(1f);
