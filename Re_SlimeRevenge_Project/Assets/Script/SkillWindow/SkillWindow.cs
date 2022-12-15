@@ -178,8 +178,8 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         Debug.Log("ø°≥ ¡ˆ≈∫");
                         if (SkillManager.instance.isEnergyBombClick == false)
                         {
-                            SkillManager.instance.isEnergyBombClick = true;
                             Instantiate(SkillManager.instance.energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
+                            SkillManager.instance.isEnergyBombClick = true;
                         }
                         else
                             SkillManager.instance.energyBombCoolTime -= 1;
@@ -189,8 +189,8 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         Debug.Log("ΩΩ∂Û¿”≈∫");
                         if (SkillManager.instance.isSlimeBombClick == false)
                         {
-                            SkillManager.instance.isSlimeBombClick = true;
                             Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
+                            SkillManager.instance.isSlimeBombClick = true;
                         }
                         else
                             SkillManager.instance.slimeBombCoolTime -= 1;

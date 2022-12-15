@@ -12,7 +12,7 @@ public class Bomb : MonoBehaviour
     }
 
     [SerializeField] EBomb eBomb;
-    GameObject enemySpawn;
+    [SerializeField] GameObject enemySpawn;
 
     void Start()
     {
@@ -38,7 +38,12 @@ public class Bomb : MonoBehaviour
                 break;
 
             case EBomb.EnergyBomb:
-                transform.DOMove(enemySpawn.transform.GetChild(enemySpawn.transform.childCount - 1).position, 1f).SetEase(Ease.Linear);
+                int count = 1;
+
+                if (enemySpawn.transform.GetChild(enemySpawn.transform.childCount - count).position.x >= -3.5f)
+                    transform.DOMove(enemySpawn.transform.GetChild(enemySpawn.transform.childCount - count).position, 1f).SetEase(Ease.Linear);
+                else
+                    count++;
                 break;
         }
 
