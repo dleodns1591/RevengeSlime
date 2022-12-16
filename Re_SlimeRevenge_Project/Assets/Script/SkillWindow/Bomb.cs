@@ -36,10 +36,10 @@ public class Bomb : MonoBehaviour
                 break;
 
             case EBomb.EnergyBomb:
-                int count = 1;
+                int count = 0;
 
-                if (Enemy.instance.gameObject.transform.GetChild(Enemy.instance.gameObject.transform.childCount - count).position.x >= -3.5f)
-                    transform.DOMove(Enemy.instance.gameObject.transform.GetChild(count - 1).position, 1f).SetEase(Ease.Linear);
+                if (EnemySpawn.instance.gameObject.transform.GetChild(count).position.x >= -3.5f && Enemy.instance.gameObject.transform.GetChild(count).position.x <= 4)
+                    transform.DOMove(EnemySpawn.instance.gameObject.transform.GetChild(count).position, 1f).SetEase(Ease.Linear);
                 else
                     count++;
                 break;

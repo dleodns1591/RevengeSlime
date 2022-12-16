@@ -279,8 +279,6 @@ public class Enemy : MonoBehaviour
                         Instantiate(smallBone, transform.position, Quaternion.Euler(0, 0, randomRot));
                     }
                 }
-
-                //ª¿ º“»Ø
             }
             else
             {

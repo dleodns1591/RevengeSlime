@@ -82,7 +82,7 @@ public class Player : Singleton<Player>
     {
         float posY = 0.5f;
 
-        if (Input.GetKeyDown(KeyCode.Z) && specialAbilityCount > 0 && isReuse == false)
+        if (Input.GetKeyDown(KeyCode.Z) && /*specialAbilityCount > 0 &&*/ isReuse == false)
         {
             isReuse = true;
 
@@ -92,19 +92,43 @@ public class Player : Singleton<Player>
             for (int i = 0; i <= EnemySpawn.instance.transform.childCount - 1; i++)
             {
                 Transform enemyPos = EnemySpawn.instance.transform.GetChild(i).transform;
+                var target = enemyPos.GetComponent<Enemy>();
+                var targetColider = enemyPos.GetComponent<BoxCollider2D>();
+                var targetSprite = enemyPos.GetComponent<SpriteRenderer>();
+                int boneValue = (20 * target.bigBoneNum) + (10 * target.smallBoneNum);
 
                 if (enemyPos.position.x <= -4)
                 {
                     if (transform.position.y >= enemyPos.position.y && transform.position.y - enemyPos.position.y <= posY)
                     {
-                        enemyPos.transform.DOKill();
-                        Destroy(enemyPos.gameObject);
+                        currentHp += boneValue + getHP;
+                        currentExperience += boneValue + getExperience;
+                        targetColider.enabled = false;
+
+                        targetSprite.DOFade(0, 0.5f);
+                        enemyPos.DOScale(new Vector2(0.1f, 0.1f), 0.5f);
+                        enemyPos.DORotate(new Vector3(0, 0, -180), 0.5f);
+                        enemyPos.DOLocalMove(new Vector2(transform.position.x, transform.position.y + 0.5f), 0.5f).OnComplete(() =>
+                        {
+                            target.transform.DOKill();
+                            Destroy(enemyPos.gameObject);
+                        });
                     }
 
                     else
                     {
-                        enemyPos.transform.DOKill();
-                        Destroy(enemyPos.gameObject);
+                        currentHp += boneValue + getHP;
+                        currentExperience += boneValue + getExperience;
+                        targetColider.enabled = false;
+
+                        targetSprite.DOFade(0, 0.5f);
+                        enemyPos.DOScale(new Vector2(0.1f, 0.1f), 0.5f);
+                        enemyPos.DORotate(new Vector3(0, 0, -180), 0.5f);
+                        enemyPos.DOLocalMove(new Vector2(transform.position.x, transform.position.y + 0.5f), 0.5f).OnComplete(() =>
+                        {
+                            target.transform.DOKill();
+                            Destroy(enemyPos.gameObject);
+                        });
                     }
 
                     break;

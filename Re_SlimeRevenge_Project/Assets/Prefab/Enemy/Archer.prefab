@@ -151,8 +151,9 @@ MonoBehaviour:
   espeed: 1
   hp: 2
   attack: 10
-  bigBoneNum: 0
-  smallBoneNum: 0
+  bigBoneNum: 1
+  smallBoneNum: 1
+  boneFestivalNum: 0
   isKnockBack: 0
   isCollsionAttack: 0
   arrow: {fileID: 4561013099492772690, guid: cdf282f01dbf5154a87cbfeaff523f5c, type: 3}
