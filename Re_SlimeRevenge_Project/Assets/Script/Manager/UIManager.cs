@@ -250,16 +250,17 @@ public class UIManager : MonoBehaviour
     #region 메인 버튼
     public void MainBtns()
     {
+        // 시작 버튼을 눌렀을 때
         startBtn.onClick.AddListener(() =>
         {
             int startBtnPosY = 710;
-            int cameFirePosX = 1350;
+            int cameFirePosX = 11;
             int skillWindowPosX = 1000;
 
             GameManager.instance._isStartGame = true;
 
             Player.Instance.transform.DOLocalMoveX(-7, waitTime).SetEase(Ease.Linear);
-            cameFire.transform.DOLocalMoveX(-cameFirePosX, 1.7f).SetEase(Ease.Linear).OnComplete(() =>
+            cameFire.transform.DOMoveX(-cameFirePosX, 1.4f).SetEase(Ease.Linear).OnComplete(() =>
             {
                 Destroy(cameFire);
             });
@@ -278,6 +279,7 @@ public class UIManager : MonoBehaviour
 
         });
 
+        // 굳건한 체력 구매 버튼을 눌렀을 때
         hpBtn.onClick.AddListener(() =>
         {
             if (GameManager.instance.hpLevel < 5 && GameManager.instance._money >= GameManager.instance.hpPrice)
@@ -288,6 +290,7 @@ public class UIManager : MonoBehaviour
             }
         });
 
+        // 심호흡 구매 버튼을 눌렀을 때
         respirationBtn.onClick.AddListener(() =>
         {
             if (GameManager.instance.respirationLevel < 10 && GameManager.instance._money >= GameManager.instance.respirationPrice)
@@ -298,6 +301,7 @@ public class UIManager : MonoBehaviour
             }
         });
 
+        // 방어력 구매 버튼을 눌렀을 떄
         defenseBtn.onClick.AddListener(() =>
         {
             if (GameManager.instance.defenseLevel < 10 && GameManager.instance._money >= GameManager.instance.defensePrice)
@@ -308,6 +312,7 @@ public class UIManager : MonoBehaviour
             }
         });
 
+        // 튼튼한 위장 구매 버튼을 눌렀을 때
         camouflageBtn.onClick.AddListener(() =>
         {
             if (GameManager.instance.camouflageLevel < 5 && GameManager.instance._money >= GameManager.instance.camouflagePrice)
@@ -318,6 +323,7 @@ public class UIManager : MonoBehaviour
             }
         });
 
+        // 지능학습 구매 버튼을 눌렀을 때
         intellectBtn.onClick.AddListener(() =>
         {
             if (GameManager.instance.intellectLevel < 5 && GameManager.instance._money >= GameManager.instance.intellectPrice)
