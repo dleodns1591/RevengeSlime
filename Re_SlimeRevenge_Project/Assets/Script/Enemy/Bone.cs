@@ -12,6 +12,9 @@ public class Bone : MonoBehaviour
     }
     public Ebone ebone;
 
+    public int bigBoneValue = 20;
+    public int smallBoneValue = 10;
+
     const float bigBoneSize = 0.15f;
     const float smallBoneSize = 0.2f;
 
@@ -32,7 +35,6 @@ public class Bone : MonoBehaviour
 
     void Update()
     {
-
         transform.DOLocalMoveX(-11, 4).SetEase(Ease.Linear).OnComplete(() =>
         {
             transform.DOKill();
@@ -48,13 +50,13 @@ public class Bone : MonoBehaviour
             switch(ebone)
             {
                 case Ebone.BigBone:
-                    Player.Instance.currentHp += 20;
-                    Player.Instance.currentExperience += 20;
+                    Player.Instance.currentHp += bigBoneValue + (bigBoneValue * ((int)GameManager.instance.skillCamouflage / 100));
+                    Player.Instance.currentExperience += bigBoneValue + (bigBoneValue * ((int)GameManager.instance.skillIntellect / 100));
                     break;
 
                 case Ebone.SmallBone:
-                    Player.Instance.currentHp += 10;
-                    Player.Instance.currentExperience += 10;
+                    Player.Instance.currentHp += smallBoneValue + (smallBoneValue * ((int)GameManager.instance.skillCamouflage / 100));
+                    Player.Instance.currentExperience += smallBoneValue + (smallBoneValue * ((int)GameManager.instance.skillIntellect / 100));
                     break;
             }
 

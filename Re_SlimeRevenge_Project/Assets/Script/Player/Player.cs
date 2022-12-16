@@ -71,7 +71,6 @@ public class Player : Singleton<Player>
         if (GameManager.instance._isStartGame == true && isStateCheck == false)
         {
             isStateCheck = true;
-
             currentHp = maxHp;
             defense = (int)GameManager.instance.skillDefense;
             hpReductionSpeed = GameManager.instance.skillRespiration;
@@ -94,13 +93,14 @@ public class Player : Singleton<Player>
             {
                 Transform enemyPos = EnemySpawn.instance.transform.GetChild(i).transform;
 
-                if (enemyPos.position.x <= -3)
+                if (enemyPos.position.x <= -4)
                 {
                     if (transform.position.y >= enemyPos.position.y && transform.position.y - enemyPos.position.y <= posY)
                     {
                         enemyPos.transform.DOKill();
                         Destroy(enemyPos.gameObject);
                     }
+
                     else
                     {
                         enemyPos.transform.DOKill();
@@ -109,8 +109,6 @@ public class Player : Singleton<Player>
 
                     break;
                 }
-                else
-                    Debug.Log("¾ÈµÊ");
             }
 
             yield return new WaitForSeconds(1f);
