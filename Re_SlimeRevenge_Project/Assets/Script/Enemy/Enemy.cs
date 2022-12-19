@@ -30,22 +30,6 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void EnemyMove()
-    {
-        //switch (espeed)
-        //{
-        //    case espeed.slow:
-        //        movespeed = -2;
-        //        break;
-        //    case espeed.usual:
-        //        movespeed = -3f;
-        //        break;
-        //    case espeed.fast:
-        //        movespeed = -5f;
-        //        break;
-        //}
-    }
-
     public T InstantiateSetParent<T>(T obj, Vector3 position, Quaternion rotation) where T : UnityEngine.Object
     {
         return Instantiate(obj, position, Quaternion.identity);

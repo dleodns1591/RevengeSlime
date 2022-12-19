@@ -145,8 +145,6 @@ public abstract class Base
     public abstract void Animation();
 }
 
-
-
 public class BaseNoob1 : Base
 {
     public BaseNoob1(Enemy _context)
@@ -176,6 +174,12 @@ public class BaseNoob2 : Base
         gameObject = _context.gameObject;
         transform = _context.transform;
         animator = _context.GetComponent<Animator>();
+
+        hp = 1;
+        attack = 0;
+        bigBoneNum = 1;
+        smallBoneNum = 0;
+        moveSpeed = -2;
     }
 
     public override void Animation()
@@ -191,6 +195,12 @@ public class BaseShieldbearer : Base
         gameObject = _context.gameObject;
         transform = _context.transform;
         animator = _context.GetComponent<Animator>();
+
+        hp = 2;
+        attack = 0;
+        bigBoneNum = 1;
+        smallBoneNum = 1;
+        moveSpeed = -3;
     }
 
     public override void Animation()
@@ -207,6 +217,12 @@ public class BaseBargate : Base
         gameObject = _context.gameObject;
         transform = _context.transform;
         animator = _context.GetComponent<Animator>();
+
+        hp = 1;
+        attack = 40;
+        bigBoneNum = 0;
+        smallBoneNum = 0;
+        moveSpeed = -3;
     }
 
     public override void Animation()
@@ -222,6 +238,12 @@ public class BaseSwordman : Base
         gameObject = _context.gameObject;
         transform = _context.transform;
         animator = _context.GetComponent<Animator>();
+
+        hp = 2;
+        attack = 20;
+        bigBoneNum = 1;
+        smallBoneNum = 1;
+        moveSpeed = -3;
     }
 
     public override void Animation()
@@ -248,6 +270,12 @@ public class BaseArcher : Base
         gameObject = _context.gameObject;
         transform = _context.transform;
         animator = _context.GetComponent<Animator>();
+
+        hp = 2;
+        attack = 10;
+        bigBoneNum = 1;
+        smallBoneNum = 1;
+        moveSpeed = -3;
     }
 
     public override void Animation()
@@ -294,6 +322,12 @@ public class BaseHeavyCavalry : Base
         gameObject = _context.gameObject;
         transform = _context.transform;
         animator = _context.GetComponent<Animator>();
+
+        hp = 3;
+        attack = 0;
+        bigBoneNum = 2;
+        smallBoneNum = 0;
+        moveSpeed = -2;
     }
 
     public override void Animation()
@@ -315,6 +349,12 @@ public class BaseBerserker : Base
         gameObject = _context.gameObject;
         transform = _context.transform;
         animator = _context.GetComponent<Animator>();
+
+        hp = 2;
+        attack = 30;
+        bigBoneNum = 1;
+        smallBoneNum = 2;
+        moveSpeed = -5;
     }
 
     public override void Animation()
