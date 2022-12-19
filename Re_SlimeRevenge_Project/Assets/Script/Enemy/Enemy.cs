@@ -5,40 +5,9 @@ using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
-    public static Enemy instance;
-    void Awake() => instance = this;
-
-    public enum Eenemy
-    {
-        Noob1,
-        Noob2,
-        Shieldbearer,
-        Bargate,
-        Swordman,
-        Archer,
-        HeavyCavalry,
-        Berserker,
-    }
-
-    public enum EMove
-    {
-        None,
-        BackMove,
-        ForwardMove,
-        Die
-    }
-
-    public enum Espeed
-    {
-        Slow,
-        Usual,
-        Fast,
-    }
-
-    [Header("수치적 데이터")]
-    public Eenemy eenemy;
-    public EMove emove;
-    public Espeed espeed;
+    public EEnemyType eEnemyType;
+    public EMove eMove;
+    public ESpeed eSpeed;
 
     public int hp;
     public int attack;
@@ -63,32 +32,38 @@ public class Enemy : MonoBehaviour
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider2D;
 
+    BaseEnemy baseEnemy;
 
     void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        boxCollider2D = GetComponent<BoxCollider2D>();
+        baseEnemy = new BaseEnemy(this);
+        baseEnemy.BaseEnemyType(eEnemyType);
+
+        //rb2D = GetComponent<Rigidbody2D>();
+        //animator = GetComponent<Animator>();
+        //spriteRenderer = GetComponent<SpriteRenderer>();
+        //boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     void Update()
     {
-        EnemyMove();
-        StateAnimation();
-    }
+        baseEnemy.BaseEnemyMove(eMove);
+        baseEnemy.BaseEnemySpeed(eSpeed);
 
+        //EnemyMove();
+        //StateAnimation();
+    }
 
     void EnemyMove()
     {
-        switch (emove)
+        switch (eMove)
         {
             case EMove.None:
                 break;
             case EMove.BackMove:
                 isKnockBack = true;
                 if ((int)rb2D.velocity.x <= 0)
-                    emove = EMove.ForwardMove;
+                    eMove = EMove.ForwardMove;
                 break;
             case EMove.ForwardMove:
                 isKnockBack = false;
@@ -100,18 +75,17 @@ public class Enemy : MonoBehaviour
                 break;
         }
 
-        switch (espeed)
+        switch (eSpeed)
         {
-            case Espeed.Slow:
+            case ESpeed.Slow:
                 moveSpeed = -2;
                 break;
-            case Espeed.Usual:
+            case ESpeed.Usual:
                 moveSpeed = -3f;
                 break;
-            case Espeed.Fast:
+            case ESpeed.Fast:
                 moveSpeed = -5f;
                 break;
-
         }
     }
 
@@ -120,30 +94,30 @@ public class Enemy : MonoBehaviour
     {
         archerAttackTimer += Time.deltaTime;
 
-        switch (eenemy)
+        switch (eEnemyType)
         {
-            case Eenemy.Shieldbearer:
+            case EEnemyType.Shieldbearer:
                 animator.SetInteger("Idle", hp);
                 break;
 
-            case Eenemy.Swordman:
+            case EEnemyType.Swordman:
                 animator.SetBool("isKnockBack", isKnockBack);
 
-                if (emove == EMove.ForwardMove)
+                if (eMove == EMove.ForwardMove)
                 {
                     if (transform.position.x <= -4.5f && Player.Instance.transform.position.y + 0.5f >= transform.position.y && Player.Instance.transform.position.y - 0.5f <= transform.position.y)
                         animator.SetBool("Attack", true);
                     else
                         animator.SetInteger("Walk", hp);
                 }
-                else if (emove == EMove.BackMove)
+                else if (eMove == EMove.BackMove)
                     animator.SetBool("Attack", false);
                 break;
 
-            case Eenemy.Archer:
+            case EEnemyType.Archer:
                 animator.SetBool("isKnockBack", isKnockBack);
 
-                if (emove == EMove.ForwardMove)
+                if (eMove == EMove.ForwardMove)
                 {
                     if (1 < archerAttackTimer && hp == 2)
                     {
@@ -168,11 +142,11 @@ public class Enemy : MonoBehaviour
                 }
                 break;
 
-            case Eenemy.HeavyCavalry:
+            case EEnemyType.HeavyCavalry:
                 EnemyState();
                 break;
 
-            case Eenemy.Berserker:
+            case EEnemyType.Berserker:
                 EnemyState();
                 break;
         }
@@ -180,11 +154,11 @@ public class Enemy : MonoBehaviour
 
     void EnemyState()
     {
-        animator.SetBool("isKnockBack", instance.isKnockBack);
+        animator.SetBool("isKnockBack", isKnockBack);
 
-        if (emove == EMove.ForwardMove)
+        if (eMove == EMove.ForwardMove)
             animator.SetInteger("Walk", hp);
-        else if (emove == EMove.BackMove)
+        else if (eMove == EMove.BackMove)
             animator.SetInteger("KnockBack", hp);
     }
     #endregion
@@ -202,7 +176,7 @@ public class Enemy : MonoBehaviour
 
             if (hp == 0)
             {
-                emove = EMove.Die;
+                eMove = EMove.Die;
                 Player.Instance.eState = Player.EState.Eat;
                 spriteRenderer.DOFade(0, waitTime);
                 transform.DOScale(new Vector2(0.1f, 0.1f), waitTime);
@@ -225,7 +199,7 @@ public class Enemy : MonoBehaviour
             else
             {
                 //넉백
-                emove = EMove.BackMove;
+                eMove = EMove.BackMove;
                 rb2D.AddForce(new Vector2(7, 0), ForceMode2D.Impulse);
 
                 if (isCollsionAttack == true)
@@ -282,7 +256,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                emove = EMove.BackMove;
+                eMove = EMove.BackMove;
                 rb2D.AddForce(new Vector2(7, 0), ForceMode2D.Impulse);
             }
         }
