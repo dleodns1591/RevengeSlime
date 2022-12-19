@@ -22,7 +22,6 @@ public class Enemy : MonoBehaviour
     {
         baseEnemy = new BaseEnemy(this);
         baseEnemy.BaseEnemyType(eEnemyType);
-
     }
 
     void Update()

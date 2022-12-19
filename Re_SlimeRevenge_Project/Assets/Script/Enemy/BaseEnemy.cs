@@ -284,7 +284,6 @@ public class BaseArcher : Base
         }
 
     }
-
 }
 
 public class BaseHeavyCavalry : Base
