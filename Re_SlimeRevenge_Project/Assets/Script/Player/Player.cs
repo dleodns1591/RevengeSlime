@@ -82,7 +82,7 @@ public class Player : Singleton<Player>
     {
         float posY = 0.5f;
 
-        if (Input.GetKeyDown(KeyCode.Z) && /*specialAbilityCount > 0 &&*/ isReuse == false)
+        if (Input.GetKeyDown(KeyCode.Z) && specialAbilityCount > 0 && isReuse == false)
         {
             isReuse = true;
 
@@ -92,10 +92,10 @@ public class Player : Singleton<Player>
             for (int i = 0; i <= EnemySpawn.instance.transform.childCount - 1; i++)
             {
                 Transform enemyPos = EnemySpawn.instance.transform.GetChild(i).transform;
-                var target = enemyPos.GetComponent<Enemy>();
+                var target = enemyPos.GetComponent<BaseEnemy>();
                 var targetColider = enemyPos.GetComponent<BoxCollider2D>();
                 var targetSprite = enemyPos.GetComponent<SpriteRenderer>();
-                int boneValue = (20 * target.bigBoneNum) + (10 * target.smallBoneNum);
+                int boneValue = (20 * target.thisBase.bigBoneNum) + (10 * target.thisBase.smallBoneNum);
 
                 if (enemyPos.position.x <= -4)
                 {

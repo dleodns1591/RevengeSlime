@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public enum EEnemyType
 {
@@ -32,12 +33,10 @@ public enum ESpeed
 
 class BaseEnemy
 {
-    Base thisBase;
+    public Base thisBase;
     Enemy context;
 
     public int moveSpeed;
-    public bool isKnockBack;
-    public bool isCollsionAttack;
 
     public Transform transform;
     public GameObject gameObject;
@@ -49,6 +48,10 @@ class BaseEnemy
     public BaseEnemy(Enemy _context)
     {
         context = _context;
+
+        transform = _context.transform;
+        gameObject = _context.gameObject;
+
         rigidbody = _context.GetComponent<Rigidbody2D>();
         boxCollider2D = _context.GetComponent<BoxCollider2D>();
         spriteRenderer = _context.GetComponent<SpriteRenderer>();
@@ -102,35 +105,26 @@ class BaseEnemy
                 break;
 
             case EMove.BackMove:
-                isKnockBack = true;
+                context.isKnockBack = true;
                 if ((int)rigidbody.velocity.x <= 0)
                     context.eMove = EMove.ForwardMove;
                 break;
 
             case EMove.ForwardMove:
-                isKnockBack = false;
-                
+                context.isKnockBack = false;
+                transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
                 break;
 
             case EMove.Die:
+                boxCollider2D.enabled = false;
+                transform.DOLocalMove(new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), 0.5f);
                 break;
         }
     }
 
-    public void BaseEnemySpeed(ESpeed speed)
+    public void EnemyAnimation()
     {
-        switch (speed)
-        {
-            case ESpeed.Slow:
-                moveSpeed = -2;
-                break;
-            case ESpeed.Usual:
-                moveSpeed = -3;
-                break;
-            case ESpeed.Fast:
-                moveSpeed = -5;
-                break;
-        }
+        thisBase.Animation();
     }
 }
 
@@ -138,23 +132,20 @@ public abstract class Base
 {
     public int moveSpeed;
 
-    protected int hp;
-    protected int attack;
-    protected int bigBoneNum;
-    protected int smallBoneNum;
-    protected float archerAttackTimer = 0.0f;
-
+    public int hp;
+    public int attack;
+    public int bigBoneNum;
+    public int smallBoneNum;
 
     protected Enemy context;
     protected GameObject gameObject;
     protected Transform transform;
-
     protected Animator animator = null;
-    protected Rigidbody2D rigidbody = null;
-    protected BoxCollider2D boxCollider2D = null;
-    protected SpriteRenderer spriteRenderer = null;
 
+    public abstract void Animation();
 }
+
+
 
 public class BaseNoob1 : Base
 {
@@ -171,6 +162,10 @@ public class BaseNoob1 : Base
         smallBoneNum = 0;
         moveSpeed = -2;
     }
+
+    public override void Animation()
+    {
+    }
 }
 
 public class BaseNoob2 : Base
@@ -181,6 +176,10 @@ public class BaseNoob2 : Base
         gameObject = _context.gameObject;
         transform = _context.transform;
         animator = _context.GetComponent<Animator>();
+    }
+
+    public override void Animation()
+    {
     }
 }
 
@@ -194,6 +193,10 @@ public class BaseShieldbearer : Base
         animator = _context.GetComponent<Animator>();
     }
 
+    public override void Animation()
+    {
+        animator.SetInteger("Idle", hp);
+    }
 }
 
 public class BaseBargate : Base
@@ -206,6 +209,9 @@ public class BaseBargate : Base
         animator = _context.GetComponent<Animator>();
     }
 
+    public override void Animation()
+    {
+    }
 }
 
 public class BaseSwordman : Base
@@ -218,6 +224,20 @@ public class BaseSwordman : Base
         animator = _context.GetComponent<Animator>();
     }
 
+    public override void Animation()
+    {
+        animator.SetBool("isKnockBack", context.isKnockBack);
+
+        if (context.eMove == EMove.ForwardMove)
+        {
+            if (transform.position.x <= -4.5f && Player.Instance.transform.position.y + 0.5f >= transform.position.y && Player.Instance.transform.position.y - 0.5f <= transform.position.y)
+                animator.SetBool("Attack", true);
+            else
+                animator.SetInteger("Walk", hp);
+        }
+        else if (context.eMove == EMove.BackMove)
+            animator.SetBool("Attack", false);
+    }
 }
 
 public class BaseArcher : Base
@@ -228,6 +248,41 @@ public class BaseArcher : Base
         gameObject = _context.gameObject;
         transform = _context.transform;
         animator = _context.GetComponent<Animator>();
+    }
+
+    public override void Animation()
+    {
+        float archerAttackTimer = 0.0f;
+        bool isArrow = false;
+
+        archerAttackTimer += Time.deltaTime;
+        animator.SetBool("isKnockBack", context.isKnockBack);
+
+
+
+        if (context.eMove == EMove.ForwardMove)
+        {
+            if (1 < archerAttackTimer && hp == 2)
+            {
+                animator.SetBool("Attack", true);
+
+                if (isArrow == false && transform.position.x >= -5)
+                {
+                    isArrow = true;
+                    context.InstantiateSetParent(context.arrow, new Vector2(transform.localPosition.x - 0.55f, transform.localPosition.y + 0.5f), Quaternion.identity);
+                }
+
+                if (1.5f < archerAttackTimer)
+                {
+                    animator.SetBool("Attack", false);
+                    isArrow = false;
+                    archerAttackTimer = 0;
+                }
+            }
+            else
+                animator.SetInteger("Walk", hp);
+        }
+
     }
 
 }
@@ -242,6 +297,15 @@ public class BaseHeavyCavalry : Base
         animator = _context.GetComponent<Animator>();
     }
 
+    public override void Animation()
+    {
+        animator.SetBool("isKnockBack", context.isKnockBack);
+
+        if (context.eMove == EMove.ForwardMove)
+            animator.SetInteger("Walk", hp);
+        else if (context.eMove == EMove.BackMove)
+            animator.SetInteger("KnockBack", hp);
+    }
 }
 
 public class BaseBerserker : Base
@@ -254,5 +318,14 @@ public class BaseBerserker : Base
         animator = _context.GetComponent<Animator>();
     }
 
+    public override void Animation()
+    {
+        animator.SetBool("isKnockBack", context.isKnockBack);
+
+        if (context.eMove == EMove.ForwardMove)
+            animator.SetInteger("Walk", hp);
+        else if (context.eMove == EMove.BackMove)
+            animator.SetInteger("KnockBack", hp);
+    }
 }
 
