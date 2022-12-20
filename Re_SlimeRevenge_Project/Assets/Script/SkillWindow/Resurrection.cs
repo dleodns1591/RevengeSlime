@@ -1,41 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class Resurrection : MonoBehaviour
 {
-    [SerializeField] GameObject barUp;
-    [SerializeField] GameObject barDown;
-    [SerializeField] RectTransform rectSkill;
-
-    public const int windowWidth = 545;
-    public const int windowHeight = 845;
-    public const float barSpeed = 0.4f;
-
-    float timer = 0.0f;
+    [SerializeField] GameObject blackScreen;
+    [SerializeField] Image whiteScreen;
+    [SerializeField] GameObject resurrectioBar;
 
     void Start()
     {
-        StartCoroutine(SkillWindowOpen());
+        ResurrectionDirector();
     }
 
     void Update()
     {
-        timer += Time.unscaledDeltaTime * 2.5f;
     }
 
-    IEnumerator SkillWindowOpen()
+
+    void ResurrectionDirector()
     {
-        int barOpenPosY = 440;
-
-        barUp.transform.DOLocalMoveY(barOpenPosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
-        barDown.transform.DOLocalMoveY(-barOpenPosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
-
-        while (timer < 1)
+        resurrectioBar.transform.DORotate(new Vector2(0, 0), 1.5f).SetEase(Ease.Linear).SetUpdate(true);
+        resurrectioBar.transform.DOLocalMoveY(0, 2).SetEase(Ease.OutQuad).SetUpdate(true).OnComplete(() =>
         {
-            rectSkill.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(0, windowHeight, timer));
-            yield return null;
-        }
+            resurrectioBar.transform.DOShakePosition(5, 10).SetUpdate(true);
+            whiteScreen.DOFade(1, 1).SetUpdate(true).OnComplete(() =>
+            {
+                blackScreen.SetActive(false);
+                resurrectioBar.SetActive(false);
+
+                Time.timeScale = 1;
+                Player.Instance.currentHp += Player.Instance.maxHp / 2;
+
+                whiteScreen.DOFade(0, 1).SetUpdate(true).OnComplete(() =>
+                {
+                    transform.DOKill();
+                    resurrectioBar.transform.DOKill();
+                    whiteScreen.DOKill();
+                    Destroy(this.gameObject);
+                });
+            });
+        });
     }
 }

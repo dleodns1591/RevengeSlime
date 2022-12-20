@@ -80,7 +80,8 @@ public class Player : Singleton<Player>
         {
             if(SkillManager.instance.isResurrectionCheck == true)
             {
-                // ∫Œ»∞
+                Time.timeScale = 0;
+                SkillManager.instance.isResurrectionCheck = false;
             }
             else
             {
