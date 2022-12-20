@@ -82,6 +82,9 @@ public class Player : Singleton<Player>
             {
                 Time.timeScale = 0;
                 SkillManager.instance.isResurrectionCheck = false;
+
+                GameObject resurrection = Instantiate(SkillManager.instance.resurrectionPrefab) as GameObject;
+                resurrection.transform.SetParent(GameObject.Find("Canvas").transform, false);
             }
             else
             {

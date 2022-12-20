@@ -28,6 +28,7 @@ public class SkillManager : MonoBehaviour
 
     [Space(10)]
     public int skillCount;
+    public GameObject resurrectionPrefab;
     public bool isResurrectionCheck = false;
 
     void Start()
