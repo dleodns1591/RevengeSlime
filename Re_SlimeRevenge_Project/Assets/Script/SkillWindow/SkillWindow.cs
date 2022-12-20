@@ -47,6 +47,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public const float barSpeed = 0.4f;
 
     float timer = 0.0f;
+
     bool isOpenCheck = false;
 
     void Start()
@@ -141,7 +142,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         switch (eskillWindow)
         {
             case EskillWindow.Top:
-                for (int i = 0; i < SkillManager.instance.skill.Count; i++)
+                for (int i = 0; i < SkillManager.instance.skillCount; i++)
                 {
                     if (SkillManager.instance.skill[i].skillName == SkillManager.instance.skillTop.skillName)
                         ++SkillManager.instance.skill[i].skillLevel;
@@ -196,16 +197,10 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                             SkillManager.instance.slimeBombCoolTime -= 1;
                         break;
 
-                    case SkillData.Eskill.BoneFestival:
-                        Debug.Log("»À ÃàÁ¦");
-                        break;
-
-                    case SkillData.Eskill.Gluttonous:
-                        Debug.Log("½ÄÅ½ µ¹Áø");
-                        break;
-
                     case SkillData.Eskill.Resurrection:
                         Debug.Log("ºÎÈ°");
+                        --SkillManager.instance.skillCount;
+                        SkillManager.instance.isResurrectionCheck = true;
                         break;
                 }
 
@@ -235,7 +230,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 break;
 
             case EskillWindow.Among:
-                for (int i = 0; i < SkillManager.instance.skill.Count; i++)
+                for (int i = 0; i < SkillManager.instance.skillCount; i++)
                 {
                     if (SkillManager.instance.skill[i].skillName == SkillManager.instance.skillAmong.skillName)
                         ++SkillManager.instance.skill[i].skillLevel;
@@ -290,16 +285,10 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                             SkillManager.instance.slimeBombCoolTime -= 1;
                         break;
 
-                    case SkillData.Eskill.BoneFestival:
-                        Debug.Log("»À ÃàÁ¦");
-                        break;
-
-                    case SkillData.Eskill.Gluttonous:
-                        Debug.Log("½ÄÅ½ µ¹Áø");
-                        break;
-
                     case SkillData.Eskill.Resurrection:
                         Debug.Log("ºÎÈ°");
+                        --SkillManager.instance.skillCount;
+                        SkillManager.instance.isResurrectionCheck = true;
                         break;
                 }
 
@@ -328,7 +317,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 break;
 
             case EskillWindow.Bottom:
-                for (int i = 0; i < SkillManager.instance.skill.Count; i++)
+                for (int i = 0; i < SkillManager.instance.skillCount; i++)
                 {
                     if (SkillManager.instance.skill[i].skillName == SkillManager.instance.skillBottom.skillName)
                         ++SkillManager.instance.skill[i].skillLevel;
@@ -389,16 +378,10 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         }
                         break;
 
-                    case SkillData.Eskill.BoneFestival:
-                        Debug.Log("»À ÃàÁ¦");
-                        break;
-
-                    case SkillData.Eskill.Gluttonous:
-                        Debug.Log("½ÄÅ½ µ¹Áø");
-                        break;
-
                     case SkillData.Eskill.Resurrection:
                         Debug.Log("ºÎÈ°");
+                        --SkillManager.instance.skillCount;
+                        SkillManager.instance.isResurrectionCheck = true;
                         break;
                 }
 

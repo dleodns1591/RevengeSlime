@@ -26,8 +26,13 @@ public class SkillManager : MonoBehaviour
     public bool isSlimeBombCheck;
     public bool isEnergyBombCheck;
 
+    [Space(10)]
+    public int skillCount;
+    public bool isResurrectionCheck = false;
+
     void Start()
     {
+        skillCount = skill.Count;
         energyBombCoolTime = 10;
         slimeBombCoolTime = 7;
 
@@ -74,7 +79,7 @@ public class SkillManager : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            int skillRandom = Random.Range(0, skill.Count);
+            int skillRandom = Random.Range(0, skillCount);
 
             skillUI.SkillCard(skill[skillRandom], skillIndex++);
         }

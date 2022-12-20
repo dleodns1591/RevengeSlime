@@ -118,6 +118,8 @@ public class UIManager : MonoBehaviour
             if (Player.Instance.currentHp > Player.Instance.maxHp)
                 Player.Instance.currentHp = Player.Instance.maxHp;
 
+            if (Player.Instance.currentHp <= 0)
+                Player.Instance.eState = Player.EState.Die;
         }
     }
 

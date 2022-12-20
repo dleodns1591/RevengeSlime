@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 724848925
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: feb39ff1d3ea2dc49bff048cf0f5c4e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -146,13 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676501b2a1d5edd44b2efd18fa385e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eenemy: 0
-  emove: 2
-  espeed: 0
-  hp: 1
-  attack: 0
-  bigBoneNum: 1
-  smallBoneNum: 0
+  eEnemyType: 0
+  eMove: 2
   isKnockBack: 0
   isCollsionAttack: 0
   arrow: {fileID: 0}

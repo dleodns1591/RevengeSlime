@@ -75,6 +75,18 @@ public class Player : Singleton<Player>
             defense = (int)GameManager.instance.skillDefense;
             hpReductionSpeed = GameManager.instance.skillRespiration;
         }
+
+        if(eState == EState.Die)
+        {
+            if(SkillManager.instance.isResurrectionCheck == true)
+            {
+                // 부활
+            }
+            else
+            {
+                // 결과창
+            }
+        }
     }
 
     // 플레이어 특수능력
