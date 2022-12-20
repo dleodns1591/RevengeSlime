@@ -44,7 +44,8 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public const int windowWidth = 545;
     public const int windowHeight = 845;
-    public const float barSpeed = 0.4f;
+    public const float barOpenSpeed = 0.45f;
+    public const float barCloseSpeed = 0.35f;
 
     float timer = 0.0f;
 
@@ -64,14 +65,14 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         int barOpenPosY = 440;
 
-        barUpTop.transform.DOLocalMoveY(barOpenPosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
-        barDownTop.transform.DOLocalMoveY(-barOpenPosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
+        barUpTop.transform.DOLocalMoveY(barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
+        barDownTop.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
-        barUpAmong.transform.DOLocalMoveY(barOpenPosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
-        barDownAmong.transform.DOLocalMoveY(-barOpenPosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
+        barUpAmong.transform.DOLocalMoveY(barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
+        barDownAmong.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
-        barUpBottom.transform.DOLocalMoveY(barOpenPosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
-        barDownBottom.transform.DOLocalMoveY(-barOpenPosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
+        barUpBottom.transform.DOLocalMoveY(barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
+        barDownBottom.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
         while (timer < 1)
         {
@@ -208,8 +209,8 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 #region Ã¢ ´Ý±â
                 selectBarTop.DOFade(0, 0).SetEase(Ease.Linear);
 
-                barUpTop.transform.DOLocalMoveY(barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
-                barDownTop.transform.DOLocalMoveY(-barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
+                barUpTop.transform.DOLocalMoveY(barClosePosY, barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true);
+                barDownTop.transform.DOLocalMoveY(-barClosePosY, barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
                 windowAmong.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
                 windowBottom.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
@@ -295,8 +296,8 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 #region Ã¢ ´Ý±â
                 selectBarAmong.DOFade(0, 0).SetEase(Ease.Linear);
 
-                barUpAmong.transform.DOLocalMoveY(barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
-                barDownAmong.transform.DOLocalMoveY(-barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
+                barUpAmong.transform.DOLocalMoveY(barClosePosY, barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true);
+                barDownAmong.transform.DOLocalMoveY(-barClosePosY, barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
                 windowTop.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
                 windowBottom.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
@@ -388,8 +389,8 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 #region Ã¢ ´Ý±â
                 selectBarBottom.DOFade(0, 0).SetEase(Ease.Linear);
 
-                barUpBottom.transform.DOLocalMoveY(barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
-                barDownBottom.transform.DOLocalMoveY(-barClosePosY, barSpeed).SetEase(Ease.Linear).SetUpdate(true);
+                barUpBottom.transform.DOLocalMoveY(barClosePosY, barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true);
+                barDownBottom.transform.DOLocalMoveY(-barClosePosY, barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
                 windowTop.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
                 windowAmong.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
