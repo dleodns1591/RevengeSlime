@@ -130,6 +130,8 @@ public class UIManager : MonoBehaviour
 
     void Amount_Text() => money.text = GameManager.instance._money.ToString();
 
+    #region 게임오버 화면
+
     public IEnumerator GameOverWindowOpen()
     {
         int barOpenPosY = 440;
@@ -153,7 +155,7 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(5);
 
         whiteScreen.DOFade(1, 1).SetUpdate(true).OnComplete(() =>
         {
@@ -201,14 +203,18 @@ public class UIManager : MonoBehaviour
 
         }
     }
+    #endregion
 
     #region 슬라이더 바
 
     IEnumerator HpBar()
     {
+        float maxHp = Player.Instance.maxHp;
+        float currentHp = Player.Instance.currentHp;
+
         if (GameManager.instance._isStartGame == true)
         {
-            hpSlider.value = Mathf.Lerp(hpSlider.value, Player.Instance.currentHp / Player.Instance.maxHp, Time.deltaTime * 10);
+            hpSlider.value = Mathf.Lerp(hpSlider.value, currentHp / maxHp, Time.deltaTime * 10);
 
             if (isHPUSe == false)
             {
@@ -216,15 +222,15 @@ public class UIManager : MonoBehaviour
                 while (hpSlider.value > 0)
                 {
                     yield return new WaitForSeconds(waitTime + Player.Instance.hpReductionSpeed);
-                    Player.Instance.currentHp -= 1;
+                    Player.Instance.currentHp -= 3;
                 }
                 yield break;
             }
 
-            if (Player.Instance.currentHp > Player.Instance.maxHp)
-                Player.Instance.currentHp = Player.Instance.maxHp;
+            if (currentHp > maxHp)
+                currentHp = maxHp;
 
-            if (Player.Instance.currentHp <= 0)
+            if (currentHp <= 0)
                 Player.Instance.eState = Player.EState.Die;
         }
     }
