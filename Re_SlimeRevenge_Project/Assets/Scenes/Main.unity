@@ -1949,6 +1949,7 @@ RectTransform:
   m_Children:
   - {fileID: 1882032967}
   - {fileID: 931017752}
+  - {fileID: 835093283}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2814,7 +2815,7 @@ RectTransform:
   - {fileID: 1843094077}
   - {fileID: 367699375}
   - {fileID: 1512295651}
-  m_Father: {fileID: 931017752}
+  m_Father: {fileID: 572770246}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2893,7 +2894,7 @@ RectTransform:
   - {fileID: 946344996}
   - {fileID: 1231291961}
   m_Father: {fileID: 931017752}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3352,7 +3353,6 @@ RectTransform:
   m_Children:
   - {fileID: 863079065}
   - {fileID: 112731524}
-  - {fileID: 835093283}
   - {fileID: 858652057}
   m_Father: {fileID: 572770246}
   m_RootOrder: 1
@@ -4740,6 +4740,10 @@ MonoBehaviour:
   camouflageBtn: {fileID: 1041473764}
   intellectBtn: {fileID: 751730329}
   ingame: {fileID: 931017751}
+  coinBackGround: {fileID: 835093282}
+  distancBackGround: {fileID: 863079064}
+  barBackGround: {fileID: 112731523}
+  skillBackGround: {fileID: 858652056}
   skillWindowPick: {fileID: 4980858065256848696, guid: 18e2fe64a45629e4fa1793008d0b1f99, type: 3}
   distance: {fileID: 188595089}
   ingameMoney: {fileID: 1512295652}
@@ -6656,7 +6660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 711.43524, y: 496.6311}
+  m_AnchoredPosition: {x: 711.43524, y: 493}
   m_SizeDelta: {x: 361.113, y: 60.674}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1642853012

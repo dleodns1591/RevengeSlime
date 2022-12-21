@@ -54,6 +54,11 @@ public class UIManager : MonoBehaviour
 
     [Header("인게임UI")]
     [SerializeField] GameObject ingame;
+
+    [SerializeField] GameObject coinBackGround;
+    [SerializeField] GameObject distancBackGround;
+    [SerializeField] GameObject barBackGround;
+    [SerializeField] GameObject skillBackGround;
     [SerializeField] GameObject skillWindowPick;
     [SerializeField] TextMeshProUGUI distance;
     [SerializeField] TextMeshProUGUI ingameMoney;
@@ -272,13 +277,11 @@ public class UIManager : MonoBehaviour
             startBtnObj.transform.DOLocalMoveY(-startBtnPosY, waitTime).SetEase(Ease.InOutSine);
 
             // 인게임UI 보이기
-            for (int i = 0; i <= 2; i++)
-            {
-                ingame.transform.GetChild(i).DOLocalMoveY(480, 1).SetEase(Ease.Linear);
-            }
-            ingame.transform.GetChild(3).DOLocalMoveY(-410, 1).SetEase(Ease.Linear);
+            distancBackGround.transform.DOLocalMoveY(480, 1).SetEase(Ease.Linear);
+            barBackGround.transform.DOLocalMoveY(480, 1).SetEase(Ease.Linear);
+            coinBackGround.transform.DOLocalMoveY(480, 1).SetEase(Ease.Linear);
 
-
+            skillBackGround.transform.DOLocalMoveY(-410, 1).SetEase(Ease.Linear);
         });
 
         // 굳건한 체력 구매 버튼을 눌렀을 때
