@@ -57,6 +57,8 @@ class BaseEnemy
         spriteRenderer = _context.GetComponent<SpriteRenderer>();
     }
 
+
+    // DI »ç¿ë
     public void BaseEnemyType(EEnemyType type)
     {
         switch (type)

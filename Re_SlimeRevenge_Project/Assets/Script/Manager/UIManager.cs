@@ -81,6 +81,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject skillWindow;
     [SerializeField] GameObject startBtnObj;
 
+    //[Header("게임오버 화면")]
+
     void Start()
     {
         MainBtns();
@@ -102,6 +104,8 @@ public class UIManager : MonoBehaviour
     }
 
     void Amount_Text() => money.text = GameManager.instance._money.ToString();
+
+    #region 슬라이더 바
 
     IEnumerator HpBar()
     {
@@ -139,6 +143,8 @@ public class UIManager : MonoBehaviour
             SkillManager.instance.AddSkill();
         }
     }
+
+    #endregion
 
     #region 특수능력
     void SpecialAbility()
