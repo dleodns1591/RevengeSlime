@@ -55,6 +55,14 @@ public class GameManager : MonoBehaviour, IListener
         set { distance = value; }
     }
 
+    private int maximumdistance;
+
+    public int _maximumdistance
+    {
+        get { return maximumdistance; }
+        set { maximumdistance = value; }
+    }
+
     void Start()
     {
         hpPrice = 30;

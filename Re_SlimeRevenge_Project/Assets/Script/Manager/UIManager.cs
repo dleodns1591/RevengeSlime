@@ -81,16 +81,32 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject skillWindow;
     [SerializeField] GameObject startBtnObj;
 
-    //[Header("게임오버 화면")]
+    [Header("게임오버 화면")]
+    [SerializeField] RectTransform gameOverWindow;
+    [SerializeField] GameObject gameOverBarUp;
+    [SerializeField] GameObject gameOverBarDown;
+    [SerializeField] TextMeshProUGUI currentDistance;
+    [SerializeField] TextMeshProUGUI maximumDistance;
+    [SerializeField] TextMeshProUGUI myTitle;
+    [SerializeField] string[] title;
+
+    public const int windowWidth = 1670;
+    public const int windowHeight = 845;
+    public const float barOpenSpeed = 0.45f;
+    public const float barCloseSpeed = 0.35f;
+    float timer = 0.0f;
 
     void Start()
     {
         MainBtns();
+        MyTitle();
     }
 
     void Update()
     {
+
         distance.text = GameManager.instance._distance.ToString();
+        timer += Time.unscaledTime * 2.5f;
 
         Amount_Text();
         SpecialAbility();
@@ -104,6 +120,64 @@ public class UIManager : MonoBehaviour
     }
 
     void Amount_Text() => money.text = GameManager.instance._money.ToString();
+
+    IEnumerator GameOverWindowOpen()
+    {
+        int barOpenPosY = 440;
+
+        MyTitle();
+
+        currentDistance.text = GameManager.instance._distance.ToString();
+        maximumDistance.text = GameManager.instance._maximumdistance.ToString();
+
+        gameOverBarUp.transform.DOLocalMoveY(barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
+        gameOverBarDown.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
+
+        while (timer < 1)
+        {
+            gameOverWindow.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(0, windowHeight, timer));
+            yield return null;
+        }
+    }
+
+    void MyTitle()
+    {
+        int distance = GameManager.instance._distance;
+        int score = 30;
+
+        for (int i = 0; i < title.Length; i++)
+        {
+            if (distance < 1000)
+            {
+                if (distance < score)
+                {
+                    myTitle.text = title[i].ToString();
+                    Debug.Log(title[i]);
+                    break;
+                }
+                else
+                {
+                    if (score < 180)
+                        score += 50;
+
+                    else if (score < 240)
+                        score += 60;
+
+                    else if (score < 320)
+                        score += 80;
+
+                    else if (score < 420)
+                        score += 100;
+
+                    else if (score < 1000)
+                        score = 580;
+                }
+            }
+            else if (distance >= 1000)
+                myTitle.text = title[7].ToString();
+
+        }
+    }
 
     #region 슬라이더 바
 
