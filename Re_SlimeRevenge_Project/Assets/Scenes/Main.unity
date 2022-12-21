@@ -5567,12 +5567,11 @@ MonoBehaviour:
   abilityText: {fileID: 1231291962}
   abilityCoolTime: 30
   abilityCurrentCoolTime: 0
-  cameFire: {fileID: 588017879}
-  skillWindow: {fileID: 358367992}
-  startBtnObj: {fileID: 1275026158}
-  gameOverWindow: {fileID: 2741922759624823099}
+  gameOverWindow: {fileID: 2741922758163534920}
   gameOverBarUp: {fileID: 2741922759243169884}
   gameOverBarDown: {fileID: 2741922758284770233}
+  whiteScreen: {fileID: 2124090480989717090}
+  rectWindow: {fileID: 2741922759624823099}
   currentDistance: {fileID: 750571141}
   maximumDistance: {fileID: 1639689293}
   myTitle: {fileID: 759516265}
@@ -5585,6 +5584,9 @@ MonoBehaviour:
   - "\uD1A0\uBC8C \uB300\uC0C1 1\uC21C\uC704"
   - "\uB9C8\uC655\uC758 \uD558\uC218\uC778"
   - "\uB9C8\uC655 \uADF8 \uC790\uCCB4"
+  cameFire: {fileID: 588017879}
+  skillWindow: {fileID: 358367992}
+  startBtnObj: {fileID: 1275026158}
 --- !u!4 &1264220964
 Transform:
   m_ObjectHideFlags: 0
@@ -9109,7 +9111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -440}
+  m_AnchoredPosition: {x: 0, y: -32}
   m_SizeDelta: {x: 1730, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2741922758284770231
@@ -9385,7 +9387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 440}
+  m_AnchoredPosition: {x: 0, y: 32}
   m_SizeDelta: {x: 1730, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2741922759624823094
@@ -9468,7 +9470,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1670, y: 845}
+  m_SizeDelta: {x: 1670, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2741922759624823100
 MonoBehaviour:

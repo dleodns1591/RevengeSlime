@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -52,6 +53,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button intellectBtn;
     #endregion
 
+    #region 인게임 UI
     [Header("인게임UI")]
     [SerializeField] GameObject ingame;
 
@@ -65,7 +67,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] Slider hpSlider;
     [SerializeField] Slider levelSlider;
     bool isHPUSe = false;
+    #endregion
 
+    #region 특수능력
     [Header("특수능력")]
     [SerializeField] Image ability;
     [SerializeField] TextMeshProUGUI abilityText;
@@ -73,18 +77,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] float abilityCoolTime;
     [SerializeField] float abilityCurrentCoolTime;
     bool isAbilityUse;
+    #endregion
 
-    [Header("모닥불")]
-    [SerializeField] GameObject cameFire;
-
-    [Header("스킬 화면")]
-    [SerializeField] GameObject skillWindow;
-    [SerializeField] GameObject startBtnObj;
-
+    #region 게임오버 화면
     [Header("게임오버 화면")]
-    [SerializeField] RectTransform gameOverWindow;
+    [SerializeField] GameObject gameOverWindow;
     [SerializeField] GameObject gameOverBarUp;
     [SerializeField] GameObject gameOverBarDown;
+    [SerializeField] Image whiteScreen;
+    [SerializeField] RectTransform rectWindow;
     [SerializeField] TextMeshProUGUI currentDistance;
     [SerializeField] TextMeshProUGUI maximumDistance;
     [SerializeField] TextMeshProUGUI myTitle;
@@ -95,18 +96,26 @@ public class UIManager : MonoBehaviour
     public const float barOpenSpeed = 0.45f;
     public const float barCloseSpeed = 0.35f;
     float timer = 0.0f;
+    #endregion
+
+    [Header("모닥불")]
+    [SerializeField] GameObject cameFire;
+
+    [Header("스킬 화면")]
+    [SerializeField] GameObject skillWindow;
+    [SerializeField] GameObject startBtnObj;
 
     void Start()
     {
         MainBtns();
-        MyTitle();
     }
 
     void Update()
     {
+        if (gameOverWindow.activeSelf == true)
+            timer += Time.unscaledDeltaTime * 2.5f;
 
         distance.text = GameManager.instance._distance.ToString();
-        timer += Time.unscaledTime * 2.5f;
 
         Amount_Text();
         SpecialAbility();
@@ -121,11 +130,16 @@ public class UIManager : MonoBehaviour
 
     void Amount_Text() => money.text = GameManager.instance._money.ToString();
 
-    IEnumerator GameOverWindowOpen()
+    public IEnumerator GameOverWindowOpen()
     {
         int barOpenPosY = 440;
 
+        gameOverWindow.SetActive(true);
+
         MyTitle();
+
+        if (GameManager.instance._distance > GameManager.instance._maximumdistance)
+            GameManager.instance._maximumdistance = GameManager.instance._distance;
 
         currentDistance.text = GameManager.instance._distance.ToString();
         maximumDistance.text = GameManager.instance._maximumdistance.ToString();
@@ -135,9 +149,18 @@ public class UIManager : MonoBehaviour
 
         while (timer < 1)
         {
-            gameOverWindow.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(0, windowHeight, timer));
+            rectWindow.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(0, windowHeight, timer));
             yield return null;
         }
+
+        yield return new WaitForSecondsRealtime(1);
+
+        whiteScreen.DOFade(1, 1).SetUpdate(true).OnComplete(() =>
+        {
+            DOTween.KillAll();
+            Time.timeScale = 1;
+            SceneManager.LoadScene("Main");
+        });
     }
 
     void MyTitle()

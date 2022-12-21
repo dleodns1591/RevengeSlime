@@ -17,6 +17,7 @@ public class Player : Singleton<Player>
     public SpriteRenderer spriteRenderer;
     bool isStateCheck = false;
     bool isReuse = false;
+    bool isDieCheck = false;
 
     [Header("수치적 데이터")]
     public EState eState;
@@ -76,11 +77,11 @@ public class Player : Singleton<Player>
             hpReductionSpeed = GameManager.instance.skillRespiration;
         }
 
-        if(eState == EState.Die)
+        if (eState == EState.Die)
         {
-            if(SkillManager.instance.isResurrectionCheck == true)
+            Time.timeScale = 0;
+            if (SkillManager.instance.isResurrectionCheck == true)
             {
-                Time.timeScale = 0;
                 SkillManager.instance.isResurrectionCheck = false;
 
                 GameObject resurrection = Instantiate(SkillManager.instance.resurrectionPrefab) as GameObject;
@@ -88,7 +89,11 @@ public class Player : Singleton<Player>
             }
             else
             {
-                // 결과창
+                if (isDieCheck == false)
+                {
+                    isDieCheck = true;
+                    StartCoroutine(UIManager.instance.GameOverWindowOpen());
+                }
             }
         }
     }
