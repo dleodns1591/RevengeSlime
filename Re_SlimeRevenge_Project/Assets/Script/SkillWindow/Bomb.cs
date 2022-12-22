@@ -36,23 +36,26 @@ public class Bomb : MonoBehaviour
                 break;
 
             case EBomb.EnergyBomb:
-                for (int i = 0; i < EnemySpawn.instance.transform.childCount - 1; i++)
+                for (int i = 0; i < EnemySpawn.instance.transform.childCount; i++)
                 {
-                    GameObject targetEnemy = EnemySpawn.instance.gameObject.transform.GetChild(i).gameObject;
+                    GameObject target = EnemySpawn.instance.transform.GetChild(i).gameObject;
 
-                    if (targetEnemy.transform.position.x >= -3 && targetEnemy.transform.position.x <= 4)
+                    if (target.transform.position.x >= -3 && target.transform.position.x <= 4)
                     {
-                        if (targetEnemy != null)
-                            transform.DOMove(EnemySpawn.instance.gameObject.transform.GetChild(i).position, 1f).SetEase(Ease.Linear);
-                        else
-                            return;
-
-                        break;
+                        transform.DOLocalMove(target.transform.position, 1).SetEase(Ease.Linear).OnComplete(() =>
+                        {
+                            SkillManager.instance.isEnergyBombCheck = false;
+                        });
+                    }
+                    else
+                    {
+                        Debug.Log("asdfsdfasdf");
+                        SkillManager.instance.isEnergyBombCheck = false;
+                        Destroy(this.gameObject);
                     }
                 }
                 break;
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

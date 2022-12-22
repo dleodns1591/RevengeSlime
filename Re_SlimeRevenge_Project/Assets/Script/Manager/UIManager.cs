@@ -245,8 +245,8 @@ public class UIManager : MonoBehaviour
         if (Player.Instance.currentExperience >= Player.Instance.maxExperience)
         {
             Player.Instance.currentExperience = 0;
-
             Time.timeScale = 0;
+
             SkillManager.instance.AddSkill();
         }
     }
