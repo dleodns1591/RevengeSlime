@@ -67,6 +67,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Slider hpSlider;
     [SerializeField] Slider levelSlider;
     bool isHPUSe = false;
+    bool isDie = false;
     #endregion
 
     #region 특수능력
@@ -230,8 +231,11 @@ public class UIManager : MonoBehaviour
             if (currentHp > maxHp)
                 currentHp = maxHp;
 
-            if (currentHp <= 0)
+            if (currentHp <= 0 && isDie == false)
+            {
+                isDie = true;
                 Player.Instance.eState = Player.EState.Die;
+            }
         }
     }
 
