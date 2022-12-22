@@ -44,6 +44,10 @@ public class SkillManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
             AddSkill();
 
+    }
+
+    private void FixedUpdate()
+    {
         StartCoroutine(SKillBomb());
     }
 
@@ -54,17 +58,21 @@ public class SkillManager : MonoBehaviour
 
     IEnumerator SKillBomb()
     {
-        if (isSlimeBombClick == true && isSlimeBombCheck == false)
+        if (isSlimeBombCheck == true)
         {
-            isSlimeBombCheck = true;
+            Debug.Log("슬라임 소환 준비");
+            isSlimeBombCheck = false;
             yield return new WaitForSeconds(slimeBombCoolTime);
+            Debug.Log("슬라임 소환 시작");
             Instantiate(slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.Euler(0, -180, 0));
         }
 
-        if (isEnergyBombClick == true && isEnergyBombCheck == false && EnemySpawn.instance.gameObject.transform.childCount > 0)
+        if (isEnergyBombCheck == true)
         {
-            isEnergyBombCheck = true;
+            Debug.Log("에너지 소환 준비");
+            isEnergyBombCheck = false;
             yield return new WaitForSeconds(energyBombCoolTime);
+            Debug.Log("에너지 소환 시작");
             Instantiate(energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
         }
 

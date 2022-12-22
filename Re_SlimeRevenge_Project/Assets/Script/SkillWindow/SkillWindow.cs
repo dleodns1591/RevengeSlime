@@ -184,7 +184,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                             Instantiate(SkillManager.instance.energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
                         }
                         else
-                            SkillManager.instance.energyBombCoolTime -= 1;
+                            --SkillManager.instance.energyBombCoolTime;
                         break;
 
                     case SkillData.Eskill.SlimeBomb:
@@ -195,7 +195,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                             Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.Euler(0, -180, 0));
                         }
                         else
-                            SkillManager.instance.slimeBombCoolTime -= 1;
+                           --SkillManager.instance.slimeBombCoolTime;
                         break;
 
                     case SkillData.Eskill.Resurrection:
@@ -272,7 +272,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                             Instantiate(SkillManager.instance.energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
                         }
                         else
-                            SkillManager.instance.energyBombCoolTime -= 1;
+                            --SkillManager.instance.energyBombCoolTime;
                         break;
 
                     case SkillData.Eskill.SlimeBomb:
@@ -283,7 +283,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                             Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.Euler(0, -180, 0));
                         }
                         else
-                            SkillManager.instance.slimeBombCoolTime -= 1;
+                            --SkillManager.instance.slimeBombCoolTime;
                         break;
 
                     case SkillData.Eskill.Resurrection:
@@ -359,7 +359,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                             Instantiate(SkillManager.instance.energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
                         }
                         else
-                            SkillManager.instance.energyBombCoolTime -= 1;
+                            --SkillManager.instance.energyBombCoolTime;
                         break;
 
                     case SkillData.Eskill.SlimeBomb:
@@ -370,10 +370,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                             Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.Euler(0, -180, 0));
                         }
                         else
-                        {
-                            Debug.Log("ΩΩ∂Û¿”≈∫ ƒ≈∏¿” ∞®º“");
-                            SkillManager.instance.slimeBombCoolTime -= 1;
-                        }
+                            --SkillManager.instance.slimeBombCoolTime;
                         break;
 
                     case SkillData.Eskill.Resurrection:
