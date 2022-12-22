@@ -15,11 +15,11 @@ public class Bomb : MonoBehaviour
 
     void Start()
     {
-        Attack();
     }
 
     void Update()
     {
+        Attack();
     }
 
     void Attack()
