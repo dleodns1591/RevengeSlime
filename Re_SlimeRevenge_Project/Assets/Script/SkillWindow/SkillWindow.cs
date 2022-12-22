@@ -192,7 +192,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         if (SkillManager.instance.isSlimeBombClick == false)
                         {
                             SkillManager.instance.isSlimeBombClick = true;
-                            Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
+                            Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.Euler(0, -180, 0));
                         }
                         else
                             SkillManager.instance.slimeBombCoolTime -= 1;
