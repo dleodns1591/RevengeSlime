@@ -109,7 +109,6 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         MainBtns();
-        Debug.Log("asdfasdf");
     }
 
     void Update()
