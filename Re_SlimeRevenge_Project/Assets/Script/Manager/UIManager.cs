@@ -14,7 +14,8 @@ public class UIManager : MonoBehaviour
 
     void Awake() => instance = this;
 
-    private const float waitTime = 0.5f;
+    GameManager gameManager;
+    const float waitTime = 0.5f;
 
     [Header("소지 금액")]
     [SerializeField] TextMeshProUGUI money;
@@ -105,8 +106,6 @@ public class UIManager : MonoBehaviour
     [Header("스킬 화면")]
     [SerializeField] GameObject skillWindow;
     [SerializeField] GameObject startBtnObj;
-
-    GameManager gameManager;
 
     void Start()
     {
@@ -248,8 +247,8 @@ public class UIManager : MonoBehaviour
         levelSlider.value = Mathf.Lerp(levelSlider.value, Player.Instance.currentExperience / Player.Instance.maxExperience, Time.deltaTime * 10);
         if (Player.Instance.currentExperience >= Player.Instance.maxExperience)
         {
-            Player.Instance.currentExperience = 0;
             Time.timeScale = 0;
+            Player.Instance.currentExperience = 0;
 
             SkillManager.instance.AddSkill();
         }
