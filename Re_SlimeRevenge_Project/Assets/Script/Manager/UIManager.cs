@@ -106,8 +106,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject skillWindow;
     [SerializeField] GameObject startBtnObj;
 
+    GameManager gameManager;
+
     void Start()
     {
+        gameManager = GameManager.instance;
+
         MainBtns();
     }
 
@@ -116,7 +120,7 @@ public class UIManager : MonoBehaviour
         if (gameOverWindow.activeSelf == true)
             timer += Time.unscaledDeltaTime * 2.5f;
 
-        distance.text = GameManager.instance._distance.ToString();
+        distance.text = gameManager._distance.ToString();
 
         Amount_Text();
         SpecialAbility();
@@ -129,7 +133,7 @@ public class UIManager : MonoBehaviour
         StartCoroutine(HpBar());
     }
 
-    void Amount_Text() => money.text = GameManager.instance._money.ToString();
+    void Amount_Text() => money.text = gameManager._money.ToString();
 
     #region 게임오버 화면
 
@@ -141,11 +145,11 @@ public class UIManager : MonoBehaviour
 
         MyTitle();
 
-        if (GameManager.instance._distance > GameManager.instance._maximumdistance)
-            GameManager.instance._maximumdistance = GameManager.instance._distance;
+        if (gameManager._distance > gameManager._maximumdistance)
+            gameManager._maximumdistance = gameManager._distance;
 
-        currentDistance.text = GameManager.instance._distance.ToString();
-        maximumDistance.text = GameManager.instance._maximumdistance.ToString();
+        currentDistance.text = gameManager._distance.ToString();
+        maximumDistance.text = gameManager._maximumdistance.ToString();
 
         gameOverBarUp.transform.DOLocalMoveY(barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
         gameOverBarDown.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
@@ -213,7 +217,7 @@ public class UIManager : MonoBehaviour
         float maxHp = Player.Instance.maxHp;
         float currentHp = Player.Instance.currentHp;
 
-        if (GameManager.instance._isStartGame == true)
+        if (gameManager._isStartGame == true)
         {
             hpSlider.value = Mathf.Lerp(hpSlider.value, currentHp / maxHp, Time.deltaTime * 10);
 
@@ -259,7 +263,7 @@ public class UIManager : MonoBehaviour
         abilityText.text = Player.Instance.specialAbilityCount.ToString();
 
 
-        if (GameManager.instance._isStartGame == true && Player.Instance.specialAbilityCount < Player.Instance.specialAbility)
+        if (gameManager._isStartGame == true && Player.Instance.specialAbilityCount < Player.Instance.specialAbility)
         {
             if (isAbilityUse == false)
             {
@@ -303,67 +307,67 @@ public class UIManager : MonoBehaviour
     #region 스킬 텍스트
     void SkillLevel_Text()
     {
-        if (GameManager.instance.hpLevel < 5) // 체력
-            hpLevel.text = GameManager.instance.hpLevel.ToString();
+        if (gameManager.hpLevel < 5) // 체력
+            hpLevel.text = gameManager.hpLevel.ToString();
         else
             hpLevel.text = "Max";
 
-        if (GameManager.instance.defenseLevel < 10) // 탄성력
-            defenseLevel.text = GameManager.instance.defenseLevel.ToString();
+        if (gameManager.defenseLevel < 10) // 탄성력
+            defenseLevel.text = gameManager.defenseLevel.ToString();
         else
             defenseLevel.text = "Max";
 
-        if (GameManager.instance.intellectLevel < 5) // 지능학습
-            intellectLevel.text = GameManager.instance.intellectLevel.ToString();
+        if (gameManager.intellectLevel < 5) // 지능학습
+            intellectLevel.text = gameManager.intellectLevel.ToString();
         else
             intellectLevel.text = "Max";
 
-        if (GameManager.instance.camouflageLevel < 5) // 튼튼한 위장
-            camouflageLevel.text = GameManager.instance.camouflageLevel.ToString();
+        if (gameManager.camouflageLevel < 5) // 튼튼한 위장
+            camouflageLevel.text = gameManager.camouflageLevel.ToString();
         else
             camouflageLevel.text = "Max";
 
-        if (GameManager.instance.respirationLevel < 10) // 심호흡
-            respirationLevel.text = GameManager.instance.respirationLevel.ToString();
+        if (gameManager.respirationLevel < 10) // 심호흡
+            respirationLevel.text = gameManager.respirationLevel.ToString();
         else
             respirationLevel.text = "Max";
     }
 
     void SkillPrice_Text()
     {
-        if (GameManager.instance.hpLevel < 5) // 체력
-            hpPrice.text = GameManager.instance.hpPrice.ToString();
+        if (gameManager.hpLevel < 5) // 체력
+            hpPrice.text = gameManager.hpPrice.ToString();
         else
             hpPrice.text = "Max";
 
-        if (GameManager.instance.defenseLevel < 10) // 탄성력
-            defensePrice.text = GameManager.instance.defensePrice.ToString();
+        if (gameManager.defenseLevel < 10) // 탄성력
+            defensePrice.text = gameManager.defensePrice.ToString();
         else
             defensePrice.text = "Max";
 
-        if (GameManager.instance.intellectLevel < 5) // 지능학습
-            intellectPrice.text = GameManager.instance.intellectPrice.ToString();
+        if (gameManager.intellectLevel < 5) // 지능학습
+            intellectPrice.text = gameManager.intellectPrice.ToString();
         else
             intellectPrice.text = "Max";
 
-        if (GameManager.instance.camouflageLevel < 5) // 튼튼한 위장
-            camouflagePrice.text = GameManager.instance.camouflagePrice.ToString();
+        if (gameManager.camouflageLevel < 5) // 튼튼한 위장
+            camouflagePrice.text = gameManager.camouflagePrice.ToString();
         else
             camouflagePrice.text = "Max";
 
-        if (GameManager.instance.respirationLevel < 10) // 심호흡
-            respirationPrice.text = GameManager.instance.respirationPrice.ToString();
+        if (gameManager.respirationLevel < 10) // 심호흡
+            respirationPrice.text = gameManager.respirationPrice.ToString();
         else
             respirationPrice.text = "Max";
     }
 
     void SkillContent_Text()
     {
-        hPContent.text = "최대 체력 : " + GameManager.instance.skillHP;
-        respirationContent.text = "체력 감소 속도 : -" + GameManager.instance.skillRespiration + "%";
-        defenseContent.text = "방어력 : " + GameManager.instance.skillDefense;
-        camouflageContent.text = "뼈로부터 얻는 체력 : +" + GameManager.instance.skillCamouflage + "%";
-        intellectContent.text = "뼈로부터 얻는 경험치 : +" + GameManager.instance.skillIntellect + "%";
+        hPContent.text = "최대 체력 : " + gameManager.skillHP;
+        respirationContent.text = "체력 감소 속도 : -" + gameManager.skillRespiration + "%";
+        defenseContent.text = "방어력 : " + gameManager.skillDefense;
+        camouflageContent.text = "뼈로부터 얻는 체력 : +" + gameManager.skillCamouflage + "%";
+        intellectContent.text = "뼈로부터 얻는 경험치 : +" + gameManager.skillIntellect + "%";
     }
     #endregion
 
@@ -377,10 +381,10 @@ public class UIManager : MonoBehaviour
             int cameFirePosX = 11;
             int skillWindowPosX = 1000;
 
-            GameManager.instance._isStartGame = true;
+            gameManager._isStartGame = true;
 
-            Player.Instance.transform.DOLocalMoveX(-7, waitTime).SetEase(Ease.Linear);
-            cameFire.transform.DOMoveX(-cameFirePosX, 1.4f).SetEase(Ease.Linear).OnComplete(() =>
+            Player.Instance.transform.DOLocalMoveX(-7, waitTime).SetEase(Ease.Linear); // 플레이어 앞으로 이동
+            cameFire.transform.DOMoveX(-cameFirePosX, 1.4f).SetEase(Ease.Linear).OnComplete(() => // 모닥물 뒤로 이동 후 제거
             {
                 Destroy(cameFire);
             });
@@ -400,56 +404,56 @@ public class UIManager : MonoBehaviour
         // 굳건한 체력 구매 버튼을 눌렀을 때
         hpBtn.onClick.AddListener(() =>
         {
-            if (GameManager.instance.hpLevel < 5 && GameManager.instance._money >= GameManager.instance.hpPrice)
+            if (gameManager.hpLevel < 5 && gameManager._money >= gameManager.hpPrice)
             {
-                GameManager.instance._money -= GameManager.instance.hpPrice;
-                GameManager.instance.hpPrice += 30;
-                GameManager.instance.hpLevel += 1;
+                gameManager._money -= gameManager.hpPrice;
+                gameManager.hpPrice += 30;
+                gameManager.hpLevel += 1;
             }
         });
 
         // 심호흡 구매 버튼을 눌렀을 때
         respirationBtn.onClick.AddListener(() =>
         {
-            if (GameManager.instance.respirationLevel < 10 && GameManager.instance._money >= GameManager.instance.respirationPrice)
+            if (gameManager.respirationLevel < 10 && gameManager._money >= gameManager.respirationPrice)
             {
-                GameManager.instance._money -= GameManager.instance.respirationPrice;
-                GameManager.instance.respirationPrice += 100;
-                GameManager.instance.respirationLevel += 1;
+                gameManager._money -= gameManager.respirationPrice;
+                gameManager.respirationPrice += 100;
+                gameManager.respirationLevel += 1;
             }
         });
 
         // 방어력 구매 버튼을 눌렀을 떄
         defenseBtn.onClick.AddListener(() =>
         {
-            if (GameManager.instance.defenseLevel < 10 && GameManager.instance._money >= GameManager.instance.defensePrice)
+            if (gameManager.defenseLevel < 10 && gameManager._money >= gameManager.defensePrice)
             {
-                GameManager.instance._money -= GameManager.instance.defensePrice;
-                GameManager.instance.defensePrice += 300;
-                GameManager.instance.defenseLevel += 1;
+                gameManager._money -= gameManager.defensePrice;
+                gameManager.defensePrice += 300;
+                gameManager.defenseLevel += 1;
             }
         });
 
         // 튼튼한 위장 구매 버튼을 눌렀을 때
         camouflageBtn.onClick.AddListener(() =>
         {
-            if (GameManager.instance.camouflageLevel < 5 && GameManager.instance._money >= GameManager.instance.camouflagePrice)
+            if (gameManager.camouflageLevel < 5 && gameManager._money >= gameManager.camouflagePrice)
             {
-                GameManager.instance._money -= GameManager.instance.camouflagePrice;
-                GameManager.instance.camouflagePrice += 150;
-                GameManager.instance.camouflageLevel += 1;
+                gameManager._money -= gameManager.camouflagePrice;
+                gameManager.camouflagePrice += 150;
+                gameManager.camouflageLevel += 1;
             }
         });
 
         // 지능학습 구매 버튼을 눌렀을 때
         intellectBtn.onClick.AddListener(() =>
         {
-            if (GameManager.instance.intellectLevel < 5 && GameManager.instance._money >= GameManager.instance.intellectPrice)
+            if (gameManager.intellectLevel < 5 && gameManager._money >= gameManager.intellectPrice)
             {
 
-                GameManager.instance._money -= GameManager.instance.intellectPrice;
-                GameManager.instance.intellectPrice += 150;
-                GameManager.instance.intellectLevel += 1;
+                gameManager._money -= gameManager.intellectPrice;
+                gameManager.intellectPrice += 150;
+                gameManager.intellectLevel += 1;
             }
         });
     }
