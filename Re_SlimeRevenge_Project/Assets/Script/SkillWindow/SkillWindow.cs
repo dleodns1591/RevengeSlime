@@ -47,42 +47,34 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public const float barOpenSpeed = 0.45f;
     public const float barCloseSpeed = 0.35f;
 
-    float timer = 0.0f;
-
     bool isOpenCheck = false;
 
     void Start()
     {
-        StartCoroutine(SkillWindowOpen());
+        SkillWindowOpen();
     }
 
     void Update()
     {
-        timer += Time.unscaledDeltaTime * 2.5f;
+
     }
 
-    IEnumerator SkillWindowOpen()
+    void SkillWindowOpen()
     {
         int barOpenPosY = 440;
 
+        rectSkillTop.DOSizeDelta(new Vector2(windowWidth, windowHeight), barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
         barUpTop.transform.DOLocalMoveY(barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
         barDownTop.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
+        rectSkillAmong.DOSizeDelta(new Vector2(windowWidth, windowHeight), barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
         barUpAmong.transform.DOLocalMoveY(barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
         barDownAmong.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
+        rectSkillBottom.DOSizeDelta(new Vector2(windowWidth, windowHeight), barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
         barUpBottom.transform.DOLocalMoveY(barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
         barDownBottom.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
-        while (timer < 1)
-        {
-            //rectSkillTop.sizeDelta = Vector2.Lerp(windowSize * Vector2.right, windowSize, timer);
-
-            rectSkillTop.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(0, windowHeight, timer));
-            rectSkillAmong.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(0, windowHeight, timer));
-            rectSkillBottom.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(0, windowHeight, timer));
-            yield return null;
-        }
         isOpenCheck = true;
     }
 
@@ -128,12 +120,11 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         Time.timeScale = 1;
         Player.Instance.currentExperience = 0;
-        StartCoroutine(SkillWindowClick());
+        SkillWindowClick();
     }
 
-    IEnumerator SkillWindowClick()
+    void SkillWindowClick()
     {
-        timer = 0;
         int barClosePosY = 35;
 
         mouseRangeTop.raycastTarget = false;
@@ -195,7 +186,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                             Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.Euler(0, -180, 0));
                         }
                         else
-                           --SkillManager.instance.slimeBombCoolTime;
+                            --SkillManager.instance.slimeBombCoolTime;
                         break;
 
                     case SkillData.Eskill.Resurrection:
@@ -207,7 +198,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
 
                 #region Ã¢ ´Ý±â
-                selectBarTop.DOFade(0, 0).SetEase(Ease.Linear);
+                selectBarTop.DOFade(0, 0);
 
                 barUpTop.transform.DOLocalMoveY(barClosePosY, barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true);
                 barDownTop.transform.DOLocalMoveY(-barClosePosY, barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true);
@@ -215,18 +206,15 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 windowAmong.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
                 windowBottom.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
 
-                while (timer < 1)
+                rectSkillTop.DOSizeDelta(new Vector2(windowWidth, 0), barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
                 {
-                    rectSkillTop.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(windowHeight, 0, timer));
-                    yield return null;
-                }
+                    barUpTop.transform.DOKill();
+                    barDownTop.transform.DOKill();
+                    windowAmong.transform.DOKill();
+                    windowBottom.transform.DOKill();
 
-                barUpTop.transform.DOKill();
-                barDownTop.transform.DOKill();
-                windowAmong.transform.DOKill();
-                windowBottom.transform.DOKill();
-
-                Destroy(skillWindow);
+                    Destroy(skillWindow);
+                });
                 #endregion
                 break;
 
@@ -294,7 +282,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 }
 
                 #region Ã¢ ´Ý±â
-                selectBarAmong.DOFade(0, 0).SetEase(Ease.Linear);
+                selectBarAmong.DOFade(0, 0);
 
                 barUpAmong.transform.DOLocalMoveY(barClosePosY, barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true);
                 barDownAmong.transform.DOLocalMoveY(-barClosePosY, barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true);
@@ -302,18 +290,15 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 windowTop.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
                 windowBottom.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
 
-                while (timer < 1)
+                rectSkillAmong.DOSizeDelta(new Vector2(windowWidth, 0), barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
                 {
-                    rectSkillAmong.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(windowHeight, 0, timer));
-                    yield return null;
-                }
+                    barUpAmong.transform.DOKill();
+                    barDownAmong.transform.DOKill();
+                    windowTop.transform.DOKill();
+                    windowBottom.transform.DOKill();
 
-                barUpAmong.transform.DOKill();
-                barDownAmong.transform.DOKill();
-                windowTop.transform.DOKill();
-                windowBottom.transform.DOKill();
-
-                Destroy(skillWindow);
+                    Destroy(skillWindow);
+                });
                 #endregion
                 break;
 
@@ -381,7 +366,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 }
 
                 #region Ã¢ ´Ý±â
-                selectBarBottom.DOFade(0, 0).SetEase(Ease.Linear);
+                selectBarBottom.DOFade(0, 0);
 
                 barUpBottom.transform.DOLocalMoveY(barClosePosY, barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true);
                 barDownBottom.transform.DOLocalMoveY(-barClosePosY, barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true);
@@ -389,18 +374,15 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 windowTop.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
                 windowAmong.transform.DOLocalMoveY(1200, 0.5f).SetUpdate(true);
 
-                while (timer < 1)
+                rectSkillBottom.DOSizeDelta(new Vector2(windowWidth, 0), barCloseSpeed).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
                 {
-                    rectSkillBottom.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(windowHeight, 0, timer));
-                    yield return null;
-                }
+                    barUpBottom.transform.DOKill();
+                    barDownBottom.transform.DOKill();
+                    windowTop.transform.DOKill();
+                    windowAmong.transform.DOKill();
 
-                barUpBottom.transform.DOKill();
-                barDownBottom.transform.DOKill();
-                windowTop.transform.DOKill();
-                windowAmong.transform.DOKill();
-
-                Destroy(skillWindow);
+                    Destroy(skillWindow);
+                });
                 #endregion
                 break;
         }

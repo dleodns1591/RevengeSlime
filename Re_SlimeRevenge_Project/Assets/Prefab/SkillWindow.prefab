@@ -2226,18 +2226,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f701b98a9c26e4a9a076493d65ec71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameTop: {fileID: 1041794937802530766}
-  levelTop: {fileID: 2202090858869644383}
-  descriptionTop: {fileID: 4995832249959480465}
-  iconTop: {fileID: 4619945422623511880}
-  nameAmong: {fileID: 8049031816834958179}
-  levelAmong: {fileID: 1386558495037958061}
-  descriptionAmong: {fileID: 9163388621528710910}
-  iconAmong: {fileID: 2085414581582888156}
-  nameBottom: {fileID: 3663435026048645845}
-  levelBottom: {fileID: 6716132894227531904}
-  descriptionBottom: {fileID: 8642697461606167267}
-  iconBottom: {fileID: 1147477176328945311}
+  skillList:
+  - distanceName: "\uC67C\uCABD"
+    name: {fileID: 1041794937802530766}
+    level: {fileID: 2202090858869644383}
+    description: {fileID: 4995832249959480465}
+    Icon: {fileID: 4619945422623511880}
+  - distanceName: "\uAC00\uC6B4\uB370"
+    name: {fileID: 8049031816834958179}
+    level: {fileID: 1386558495037958061}
+    description: {fileID: 9163388621528710910}
+    Icon: {fileID: 2085414581582888156}
+  - distanceName: "\uC624\uB978\uCABD"
+    name: {fileID: 3663435026048645845}
+    level: {fileID: 6716132894227531904}
+    description: {fileID: 8642697461606167267}
+    Icon: {fileID: 1147477176328945311}
 --- !u!1 &4980858065271041538
 GameObject:
   m_ObjectHideFlags: 0
