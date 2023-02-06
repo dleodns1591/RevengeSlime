@@ -27,7 +27,6 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         baseEnemy.BaseEnemyMove(eMove);
-
     }
 
     public T InstantiateSetParent<T>(T obj, Vector3 position, Quaternion rotation) where T : UnityEngine.Object

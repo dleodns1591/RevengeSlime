@@ -93,7 +93,7 @@ public class Player : Singleton<Player>
                 if (isDieCheck == false)
                 {
                     isDieCheck = true;
-                    StartCoroutine(UIManager.instance.GameOverWindowOpen());
+                    UIManager.instance.GameOverWindowOpen();
                 }
             }
         }

@@ -129,14 +129,14 @@ public class UIManager : MonoBehaviour
         SkillContent_Text();
 
         LevelBar();
-        StartCoroutine(HpBar());
+        HpBar();
     }
 
     void Amount_Text() => money.text = gameManager._money.ToString();
 
     #region 게임오버 화면
 
-    public IEnumerator GameOverWindowOpen()
+    public void GameOverWindowOpen()
     {
         int barOpenPosY = 440;
 
@@ -153,19 +153,14 @@ public class UIManager : MonoBehaviour
         gameOverBarUp.transform.DOLocalMoveY(barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
         gameOverBarDown.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
 
-        while (timer < 1)
+        rectWindow.DOSizeDelta(new Vector2(windowWidth, windowHeight), barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
         {
-            rectWindow.sizeDelta = new Vector2(windowWidth, Mathf.Lerp(0, windowHeight, timer));
-            yield return null;
-        }
-
-        yield return new WaitForSecondsRealtime(5);
-
-        whiteScreen.DOFade(1, 1).SetUpdate(true).OnComplete(() =>
-        {
-            DOTween.KillAll();
-            Time.timeScale = 1;
-            SceneManager.LoadScene("Main");
+            whiteScreen.DOFade(1, 1).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
+            {
+                DOTween.KillAll();
+                Time.timeScale = 1;
+                SceneManager.LoadScene("Main");
+            });
         });
     }
 
@@ -211,30 +206,20 @@ public class UIManager : MonoBehaviour
 
     #region 슬라이더 바
 
-    IEnumerator HpBar()
+    void HpBar()
     {
         float maxHp = Player.Instance.maxHp;
         float currentHp = Player.Instance.currentHp;
 
-        if (gameManager._isStartGame == true)
+        if (gameManager._isStartGame)
         {
             hpSlider.value = Mathf.Lerp(hpSlider.value, currentHp / maxHp, Time.deltaTime * 10);
-
-            if (isHPUSe == false)
-            {
-                isHPUSe = true;
-                while (hpSlider.value > 0)
-                {
-                    yield return new WaitForSeconds(waitTime + Player.Instance.hpReductionSpeed);
-                    Player.Instance.currentHp -= 3;
-                }
-                yield break;
-            }
+            Player.Instance.currentHp -= Time.deltaTime * (5 - Player.Instance.hpReductionSpeed);
 
             if (currentHp > maxHp)
                 currentHp = maxHp;
 
-            if (currentHp <= 0 && isDie == false)
+            if (currentHp <= 0 && !isDie)
             {
                 isDie = true;
                 Player.Instance.eState = Player.EState.Die;
@@ -262,9 +247,9 @@ public class UIManager : MonoBehaviour
         abilityText.text = Player.Instance.specialAbilityCount.ToString();
 
 
-        if (gameManager._isStartGame == true && Player.Instance.specialAbilityCount < Player.Instance.specialAbility)
+        if (gameManager._isStartGame && Player.Instance.specialAbilityCount < Player.Instance.specialAbility)
         {
-            if (isAbilityUse == false)
+            if (!isAbilityUse)
             {
                 isAbilityUse = true;
                 ability.fillAmount = 1;

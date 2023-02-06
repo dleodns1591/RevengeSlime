@@ -36,7 +36,6 @@ public class SkillManager : MonoBehaviour
         skillCount = skill.Count;
         energyBombCoolTime = 10;
         slimeBombCoolTime = 7;
-
     }
 
     void Update()

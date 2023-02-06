@@ -25,10 +25,10 @@ public class Bone : MonoBehaviour
         switch (ebone)
         {
             case Ebone.BigBone:
-                transform.DOScale(new Vector2(bigBoneSize, bigBoneSize), 0.5f);
+                transform.DOScale(new Vector2(bigBoneSize, bigBoneSize), 0.5f).SetEase(Ease.Linear);
                 break;
             case Ebone.SmallBone:
-                transform.DOScale(new Vector2(smallBoneSize, smallBoneSize), 0.5f);
+                transform.DOScale(new Vector2(smallBoneSize, smallBoneSize), 0.5f).SetEase(Ease.Linear);
                 break;
         }
     }
