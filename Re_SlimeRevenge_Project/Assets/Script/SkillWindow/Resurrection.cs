@@ -25,8 +25,8 @@ public class Resurrection : MonoBehaviour
         resurrectioBar.transform.DORotate(new Vector2(0, 0), 1.5f).SetEase(Ease.Linear).SetUpdate(true);
         resurrectioBar.transform.DOLocalMoveY(0, 2).SetEase(Ease.OutQuad).SetUpdate(true).OnComplete(() =>
         {
-            resurrectioBar.transform.DOShakePosition(5, 10).SetUpdate(true);
-            whiteScreen.DOFade(1, 1).SetUpdate(true).OnComplete(() =>
+            resurrectioBar.transform.DOShakePosition(5, 10).SetEase(Ease.Linear).SetUpdate(true);
+            whiteScreen.DOFade(1, 1).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
             {
                 blackScreen.SetActive(false);
                 resurrectioBar.SetActive(false);
@@ -34,7 +34,7 @@ public class Resurrection : MonoBehaviour
                 Time.timeScale = 1;
                 Player.Instance.currentHp += Player.Instance.maxHp / 2;
 
-                whiteScreen.DOFade(0, 1).SetUpdate(true).OnComplete(() =>
+                whiteScreen.DOFade(0, 1).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
                 {
                     transform.DOKill();
                     resurrectioBar.transform.DOKill();

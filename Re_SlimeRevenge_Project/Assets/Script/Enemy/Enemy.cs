@@ -51,9 +51,9 @@ public class Enemy : MonoBehaviour
             {
                 eMove = EMove.Die;
                 Player.Instance.eState = Player.EState.Eat;
-                baseEnemy.spriteRenderer.DOFade(0, waitTime);
-                transform.DOScale(new Vector2(0.1f, 0.1f), waitTime);
-                transform.DORotate(new Vector3(0, 0, -180), waitTime);
+                baseEnemy.spriteRenderer.DOFade(0, waitTime).SetEase(Ease.Linear);
+                transform.DOScale(new Vector2(0.1f, 0.1f), waitTime).SetEase(Ease.Linear);
+                transform.DORotate(new Vector3(0, 0, -180), waitTime).SetEase(Ease.Linear);
 
 
                 Player.Instance.currentHp += bone + Player.Instance.getHP;

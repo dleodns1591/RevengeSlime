@@ -69,7 +69,7 @@ public class Player : Singleton<Player>
     {
         maxHp = GameManager.instance.skillHP;
 
-        if (GameManager.instance._isStartGame == true && isStateCheck == false)
+        if (GameManager.instance._isStartGame && !isStateCheck)
         {
             isStateCheck = true;
             currentHp = maxHp;
@@ -80,7 +80,7 @@ public class Player : Singleton<Player>
         if (eState == EState.Die)
         {
             Time.timeScale = 0;
-            if (SkillManager.instance.isResurrectionCheck == true)
+            if (SkillManager.instance.isResurrectionCheck)
             {
                 eState = EState.Walk;
                 SkillManager.instance.isResurrectionCheck = false;
@@ -90,7 +90,7 @@ public class Player : Singleton<Player>
             }
             else
             {
-                if (isDieCheck == false)
+                if (!isDieCheck)
                 {
                     isDieCheck = true;
                     UIManager.instance.GameOverWindowOpen();
@@ -104,7 +104,7 @@ public class Player : Singleton<Player>
     {
         float posY = 0.5f;
 
-        if (Input.GetKeyDown(KeyCode.Z) && specialAbilityCount > 0 && isReuse == false)
+        if (Input.GetKeyDown(KeyCode.Z) && specialAbilityCount > 0 && !isReuse)
         {
             isReuse = true;
 

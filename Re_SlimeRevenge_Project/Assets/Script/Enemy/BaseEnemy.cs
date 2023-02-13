@@ -119,7 +119,7 @@ class BaseEnemy
 
             case EMove.Die:
                 boxCollider2D.enabled = false;
-                transform.DOLocalMove(new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), 0.5f);
+                transform.DOLocalMove(new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), 0.5f).SetEase(Ease.Linear);
                 break;
         }
     }
