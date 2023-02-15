@@ -11,8 +11,6 @@ public class BackGround : MonoBehaviour
     [SerializeField] Transform target; // 현재 게임에서는 3개의 배경의 서로가 서로의 타켓
     [SerializeField] Vector3 moveDirection = Vector3.left;
 
-    //public GameObject upgradeWindow;
-
     private void Start()
     {
 
