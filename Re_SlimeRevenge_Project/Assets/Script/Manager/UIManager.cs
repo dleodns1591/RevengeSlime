@@ -116,7 +116,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (gameOverWindow.activeSelf == true)
+        if (gameOverWindow.activeSelf)
             timer += Time.unscaledDeltaTime * 2.5f;
 
         distance.text = gameManager._distance.ToString();

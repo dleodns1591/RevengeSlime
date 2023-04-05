@@ -2,28 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-    public SpriteRenderer touchStart;
+    [SerializeField] Image touchToStart;
 
     void Start()
     {
-        touchStart.DOFade(0, 1).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        Director();
     }
 
     void Update()
     {
-        Next_Scene();
+        NextScene();
     }
 
-    public void Next_Scene()
+    void Director()
+    {
+        touchToStart.DOFade(0, 1).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+    }
+
+    void NextScene()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            touchStart.DOPause();
+            touchToStart.DOPause();
             SceneManager.LoadScene("Main");
         }
+
     }
 }

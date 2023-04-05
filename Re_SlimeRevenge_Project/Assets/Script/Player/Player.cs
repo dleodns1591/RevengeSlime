@@ -38,7 +38,6 @@ public class Player : Singleton<Player>
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
     }
 
     void Update()
@@ -55,7 +54,7 @@ public class Player : Singleton<Player>
     // 플레이어 이동
     void PlayerMove()
     {
-        if (GameManager.instance._isStartGame == true)
+        if (GameManager.instance._isStartGame)
         {
             if (Input.GetKey(KeyCode.Space))
                 transform.Translate(0, moveSpeed * Time.deltaTime, 0);
