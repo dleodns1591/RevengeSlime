@@ -119,7 +119,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerClick(PointerEventData eventData)
     {
         Time.timeScale = 1;
-        Player.Instance.currentExperience = 0;
+        Player.Instance.currentEXP = 0;
         SkillWindowClick();
     }
 

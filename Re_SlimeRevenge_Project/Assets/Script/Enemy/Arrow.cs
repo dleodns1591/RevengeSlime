@@ -5,8 +5,8 @@ using DG.Tweening;
 
 public class Arrow : MonoBehaviour
 {
-    public const int attack = 10;
-    public const float speed = 0.07f;
+    const int attack = 10;
+    const float speed = 0.07f;
     bool isCheck = false;
 
     void Start()
@@ -16,7 +16,7 @@ public class Arrow : MonoBehaviour
 
     void Update()
     {
-        if (isCheck == true)
+        if (isCheck)
             transform.Translate(Vector2.left * speed);
     }
 
@@ -33,7 +33,7 @@ public class Arrow : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {

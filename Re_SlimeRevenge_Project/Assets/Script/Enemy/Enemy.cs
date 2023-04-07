@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
 
 
                 Player.Instance.currentHp += bone + Player.Instance.getHP;
-                Player.Instance.currentExperience += bone + Player.Instance.getExperience;
+                Player.Instance.currentEXP += bone + Player.Instance.getExperience;
 
                 yield return new WaitForSeconds(2f);
                 Player.Instance.tag = "Player";

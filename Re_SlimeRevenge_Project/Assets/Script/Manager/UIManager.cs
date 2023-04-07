@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour
 
     void Awake() => instance = this;
 
-    GameManager gameManager;
     const float waitTime = 0.5f;
 
     [Header("소지 금액")]
@@ -107,9 +106,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject skillWindow;
     [SerializeField] GameObject startBtnObj;
 
+    Player player;
+    GameManager gameManager;
+
     void Start()
     {
         gameManager = GameManager.instance;
+        player = Player.Instance;
 
         MainBtns();
     }
@@ -166,7 +169,7 @@ public class UIManager : MonoBehaviour
 
     void MyTitle()
     {
-        int distance = GameManager.instance._distance;
+        int distance = gameManager._distance;
         int score = 30;
 
         for (int i = 0; i < title.Length; i++)
@@ -176,7 +179,6 @@ public class UIManager : MonoBehaviour
                 if (distance < score)
                 {
                     myTitle.text = title[i].ToString();
-                    Debug.Log(title[i]);
                     break;
                 }
                 else
@@ -208,13 +210,13 @@ public class UIManager : MonoBehaviour
 
     void HpBar()
     {
-        float maxHp = Player.Instance.maxHp;
-        float currentHp = Player.Instance.currentHp;
+        float maxHp = player.maxHp;
+        float currentHp = player.currentHp;
 
         if (gameManager._isStartGame)
         {
             hpSlider.value = Mathf.Lerp(hpSlider.value, currentHp / maxHp, Time.deltaTime * 10);
-            Player.Instance.currentHp -= Time.deltaTime * (5 - Player.Instance.hpReductionSpeed);
+            player.currentHp -= Time.deltaTime * (5 - player.hpReductionSpeed);
 
             if (currentHp > maxHp)
                 currentHp = maxHp;
@@ -222,18 +224,21 @@ public class UIManager : MonoBehaviour
             if (currentHp <= 0 && !isDie)
             {
                 isDie = true;
-                Player.Instance.eState = Player.EState.Die;
+                player.eState = Player.EState.Die;
             }
         }
     }
 
     void LevelBar()
     {
-        levelSlider.value = Mathf.Lerp(levelSlider.value, Player.Instance.currentExperience / Player.Instance.maxExperience, Time.deltaTime * 10);
-        if (Player.Instance.currentExperience >= Player.Instance.maxExperience)
+        float currentEXP = player.currentEXP;
+        int maxEXP = player.maxEXP;
+
+        levelSlider.value = Mathf.Lerp(levelSlider.value, currentEXP / maxEXP, Time.deltaTime * 10);
+        if (currentEXP >= maxEXP)
         {
             Time.timeScale = 0;
-            Player.Instance.currentExperience = 0;
+            player.currentEXP = 0;
 
             SkillManager.instance.AddSkill();
         }

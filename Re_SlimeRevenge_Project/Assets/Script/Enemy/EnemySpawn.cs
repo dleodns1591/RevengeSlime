@@ -28,7 +28,7 @@ public class EnemySpawn : MonoBehaviour
 
         while (true)
         {
-            if (GameManager.instance._isStartGame == true)
+            if (GameManager.instance._isStartGame)
             {
                 int randomSpawn = Random.Range(1, 101);
                 float randomPosY = Random.Range(-3.5f, 0f);

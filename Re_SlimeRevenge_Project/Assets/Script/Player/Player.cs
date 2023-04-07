@@ -15,25 +15,28 @@ public class Player : Singleton<Player>
     }
 
     public SpriteRenderer spriteRenderer;
-    bool isStateCheck = false;
-    bool isReuse = false;
-    bool isDieCheck = false;
 
     [Header("수치적 데이터")]
     public EState eState;
 
-    public float maxHp;
-    public float currentHp;
-    public float hpReductionSpeed;
-    public int defense;
-    public int moveSpeed;
-    public float maxExperience;
-    public float currentExperience;
-    public float getHP;
-    public float getExperience;
+    public float currentHp = 0;
+    public int maxHp = 0;
 
-    public int specialAbility = 2;
-    public int specialAbilityCount;
+    public float currentEXP = 0;
+    public int maxEXP = 100;
+
+    public float hpReductionSpeed = 0;
+    public int defense = 0;
+    public int moveSpeed = 0;
+    public float getHP = 0;
+    public float getExperience = 0;
+
+    public int specialAbility = 0;
+    public int specialAbilityCount = 0;
+
+    bool isReuse = false;
+    bool isDieCheck = false;
+    bool isStateCheck = false;
 
     void Start()
     {
@@ -46,13 +49,19 @@ public class Player : Singleton<Player>
         StartCoroutine(PlayerSkill());
     }
 
+    void LateUpdate()
+    {
+        // 이동 제한
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -4, 0), 0);
+    }
+
     private void FixedUpdate()
     {
-        PlayerMove();
+        Move();
     }
 
     // 플레이어 이동
-    void PlayerMove()
+    void Move()
     {
         if (GameManager.instance._isStartGame)
         {
@@ -66,7 +75,7 @@ public class Player : Singleton<Player>
     // 플레이어 데이터
     void PlayerState()
     {
-        maxHp = GameManager.instance.skillHP;
+        maxHp = (int)GameManager.instance.skillHP;
 
         if (GameManager.instance._isStartGame && !isStateCheck)
         {
@@ -110,12 +119,13 @@ public class Player : Singleton<Player>
             --specialAbilityCount;
             eState = EState.Skill;
 
-            for (int i = 0; i <= EnemySpawn.instance.transform.childCount - 1; i++)
+            for (int i = 0; i < EnemySpawn.instance.transform.childCount; i++)
             {
                 Transform enemyPos = EnemySpawn.instance.transform.GetChild(i).transform;
                 var target = enemyPos.GetComponent<BaseEnemy>();
                 var targetColider = enemyPos.GetComponent<BoxCollider2D>();
                 var targetSprite = enemyPos.GetComponent<SpriteRenderer>();
+
                 int boneValue = (20 * target.thisBase.bigBoneNum) + (10 * target.thisBase.smallBoneNum);
 
                 if (enemyPos.position.x <= -4)
@@ -123,13 +133,13 @@ public class Player : Singleton<Player>
                     if (transform.position.y >= enemyPos.position.y && transform.position.y - enemyPos.position.y <= posY)
                     {
                         currentHp += boneValue + getHP;
-                        currentExperience += boneValue + getExperience;
+                        currentEXP += boneValue + getExperience;
                         targetColider.enabled = false;
 
                         targetSprite.DOFade(0, 0.5f);
-                        enemyPos.DOScale(new Vector2(0.1f, 0.1f), 0.5f);
-                        enemyPos.DORotate(new Vector3(0, 0, -180), 0.5f);
-                        enemyPos.DOLocalMove(new Vector2(transform.position.x, transform.position.y + 0.5f), 0.5f).OnComplete(() =>
+                        enemyPos.DOScale(new Vector2(0.1f, 0.1f), 0.5f).SetEase(Ease.Linear);
+                        enemyPos.DORotate(new Vector3(0, 0, -180), 0.5f).SetEase(Ease.Linear);
+                        enemyPos.DOLocalMove(new Vector2(transform.position.x, transform.position.y + 0.5f), 0.5f).SetEase(Ease.Linear).OnComplete(() =>
                         {
                             target.transform.DOKill();
                             Destroy(enemyPos.gameObject);
@@ -139,24 +149,23 @@ public class Player : Singleton<Player>
                     else
                     {
                         currentHp += boneValue + getHP;
-                        currentExperience += boneValue + getExperience;
+                        currentEXP += boneValue + getExperience;
                         targetColider.enabled = false;
 
-                        targetSprite.DOFade(0, 0.5f);
-                        enemyPos.DOScale(new Vector2(0.1f, 0.1f), 0.5f);
-                        enemyPos.DORotate(new Vector3(0, 0, -180), 0.5f);
-                        enemyPos.DOLocalMove(new Vector2(transform.position.x, transform.position.y + 0.5f), 0.5f).OnComplete(() =>
+                        targetSprite.DOFade(0, 0.5f).SetEase(Ease.Linear);
+                        enemyPos.DOScale(new Vector2(0.1f, 0.1f), 0.5f).SetEase(Ease.Linear);
+                        enemyPos.DORotate(new Vector3(0, 0, -180), 0.5f).SetEase(Ease.Linear);
+                        enemyPos.DOLocalMove(new Vector2(transform.position.x, transform.position.y + 0.5f), 0.5f).SetEase(Ease.Linear).OnComplete(() =>
                         {
                             target.transform.DOKill();
                             Destroy(enemyPos.gameObject);
                         });
                     }
-
                     break;
                 }
             }
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1);
 
             isReuse = false;
             eState = EState.Walk;

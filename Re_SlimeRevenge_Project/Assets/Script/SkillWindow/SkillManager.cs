@@ -53,24 +53,19 @@ public class SkillManager : MonoBehaviour
 
     IEnumerator SKillBomb()
     {
-        if (isSlimeBombCheck == true)
+        if (isSlimeBombCheck)
         {
             isSlimeBombCheck = false;
-            Debug.Log("슬라임 소환 준비");
             yield return new WaitForSeconds(slimeBombCoolTime);
-            Debug.Log("슬라임 소환 시작");
             Instantiate(slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.Euler(0, -180, 0));
-        }
 
-        if (isEnergyBombCheck == true && EnemySpawn.instance.transform.childCount > 0)
-        {
-            isEnergyBombCheck = false;
-            Debug.Log("에너지 소환 준비");
-            yield return new WaitForSeconds(energyBombCoolTime);
-            Debug.Log("에너지 소환 시작");
-            Instantiate(energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
+            if (EnemySpawn.instance.transform.childCount > 0)
+            {
+                isEnergyBombCheck = false;
+                yield return new WaitForSeconds(energyBombCoolTime);
+                Instantiate(energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
+            }
         }
-
     }
 
     public void AddSkill()
@@ -84,7 +79,6 @@ public class SkillManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             int skillRandom = Random.Range(0, skillCount);
-
             skillUI.SkillCard(skill[skillRandom], skillIndex++);
         }
     }
