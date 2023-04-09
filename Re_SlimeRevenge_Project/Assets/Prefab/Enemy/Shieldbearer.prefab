@@ -113,7 +113,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 5.3, y: 3.6}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 50
 --- !u!50 &7201609391061625354
 Rigidbody2D:
   serializedVersion: 4
@@ -149,11 +149,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eEnemyType: 2
   eMove: 2
-  isKnockBack: 0
-  isCollsionAttack: 0
   arrow: {fileID: 0}
   bigBone: {fileID: 4766282369913508785, guid: c89cca9ce438f754f806f75052b7dfe3, type: 3}
   smallBone: {fileID: 4855608360805593000, guid: 82483cd7142336d4c8c4aea701fdbf8d, type: 3}
+  coin: 0
+  isKnockBack: 0
+  isCollsionAttack: 0
 --- !u!95 &1477922770303473737
 Animator:
   serializedVersion: 4

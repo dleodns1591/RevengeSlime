@@ -148,11 +148,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eEnemyType: 5
   eMove: 2
-  isKnockBack: 0
-  isCollsionAttack: 0
   arrow: {fileID: 4561013099492772690, guid: cdf282f01dbf5154a87cbfeaff523f5c, type: 3}
   bigBone: {fileID: 4766282369913508785, guid: c89cca9ce438f754f806f75052b7dfe3, type: 3}
   smallBone: {fileID: 4855608360805593000, guid: 82483cd7142336d4c8c4aea701fdbf8d, type: 3}
+  coin: 70
+  isKnockBack: 0
+  isCollsionAttack: 0
 --- !u!50 &-8951248232751282297
 Rigidbody2D:
   serializedVersion: 4

@@ -8,13 +8,15 @@ public class Enemy : MonoBehaviour
     public EEnemyType eEnemyType;
     public EMove eMove;
 
-    public bool isKnockBack;
-    public bool isCollsionAttack;
-
     public GameObject arrow;
 
     public GameObject bigBone;
     public GameObject smallBone;
+
+    [SerializeField] int coin = 0;
+
+    public bool isKnockBack;
+    public bool isCollsionAttack;
 
     BaseEnemy baseEnemy;
 
@@ -50,11 +52,11 @@ public class Enemy : MonoBehaviour
             if (baseEnemy.thisBase.hp == 0)
             {
                 eMove = EMove.Die;
+                UIManager.instance.currentMoney += coin;
                 Player.Instance.eState = Player.EState.Eat;
                 baseEnemy.spriteRenderer.DOFade(0, waitTime).SetEase(Ease.Linear);
                 transform.DOScale(new Vector2(0.1f, 0.1f), waitTime).SetEase(Ease.Linear);
                 transform.DORotate(new Vector3(0, 0, -180), waitTime).SetEase(Ease.Linear);
-
 
                 Player.Instance.currentHp += bone + Player.Instance.getHP;
                 Player.Instance.currentEXP += bone + Player.Instance.getExperience;
@@ -106,6 +108,7 @@ public class Enemy : MonoBehaviour
             --baseEnemy.thisBase.hp;
             if (baseEnemy.thisBase.hp == 0)
             {
+                UIManager.instance.currentMoney += coin;
                 transform.DOKill();
                 Destroy(gameObject);
 

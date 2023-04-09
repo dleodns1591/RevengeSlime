@@ -38,6 +38,9 @@ public class Player : Singleton<Player>
     bool isDieCheck = false;
     bool isStateCheck = false;
 
+    [Header("스킬")]
+    int targetNum = 0;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -96,6 +99,7 @@ public class Player : Singleton<Player>
                 GameObject resurrection = Instantiate(SkillManager.instance.resurrectionPrefab) as GameObject;
                 resurrection.transform.SetParent(GameObject.Find("Canvas").transform, false);
             }
+
             else
             {
                 if (!isDieCheck)
@@ -110,65 +114,47 @@ public class Player : Singleton<Player>
     // 플레이어 특수능력
     IEnumerator PlayerSkill()
     {
-        float posY = 0.5f;
-
-        if (Input.GetKeyDown(KeyCode.Z) && specialAbilityCount > 0 && !isReuse)
+        if (GameManager.instance._isStartGame)
         {
-            isReuse = true;
-
-            --specialAbilityCount;
-            eState = EState.Skill;
-
-            for (int i = 0; i < EnemySpawn.instance.transform.childCount; i++)
+            if (Input.GetKeyDown(KeyCode.Z) && specialAbilityCount > 0 && !isReuse)
             {
-                Transform enemyPos = EnemySpawn.instance.transform.GetChild(i).transform;
-                var target = enemyPos.GetComponent<BaseEnemy>();
-                var targetColider = enemyPos.GetComponent<BoxCollider2D>();
-                var targetSprite = enemyPos.GetComponent<SpriteRenderer>();
+                isReuse = true;
 
-                int boneValue = (20 * target.thisBase.bigBoneNum) + (10 * target.thisBase.smallBoneNum);
+                --specialAbilityCount;
+                eState = EState.Skill;
 
-                if (enemyPos.position.x <= -4)
+                for (int i = 0; i < EnemySpawn.instance.transform.childCount; i++)
                 {
-                    if (transform.position.y >= enemyPos.position.y && transform.position.y - enemyPos.position.y <= posY)
+                    GameObject enemy = EnemySpawn.instance.transform.GetChild(i).gameObject;
+                    var targetColider = enemy.GetComponent<BoxCollider2D>();
+                    var targetSprite = enemy.GetComponent<SpriteRenderer>();
+                    int boneValue = 30;
+
+                    if (enemy.transform.position.x <= -3)
                     {
-                        currentHp += boneValue + getHP;
-                        currentEXP += boneValue + getExperience;
-                        targetColider.enabled = false;
-
-                        targetSprite.DOFade(0, 0.5f);
-                        enemyPos.DOScale(new Vector2(0.1f, 0.1f), 0.5f).SetEase(Ease.Linear);
-                        enemyPos.DORotate(new Vector3(0, 0, -180), 0.5f).SetEase(Ease.Linear);
-                        enemyPos.DOLocalMove(new Vector2(transform.position.x, transform.position.y + 0.5f), 0.5f).SetEase(Ease.Linear).OnComplete(() =>
+                        if (transform.position.y + enemy.transform.position.y <= 0.5f || transform.position.y - enemy.transform.position.y >= -0.5f)
                         {
-                            target.transform.DOKill();
-                            Destroy(enemyPos.gameObject);
-                        });
-                    }
+                            targetColider.enabled = false;
+                            currentHp += boneValue + getHP;
+                            currentEXP += boneValue + getExperience;
 
-                    else
-                    {
-                        currentHp += boneValue + getHP;
-                        currentEXP += boneValue + getExperience;
-                        targetColider.enabled = false;
-
-                        targetSprite.DOFade(0, 0.5f).SetEase(Ease.Linear);
-                        enemyPos.DOScale(new Vector2(0.1f, 0.1f), 0.5f).SetEase(Ease.Linear);
-                        enemyPos.DORotate(new Vector3(0, 0, -180), 0.5f).SetEase(Ease.Linear);
-                        enemyPos.DOLocalMove(new Vector2(transform.position.x, transform.position.y + 0.5f), 0.5f).SetEase(Ease.Linear).OnComplete(() =>
-                        {
-                            target.transform.DOKill();
-                            Destroy(enemyPos.gameObject);
-                        });
+                            targetSprite.DOFade(0, 0.5f);
+                            enemy.transform.DOScale(new Vector2(0.1f, 0.1f), 0.5f).SetEase(Ease.Linear);
+                            enemy.transform.DORotate(new Vector3(0, 0, -180), 0.5f).SetEase(Ease.Linear);
+                            enemy.transform.DOLocalMove(new Vector2(transform.position.x, transform.position.y + 0.5f), 0.5f).SetEase(Ease.Linear).OnComplete(() =>
+                            {
+                                enemy.transform.DOKill();
+                                Destroy(enemy.gameObject);
+                            });
+                        }
                     }
-                    break;
                 }
+
+                yield return new WaitForSeconds(1);
+
+                isReuse = false;
+                eState = EState.Walk;
             }
-
-            yield return new WaitForSeconds(1);
-
-            isReuse = false;
-            eState = EState.Walk;
         }
     }
 }

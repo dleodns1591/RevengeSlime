@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using UnityEngine.UI;
-using TMPro;
 
 public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -73,14 +72,16 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         rectSkillBottom.DOSizeDelta(new Vector2(windowWidth, windowHeight), barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
         barUpBottom.transform.DOLocalMoveY(barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
-        barDownBottom.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
+        barDownBottom.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
+        {
+            isOpenCheck = true;
+        });
 
-        isOpenCheck = true;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (isOpenCheck == true)
+        if (isOpenCheck)
         {
             switch (eskillWindow)
             {
@@ -99,7 +100,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (isOpenCheck == true)
+        if (isOpenCheck)
         {
             switch (eskillWindow)
             {
@@ -118,9 +119,12 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Time.timeScale = 1;
-        Player.Instance.currentEXP = 0;
-        SkillWindowClick();
+        if (isOpenCheck)
+        {
+            Time.timeScale = 1;
+            Player.Instance.currentEXP = 0;
+            SkillWindowClick();
+        }
     }
 
     void SkillWindowClick()
@@ -169,7 +173,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                     case SkillData.Eskill.EnergyBomb:
                         Debug.Log("ø°≥ ¡ˆ≈∫");
-                        if (SkillManager.instance.isEnergyBombClick == false)
+                        if (!SkillManager.instance.isEnergyBombClick)
                         {
                             SkillManager.instance.isEnergyBombClick = true;
                             Instantiate(SkillManager.instance.energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
@@ -180,10 +184,10 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                     case SkillData.Eskill.SlimeBomb:
                         Debug.Log("ΩΩ∂Û¿”≈∫");
-                        if (SkillManager.instance.isSlimeBombClick == false)
+                        if (!SkillManager.instance.isSlimeBombClick)
                         {
                             SkillManager.instance.isSlimeBombClick = true;
-                            Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.Euler(0, -180, 0));
+                            Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), SkillManager.instance.slimeBomb.transform.rotation);
                         }
                         else
                             --SkillManager.instance.slimeBombCoolTime;
@@ -254,7 +258,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                     case SkillData.Eskill.EnergyBomb:
                         Debug.Log("ø°≥ ¡ˆ≈∫");
-                        if (SkillManager.instance.isEnergyBombClick == false)
+                        if (!SkillManager.instance.isEnergyBombClick)
                         {
                             SkillManager.instance.isEnergyBombClick = true;
                             Instantiate(SkillManager.instance.energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
@@ -265,10 +269,10 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                     case SkillData.Eskill.SlimeBomb:
                         Debug.Log("ΩΩ∂Û¿”≈∫");
-                        if (SkillManager.instance.isSlimeBombClick == false)
+                        if (!SkillManager.instance.isSlimeBombClick)
                         {
                             SkillManager.instance.isSlimeBombClick = true;
-                            Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.Euler(0, -180, 0));
+                            Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), SkillManager.instance.slimeBomb.transform.rotation);
                         }
                         else
                             --SkillManager.instance.slimeBombCoolTime;
@@ -338,7 +342,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                     case SkillData.Eskill.EnergyBomb:
                         Debug.Log("ø°≥ ¡ˆ≈∫");
-                        if (SkillManager.instance.isEnergyBombClick == false)
+                        if (!SkillManager.instance.isEnergyBombClick)
                         {
                             SkillManager.instance.isEnergyBombClick = true;
                             Instantiate(SkillManager.instance.energyBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.identity);
@@ -348,11 +352,11 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         break;
 
                     case SkillData.Eskill.SlimeBomb:
-                        if (SkillManager.instance.isSlimeBombClick == false)
+                        if (!SkillManager.instance.isSlimeBombClick)
                         {
                             Debug.Log("ΩΩ∂Û¿”≈∫");
                             SkillManager.instance.isSlimeBombClick = true;
-                            Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), Quaternion.Euler(0, -180, 0));
+                            Instantiate(SkillManager.instance.slimeBomb, new Vector2(Player.Instance.transform.position.x, Player.Instance.transform.position.y + 0.5f), SkillManager.instance.slimeBomb.transform.rotation);
                         }
                         else
                             --SkillManager.instance.slimeBombCoolTime;

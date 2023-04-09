@@ -7,6 +7,7 @@ public class Arrow : MonoBehaviour
 {
     const int attack = 10;
     const float speed = 0.07f;
+
     bool isCheck = false;
 
     void Start()
@@ -38,7 +39,6 @@ public class Arrow : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             transform.DOKill();
-
             Player.Instance.currentHp -= attack;
             Destroy(gameObject);
         }

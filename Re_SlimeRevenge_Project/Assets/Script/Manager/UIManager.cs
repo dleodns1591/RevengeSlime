@@ -17,7 +17,9 @@ public class UIManager : MonoBehaviour
     const float waitTime = 0.5f;
 
     [Header("소지 금액")]
-    [SerializeField] TextMeshProUGUI money;
+    public int currentMoney = 0;
+    [SerializeField] TextMeshProUGUI mainMoney;
+    [SerializeField] TextMeshProUGUI ingameMoney;
 
     #region 스킬 텍스트
     [Header("스킬레벨 텍스트")]
@@ -63,7 +65,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject skillBackGround;
     [SerializeField] GameObject skillWindowPick;
     [SerializeField] TextMeshProUGUI distance;
-    [SerializeField] TextMeshProUGUI ingameMoney;
     [SerializeField] Slider hpSlider;
     [SerializeField] Slider levelSlider;
     bool isHPUSe = false;
@@ -119,12 +120,8 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (gameOverWindow.activeSelf)
-            timer += Time.unscaledDeltaTime * 2.5f;
-
-        distance.text = gameManager._distance.ToString();
-
-        Amount_Text();
+        Distance();
+        MoneyText();
         SpecialAbility();
 
         SkillLevel_Text();
@@ -135,7 +132,19 @@ public class UIManager : MonoBehaviour
         HpBar();
     }
 
-    void Amount_Text() => money.text = gameManager._money.ToString();
+    void MoneyText()
+    {
+        mainMoney.text = gameManager._money.ToString();
+        ingameMoney.text = currentMoney.ToString();
+    }
+
+    void Distance()
+    {
+        if (gameOverWindow.activeSelf)
+            timer += Time.unscaledDeltaTime * 2.5f;
+
+        distance.text = gameManager._distance.ToString();
+    }
 
     #region 게임오버 화면
 
@@ -162,6 +171,9 @@ public class UIManager : MonoBehaviour
             {
                 DOTween.KillAll();
                 Time.timeScale = 1;
+                GameManager.instance._isStartGame = false;
+                GameManager.instance._money += currentMoney;
+
                 SceneManager.LoadScene("Main");
             });
         });
@@ -250,47 +262,41 @@ public class UIManager : MonoBehaviour
     void SpecialAbility()
     {
         abilityText.text = Player.Instance.specialAbilityCount.ToString();
+        ability.fillAmount = Mathf.Lerp(ability.fillAmount, abilityCurrentCoolTime / abilityCoolTime, Time.deltaTime * 10);
 
-
-        if (gameManager._isStartGame && Player.Instance.specialAbilityCount < Player.Instance.specialAbility)
+        if (gameManager._isStartGame)
         {
-            if (!isAbilityUse)
+            if (Player.Instance.specialAbilityCount <= Player.Instance.specialAbility)
             {
-                isAbilityUse = true;
-                ability.fillAmount = 1;
-                abilityCurrentCoolTime = abilityCoolTime;
-                StartCoroutine(CoolTime());
-                StartCoroutine(CoolTimeCounter());
+                if (!isAbilityUse)
+                {
+                    isAbilityUse = true;
+                    ability.fillAmount = 1;
+                    abilityCurrentCoolTime = abilityCoolTime;
+
+                    StartCoroutine(CoolTime());
+                }
             }
 
             if (abilityCurrentCoolTime == 0)
             {
-                isAbilityUse = false;
                 ++Player.Instance.specialAbilityCount;
+                isAbilityUse = false;
             }
         }
+
     }
 
     IEnumerator CoolTime()
     {
-        while (ability.fillAmount > 0)
+        while (abilityCurrentCoolTime >= 0)
         {
-            ability.fillAmount = Mathf.Lerp(ability.fillAmount, abilityCurrentCoolTime / abilityCoolTime, Time.deltaTime * 10);
-            yield return null;
+            abilityCurrentCoolTime -= 1;
+            yield return new WaitForSeconds(1);
         }
-        yield break;
     }
 
-    IEnumerator CoolTimeCounter()
-    {
-        WaitForSeconds waitSec = new WaitForSeconds(1);
-        while (abilityCurrentCoolTime > 0)
-        {
-            yield return waitSec;
-            abilityCurrentCoolTime -= 1;
-        }
-        yield break;
-    }
+
     #endregion
 
     #region 스킬 텍스트

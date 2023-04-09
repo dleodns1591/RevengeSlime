@@ -12,9 +12,11 @@ public class Bomb : MonoBehaviour
     }
 
     [SerializeField] EBomb eBomb;
+    GameObject target;
 
     void Start()
     {
+
     }
 
     void Update()
@@ -36,28 +38,16 @@ public class Bomb : MonoBehaviour
                 break;
 
             case EBomb.EnergyBomb:
-                for (int i = 0; i < EnemySpawn.instance.transform.childCount; i++)
+                target = EnemySpawn.instance.transform.GetChild(0).gameObject;
+                if (target != null)
                 {
-                    GameObject target = EnemySpawn.instance.transform.GetChild(i).gameObject;
-
-                    if (target.transform.position.x >= -3 && target.transform.position.x <= 5)
+                    transform.DOLocalMove(target.transform.position, 1).SetEase(Ease.Linear).OnComplete(() =>
                     {
-                        transform.DOLocalMove(target.transform.position, 1).SetEase(Ease.Linear).OnComplete(() =>
-                        {
-                            SkillManager.instance.isEnergyBombCheck = true;
-                        });
-                    }
-                    else
-                    {
-                        if (EnemySpawn.instance.transform.childCount == 0)
-                            Destroy(this.gameObject);
-                        else
-                        {
-                            Debug.Log("asdfsdfasdf");
-                            SkillManager.instance.isEnergyBombCheck = true;
-                        }
-                    }
+                        SkillManager.instance.isEnergyBombCheck = true;
+                    });
                 }
+                else
+                    return;
                 break;
         }
     }

@@ -1218,6 +1218,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 268288896}
   m_CullTransparentMesh: 1
+--- !u!1 &302295085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 302295087}
+  - component: {fileID: 302295086}
+  m_Layer: 0
+  m_Name: BGM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &302295086
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302295085}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 39a08c77da0bef84ba61da20ce8449fb, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &302295087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302295085}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &358367992
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,7 +3419,7 @@ MonoBehaviour:
   getHP: 0
   getExperience: 0
   specialAbility: 2
-  specialAbilityCount: 0
+  specialAbilityCount: 2
 --- !u!50 &779368870
 Rigidbody2D:
   serializedVersion: 4
@@ -4759,7 +4887,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114639818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5111, y: 3.821, z: -0.041217238}
+  m_LocalPosition: {x: -4.68, y: 1.96, z: -0.041217238}
   m_LocalScale: {x: 16.98346, y: 0.99995565, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5531,7 +5659,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5289e8da269a887479fff59ea0a4abee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: {fileID: 1642853012}
+  currentMoney: 0
+  mainMoney: {fileID: 1642853012}
+  ingameMoney: {fileID: 1512295652}
   hpLevel: {fileID: 268288898}
   respirationLevel: {fileID: 882069067}
   defenseLevel: {fileID: 972593112}
@@ -5560,7 +5690,6 @@ MonoBehaviour:
   skillBackGround: {fileID: 858652056}
   skillWindowPick: {fileID: 4980858065256848696, guid: 18e2fe64a45629e4fa1793008d0b1f99, type: 3}
   distance: {fileID: 188595089}
-  ingameMoney: {fileID: 1512295652}
   hpSlider: {fileID: 697672660}
   levelSlider: {fileID: 115807017}
   ability: {fileID: 946344999}
@@ -5749,7 +5878,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296983901}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.07, y: 1.85, z: 0}
+  m_LocalPosition: {x: 5.9011, y: -0.011000037, z: 0}
   m_LocalScale: {x: 0.8372009, y: 0.83387834, z: 0.8306388}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6294,7 +6423,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475000847}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.19762762, y: -1.8273025, z: 0.041217238}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6534,7 +6663,7 @@ GameObject:
   - component: {fileID: 1512295653}
   - component: {fileID: 1512295652}
   m_Layer: 5
-  m_Name: Coin_Text
+  m_Name: IngameCoinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7020,7 +7149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570980995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5111, y: -2.6824, z: -0.041217238}
+  m_LocalPosition: {x: -4.68, y: -4.5434, z: -0.041217238}
   m_LocalScale: {x: 16.98346, y: 0.99995565, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7603,7 +7732,7 @@ GameObject:
   - component: {fileID: 1642853013}
   - component: {fileID: 1642853012}
   m_Layer: 5
-  m_Name: Coin_Text
+  m_Name: MainCoinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8623,7 +8752,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069896241}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.94, y: 1.85, z: 0}
+  m_LocalPosition: {x: 15.771099, y: -0.011000037, z: 0}
   m_LocalScale: {x: 0.8372009, y: 0.83387834, z: 0.8306388}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8724,7 +8853,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070925993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.79, y: 1.85, z: 0}
+  m_LocalPosition: {x: -3.9589, y: -0.011000037, z: 0}
   m_LocalScale: {x: 0.8372009, y: 0.83387834, z: 0.8306388}
   m_ConstrainProportionsScale: 0
   m_Children: []
