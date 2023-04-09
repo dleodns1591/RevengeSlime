@@ -31,15 +31,9 @@ public class Player : Singleton<Player>
     public float getHP = 0;
     public float getExperience = 0;
 
-    public int specialAbility = 0;
-    public int specialAbilityCount = 0;
-
-    bool isReuse = false;
+    public bool isReuse = false;
     bool isDieCheck = false;
     bool isStateCheck = false;
-
-    [Header("½ºÅ³")]
-    int targetNum = 0;
 
     void Start()
     {
@@ -93,8 +87,9 @@ public class Player : Singleton<Player>
             Time.timeScale = 0;
             if (SkillManager.instance.isResurrectionCheck)
             {
-                eState = EState.Walk;
                 SkillManager.instance.isResurrectionCheck = false;
+                UIManager.instance.isDie = false;
+                eState = EState.Walk;
 
                 GameObject resurrection = Instantiate(SkillManager.instance.resurrectionPrefab) as GameObject;
                 resurrection.transform.SetParent(GameObject.Find("Canvas").transform, false);
@@ -116,11 +111,9 @@ public class Player : Singleton<Player>
     {
         if (GameManager.instance._isStartGame)
         {
-            if (Input.GetKeyDown(KeyCode.Z) && specialAbilityCount > 0 && !isReuse)
+            if (Input.GetKeyDown(KeyCode.Z) && !isReuse && !UIManager.instance.isAbilityUse)
             {
                 isReuse = true;
-
-                --specialAbilityCount;
                 eState = EState.Skill;
 
                 for (int i = 0; i < EnemySpawn.instance.transform.childCount; i++)

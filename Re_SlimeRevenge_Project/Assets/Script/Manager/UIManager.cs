@@ -67,8 +67,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI distance;
     [SerializeField] Slider hpSlider;
     [SerializeField] Slider levelSlider;
+    public bool isDie = false;
     bool isHPUSe = false;
-    bool isDie = false;
     #endregion
 
     #region 특수능력
@@ -78,7 +78,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] float abilityCoolTime;
     [SerializeField] float abilityCurrentCoolTime;
-    bool isAbilityUse;
+    public bool isAbilityUse;
     #endregion
 
     #region 게임오버 화면
@@ -228,7 +228,7 @@ public class UIManager : MonoBehaviour
         if (gameManager._isStartGame)
         {
             hpSlider.value = Mathf.Lerp(hpSlider.value, currentHp / maxHp, Time.deltaTime * 10);
-            player.currentHp -= Time.deltaTime * (5 - player.hpReductionSpeed);
+            player.currentHp -= Time.deltaTime * 1.5f * (5 - player.hpReductionSpeed);
 
             if (currentHp > maxHp)
                 currentHp = maxHp;
@@ -261,30 +261,22 @@ public class UIManager : MonoBehaviour
     #region 특수능력
     void SpecialAbility()
     {
-        abilityText.text = Player.Instance.specialAbilityCount.ToString();
         ability.fillAmount = Mathf.Lerp(ability.fillAmount, abilityCurrentCoolTime / abilityCoolTime, Time.deltaTime * 10);
 
         if (gameManager._isStartGame)
         {
-            if (Player.Instance.specialAbilityCount <= Player.Instance.specialAbility)
+            if (!isAbilityUse && Player.Instance.isReuse)
             {
-                if (!isAbilityUse)
-                {
                     isAbilityUse = true;
                     ability.fillAmount = 1;
                     abilityCurrentCoolTime = abilityCoolTime;
 
                     StartCoroutine(CoolTime());
-                }
             }
 
             if (abilityCurrentCoolTime == 0)
-            {
-                ++Player.Instance.specialAbilityCount;
                 isAbilityUse = false;
-            }
         }
-
     }
 
     IEnumerator CoolTime()
