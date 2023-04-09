@@ -39,6 +39,7 @@ public class Resurrection : MonoBehaviour
                     transform.DOKill();
                     resurrectioBar.transform.DOKill();
                     whiteScreen.DOKill();
+                    UIManager.instance.isDie = false;
                     Destroy(this.gameObject);
                 });
             });

@@ -88,7 +88,6 @@ public class Player : Singleton<Player>
             if (SkillManager.instance.isResurrectionCheck)
             {
                 SkillManager.instance.isResurrectionCheck = false;
-                UIManager.instance.isDie = false;
                 eState = EState.Walk;
 
                 GameObject resurrection = Instantiate(SkillManager.instance.resurrectionPrefab) as GameObject;
