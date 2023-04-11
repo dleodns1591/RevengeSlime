@@ -144,22 +144,21 @@ public abstract class Base
     protected Transform transform;
     protected Animator animator = null;
 
+    //public void State(Enemy _context, int hp, int attack, int bigBone, int smallBone, int speed)
+    //{
+    //    context = _context;
+    //    gameObject = _context.gameObject;
+    //    transform = _context.transform;
+    //    animator = _context.GetComponent<Animator>();
+
+    //    this.hp = hp;
+    //    this.attack = attack;
+    //    bigBoneNum = bigBone;
+    //    smallBoneNum = smallBone;
+    //    moveSpeed = speed;
+    //}
+
     private System.Action a;
-
-    public void State(Enemy _context, int hp, int attack, int bigBone, int smallBone, int speed)
-    {
-        context = _context;
-        gameObject = _context.gameObject;
-        transform = _context.transform;
-        animator = _context.GetComponent<Animator>();
-
-        this.hp = hp;
-        this.attack = attack;
-        this.bigBoneNum = bigBone;
-        this.smallBoneNum = smallBone;
-        this.moveSpeed = speed;
-    }
-
     public abstract void Animation();
 }
 
