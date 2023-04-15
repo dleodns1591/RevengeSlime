@@ -55,30 +55,33 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button intellectBtn;
     #endregion
 
+    #region 메인 UI
+    [Header("메인 UI")]
+    [SerializeField] GameObject skillWindow;
+    [SerializeField] GameObject bestDistanceObj;
+    [SerializeField] TextMeshProUGUI bestDistance;
+    #endregion
+
     #region 인게임 UI
     [Header("인게임UI")]
-    [SerializeField] GameObject ingame;
+    [SerializeField] GameObject barObj;
+    [SerializeField] GameObject coinObj;
+    [SerializeField] GameObject distanceObj;
 
-    [SerializeField] GameObject coinBackGround;
-    [SerializeField] GameObject distancBackGround;
-    [SerializeField] GameObject barBackGround;
     [SerializeField] GameObject skillBackGround;
-    [SerializeField] GameObject skillWindowPick;
-    [SerializeField] TextMeshProUGUI distance;
+    [SerializeField] TextMeshProUGUI currentDistance;
     [SerializeField] Slider hpSlider;
     [SerializeField] Slider levelSlider;
-    public bool isDie = false;
     bool isHPUSe = false;
     #endregion
 
     #region 특수능력
     [Header("특수능력")]
     [SerializeField] Image ability;
-    [SerializeField] TextMeshProUGUI abilityText;
 
-    [SerializeField] float abilityCoolTime;
-    [SerializeField] float abilityCurrentCoolTime;
-    public bool isAbilityUse;
+    [SerializeField] float abilityCoolTime = 0;
+    [SerializeField] float abilityCurrentCoolTime = 0;
+    public bool isAbilityUse = false;
     #endregion
 
     #region 게임오버 화면
@@ -86,34 +89,29 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject gameOverWindow;
     [SerializeField] GameObject gameOverBarUp;
     [SerializeField] GameObject gameOverBarDown;
+
     [SerializeField] Image whiteScreen;
     [SerializeField] RectTransform rectWindow;
-    [SerializeField] TextMeshProUGUI currentDistance;
-    [SerializeField] TextMeshProUGUI maximumDistance;
+    [SerializeField] TextMeshProUGUI overCurrentDistance;
+    [SerializeField] TextMeshProUGUI overBestDistance;
     [SerializeField] TextMeshProUGUI myTitle;
     [SerializeField] string[] title;
 
-    public const int windowWidth = 1670;
-    public const int windowHeight = 845;
-    public const float barOpenSpeed = 0.45f;
-    public const float barCloseSpeed = 0.35f;
-    float timer = 0.0f;
+    const int windowWidth = 1670;
+    const int windowHeight = 845;
+    const float barOpenSpeed = 0.45f;
     #endregion
 
     [Header("모닥불")]
     [SerializeField] GameObject cameFire;
-
-    [Header("스킬 화면")]
-    [SerializeField] GameObject skillWindow;
-    [SerializeField] GameObject startBtnObj;
 
     Player player;
     GameManager gameManager;
 
     void Start()
     {
-        gameManager = GameManager.instance;
         player = Player.Instance;
+        gameManager = GameManager.instance;
 
         MainBtns();
     }
@@ -134,33 +132,30 @@ public class UIManager : MonoBehaviour
 
     void MoneyText()
     {
-        mainMoney.text = gameManager._money.ToString();
-        ingameMoney.text = currentMoney.ToString();
+        mainMoney.text = string.Format("{0:#,0} G", gameManager.money);
+        ingameMoney.text = string.Format("{0:#,0} G", currentMoney);
     }
 
     void Distance()
     {
-        if (gameOverWindow.activeSelf)
-            timer += Time.unscaledDeltaTime * 2.5f;
-
-        distance.text = gameManager._distance.ToString();
+        currentDistance.text = gameManager.currentDistance.ToString();
+        bestDistance.text = PlayerPrefs.GetInt("BestDistance").ToString();
     }
 
     #region 게임오버 화면
 
-    public void GameOverWindowOpen()
+    public void GameOver()
     {
         int barOpenPosY = 440;
-
         gameOverWindow.SetActive(true);
 
         MyTitle();
 
-        if (gameManager._distance > gameManager._maximumdistance)
-            gameManager._maximumdistance = gameManager._distance;
+        if (gameManager.currentDistance > gameManager.bestDistance)
+            gameManager.bestDistance = gameManager.currentDistance;
 
-        currentDistance.text = gameManager._distance.ToString();
-        maximumDistance.text = gameManager._maximumdistance.ToString();
+        overCurrentDistance.text = string.Format("{0:#,0}m", gameManager.currentDistance);
+        overBestDistance.text = string.Format("{0:#,0}m", gameManager.bestDistance);
 
         gameOverBarUp.transform.DOLocalMoveY(barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
         gameOverBarDown.transform.DOLocalMoveY(-barOpenPosY, barOpenSpeed).SetEase(Ease.Linear).SetUpdate(true);
@@ -171,8 +166,9 @@ public class UIManager : MonoBehaviour
             {
                 DOTween.KillAll();
                 Time.timeScale = 1;
-                GameManager.instance._isStartGame = false;
-                GameManager.instance._money += currentMoney;
+                gameManager.isStartGame = false;
+                gameManager.currentDistance = 0;
+                gameManager.money += currentMoney;
 
                 SceneManager.LoadScene("Main");
             });
@@ -181,7 +177,7 @@ public class UIManager : MonoBehaviour
 
     void MyTitle()
     {
-        int distance = gameManager._distance;
+        int distance = gameManager.currentDistance;
         int score = 30;
 
         for (int i = 0; i < title.Length; i++)
@@ -219,43 +215,28 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region 슬라이더 바
-
     void HpBar()
     {
         float maxHp = player.maxHp;
-        float currentHp = player.currentHp;
+        float currentHp = player._currentHp;
 
-        if (gameManager._isStartGame)
+        if (gameManager.isStartGame)
         {
             hpSlider.value = Mathf.Lerp(hpSlider.value, currentHp / maxHp, Time.deltaTime * 10);
-            player.currentHp -= Time.deltaTime * 1.5f * (5 - player.hpReductionSpeed);
+            player._currentHp -= Time.deltaTime * 1.5f * (5 - player.hpReductionSpeed);
 
             if (currentHp > maxHp)
                 currentHp = maxHp;
-
-            if (currentHp <= 0 && !isDie)
-            {
-                isDie = true;
-                player.eState = Player.EState.Die;
-            }
         }
     }
 
     void LevelBar()
     {
-        float currentEXP = player.currentEXP;
+        float currentEXP = player._currentEXP;
         int maxEXP = player.maxEXP;
 
         levelSlider.value = Mathf.Lerp(levelSlider.value, currentEXP / maxEXP, Time.deltaTime * 10);
-        if (currentEXP >= maxEXP)
-        {
-            Time.timeScale = 0;
-            player.currentEXP = 0;
-
-            SkillManager.instance.AddSkill();
-        }
     }
-
     #endregion
 
     #region 특수능력
@@ -263,15 +244,15 @@ public class UIManager : MonoBehaviour
     {
         ability.fillAmount = Mathf.Lerp(ability.fillAmount, abilityCurrentCoolTime / abilityCoolTime, Time.deltaTime * 10);
 
-        if (gameManager._isStartGame)
+        if (gameManager.isStartGame)
         {
             if (!isAbilityUse && Player.Instance.isReuse)
             {
-                    isAbilityUse = true;
-                    ability.fillAmount = 1;
-                    abilityCurrentCoolTime = abilityCoolTime;
+                isAbilityUse = true;
+                ability.fillAmount = 1;
+                abilityCurrentCoolTime = abilityCoolTime;
 
-                    StartCoroutine(CoolTime());
+                StartCoroutine(CoolTime());
             }
 
             if (abilityCurrentCoolTime == 0)
@@ -287,8 +268,6 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
     }
-
-
     #endregion
 
     #region 스킬 텍스트
@@ -368,7 +347,7 @@ public class UIManager : MonoBehaviour
             int cameFirePosX = 11;
             int skillWindowPosX = 1000;
 
-            gameManager._isStartGame = true;
+            gameManager.isStartGame = true;
 
             Player.Instance.transform.DOLocalMoveX(-7, waitTime).SetEase(Ease.Linear); // 플레이어 앞으로 이동
             cameFire.transform.DOMoveX(-cameFirePosX, 1.4f).SetEase(Ease.Linear).OnComplete(() => // 모닥물 뒤로 이동 후 제거
@@ -377,13 +356,14 @@ public class UIManager : MonoBehaviour
             });
 
             // 메인UI 치우기
+            bestDistanceObj.transform.DOLocalMoveY(630, waitTime).SetEase(Ease.Linear);
+            startBtn.transform.DOLocalMoveY(-startBtnPosY, waitTime).SetEase(Ease.InOutSine);
             skillWindow.transform.DOLocalMoveX(skillWindowPosX, waitTime).SetEase(Ease.InOutSine);
-            startBtnObj.transform.DOLocalMoveY(-startBtnPosY, waitTime).SetEase(Ease.InOutSine);
 
             // 인게임UI 보이기
-            distancBackGround.transform.DOLocalMoveY(480, 1).SetEase(Ease.Linear);
-            barBackGround.transform.DOLocalMoveY(480, 1).SetEase(Ease.Linear);
-            coinBackGround.transform.DOLocalMoveY(480, 1).SetEase(Ease.Linear);
+            barObj.transform.DOLocalMoveY(480, 1).SetEase(Ease.Linear);
+            coinObj.transform.DOLocalMoveY(480, 1).SetEase(Ease.Linear);
+            distanceObj.transform.DOLocalMoveY(480, 1).SetEase(Ease.Linear);
 
             skillBackGround.transform.DOLocalMoveY(-410, 1).SetEase(Ease.Linear);
         });
@@ -391,9 +371,9 @@ public class UIManager : MonoBehaviour
         // 굳건한 체력 구매 버튼을 눌렀을 때
         hpBtn.onClick.AddListener(() =>
         {
-            if (gameManager.hpLevel < 5 && gameManager._money >= gameManager.hpPrice)
+            if (gameManager.hpLevel < 5 && gameManager.money >= gameManager.hpPrice)
             {
-                gameManager._money -= gameManager.hpPrice;
+                gameManager.money -= gameManager.hpPrice;
                 gameManager.hpPrice += 30;
                 gameManager.hpLevel += 1;
             }
@@ -402,9 +382,9 @@ public class UIManager : MonoBehaviour
         // 심호흡 구매 버튼을 눌렀을 때
         respirationBtn.onClick.AddListener(() =>
         {
-            if (gameManager.respirationLevel < 10 && gameManager._money >= gameManager.respirationPrice)
+            if (gameManager.respirationLevel < 10 && gameManager.money >= gameManager.respirationPrice)
             {
-                gameManager._money -= gameManager.respirationPrice;
+                gameManager.money -= gameManager.respirationPrice;
                 gameManager.respirationPrice += 100;
                 gameManager.respirationLevel += 1;
             }
@@ -413,9 +393,9 @@ public class UIManager : MonoBehaviour
         // 방어력 구매 버튼을 눌렀을 떄
         defenseBtn.onClick.AddListener(() =>
         {
-            if (gameManager.defenseLevel < 10 && gameManager._money >= gameManager.defensePrice)
+            if (gameManager.defenseLevel < 10 && gameManager.money >= gameManager.defensePrice)
             {
-                gameManager._money -= gameManager.defensePrice;
+                gameManager.money -= gameManager.defensePrice;
                 gameManager.defensePrice += 300;
                 gameManager.defenseLevel += 1;
             }
@@ -424,9 +404,9 @@ public class UIManager : MonoBehaviour
         // 튼튼한 위장 구매 버튼을 눌렀을 때
         camouflageBtn.onClick.AddListener(() =>
         {
-            if (gameManager.camouflageLevel < 5 && gameManager._money >= gameManager.camouflagePrice)
+            if (gameManager.camouflageLevel < 5 && gameManager.money >= gameManager.camouflagePrice)
             {
-                gameManager._money -= gameManager.camouflagePrice;
+                gameManager.money -= gameManager.camouflagePrice;
                 gameManager.camouflagePrice += 150;
                 gameManager.camouflageLevel += 1;
             }
@@ -435,10 +415,10 @@ public class UIManager : MonoBehaviour
         // 지능학습 구매 버튼을 눌렀을 때
         intellectBtn.onClick.AddListener(() =>
         {
-            if (gameManager.intellectLevel < 5 && gameManager._money >= gameManager.intellectPrice)
+            if (gameManager.intellectLevel < 5 && gameManager.money >= gameManager.intellectPrice)
             {
 
-                gameManager._money -= gameManager.intellectPrice;
+                gameManager.money -= gameManager.intellectPrice;
                 gameManager.intellectPrice += 150;
                 gameManager.intellectLevel += 1;
             }

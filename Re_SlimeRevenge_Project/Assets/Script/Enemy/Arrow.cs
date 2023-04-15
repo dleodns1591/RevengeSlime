@@ -39,7 +39,7 @@ public class Arrow : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             transform.DOKill();
-            Player.Instance.currentHp -= attack;
+            Player.Instance._currentHp -= attack;
             Destroy(gameObject);
         }
 

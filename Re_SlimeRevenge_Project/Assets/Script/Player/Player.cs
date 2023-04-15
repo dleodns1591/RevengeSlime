@@ -16,33 +16,68 @@ public class Player : Singleton<Player>
 
     public SpriteRenderer spriteRenderer;
 
-    [Header("수치적 데이터")]
     public EState eState;
 
-    public float currentHp = 0;
+    [Header("체력")]
     public int maxHp = 0;
+    float currentHp = 0;
 
-    public float currentEXP = 0;
+
+    public float _currentHp
+    {
+        get { return currentHp; }
+
+        set
+        {
+            currentHp = value;
+
+            if (value <= 0 && GameManager.instance.isStartGame)
+                eState = EState.Die;
+        }
+    }
+
+    [Header("경험치")]
     public int maxEXP = 100;
+    float currentEXP = 0;
 
-    public float hpReductionSpeed = 0;
-    public int defense = 0;
+    public float _currentEXP
+    {
+        get { return currentEXP; }
+
+        set
+        {
+            currentEXP = value;
+
+            if (value >= maxEXP)
+            {
+                Time.timeScale = 0;
+                value = 0;
+
+                SkillManager.instance.AddSkill();
+            }
+        }
+    }
+
+    [Header("이동")]
     public int moveSpeed = 0;
+
+    public int defense = 0;
     public float getHP = 0;
     public float getExperience = 0;
+    public float hpReductionSpeed = 0;
 
     public bool isReuse = false;
     bool isDieCheck = false;
-    bool isStateCheck = false;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+
     }
 
     void Update()
     {
-        PlayerState();
+        Die();
+        Data();
         StartCoroutine(PlayerSkill());
     }
 
@@ -52,15 +87,12 @@ public class Player : Singleton<Player>
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -4, 0), 0);
     }
 
-    private void FixedUpdate()
-    {
-        Move();
-    }
+    void FixedUpdate() => Move();
 
     // 플레이어 이동
     void Move()
     {
-        if (GameManager.instance._isStartGame)
+        if (GameManager.instance.isStartGame)
         {
             if (Input.GetKey(KeyCode.Space))
                 transform.Translate(0, moveSpeed * Time.deltaTime, 0);
@@ -70,36 +102,42 @@ public class Player : Singleton<Player>
     }
 
     // 플레이어 데이터
-    void PlayerState()
+    void Data()
     {
-        maxHp = (int)GameManager.instance.skillHP;
-
-        if (GameManager.instance._isStartGame && !isStateCheck)
+        if (!GameManager.instance.isStartGame)
         {
-            isStateCheck = true;
-            currentHp = maxHp;
+            _currentHp = maxHp;
+            maxHp = (int)GameManager.instance.skillHP;
             defense = (int)GameManager.instance.skillDefense;
             hpReductionSpeed = GameManager.instance.skillRespiration;
         }
+    }
 
+    void Die()
+    {
         if (eState == EState.Die)
         {
             Time.timeScale = 0;
+
+            // 부활이 있을 경우
             if (SkillManager.instance.isResurrectionCheck)
             {
-                SkillManager.instance.isResurrectionCheck = false;
+                _currentHp = maxHp / 2;
                 eState = EState.Walk;
+                SkillManager.instance.isResurrectionCheck = false;
 
-                GameObject resurrection = Instantiate(SkillManager.instance.resurrectionPrefab) as GameObject;
-                resurrection.transform.SetParent(GameObject.Find("Canvas").transform, false);
+                Instantiate(SkillManager.instance.resurrectionPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
             }
 
+            // 부활이 없을 경우
             else
             {
                 if (!isDieCheck)
                 {
                     isDieCheck = true;
-                    UIManager.instance.GameOverWindowOpen();
+                    UIManager.instance.GameOver();
+
+                    PlayerPrefs.SetInt("BestDistance", GameManager.instance.bestDistance);
                 }
             }
         }
@@ -108,7 +146,7 @@ public class Player : Singleton<Player>
     // 플레이어 특수능력
     IEnumerator PlayerSkill()
     {
-        if (GameManager.instance._isStartGame)
+        if (GameManager.instance.isStartGame)
         {
             if (Input.GetKeyDown(KeyCode.Z) && !isReuse && !UIManager.instance.isAbilityUse)
             {
@@ -127,8 +165,8 @@ public class Player : Singleton<Player>
                         if (transform.position.y + enemy.transform.position.y <= 0.5f || transform.position.y - enemy.transform.position.y >= -0.5f)
                         {
                             targetColider.enabled = false;
-                            currentHp += boneValue + getHP;
-                            currentEXP += boneValue + getExperience;
+                            _currentHp += boneValue + getHP;
+                            _currentEXP += boneValue + getExperience;
 
                             targetSprite.DOFade(0, 0.5f);
                             enemy.transform.DOScale(new Vector2(0.1f, 0.1f), 0.5f).SetEase(Ease.Linear);

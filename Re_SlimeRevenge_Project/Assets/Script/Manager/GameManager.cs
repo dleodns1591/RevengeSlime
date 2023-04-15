@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour, IListener
+public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    float distanceTimer = 0;
 
     #region 스킬 관련
     [Header("스킬")]
@@ -31,37 +30,15 @@ public class GameManager : MonoBehaviour, IListener
     #endregion
 
     [Header("소지 금액")]
-    private float money;
+    public float money = 0;
 
-    public float _money
-    {
-        get { return money; }
-        set { money = value; }
-    }
+    [Header("거리")]
+    public int currentDistance = 0;
+    public int bestDistance = 0;
+    float distanceTimer = 0;
 
-    private bool isStartGame;
-
-    public bool _isStartGame
-    {
-        get { return isStartGame; }
-        set { isStartGame = value; }
-    }
-
-    private int distance;
-
-    public int _distance
-    {
-        get { return distance; }
-        set { distance = value; }
-    }
-
-    private int maximumdistance;
-
-    public int _maximumdistance
-    {
-        get { return maximumdistance; }
-        set { maximumdistance = value; }
-    }
+    [Header("게임 시작")]
+    public bool isStartGame = false;
 
     void Start()
     {
@@ -101,14 +78,14 @@ public class GameManager : MonoBehaviour, IListener
 
     void Distance()
     {
-        distanceTimer += Time.deltaTime;
-
-        if (isStartGame == true)
+        if (isStartGame)
         {
+            distanceTimer += Time.deltaTime;
+
             if (distanceTimer >= 0.8f)
             {
                 distanceTimer = 0;
-                distance += 1;
+                currentDistance += 1;
             }
         }
     }
@@ -116,11 +93,9 @@ public class GameManager : MonoBehaviour, IListener
     void Cheat()
     {
         if (Input.GetKeyDown(KeyCode.G))
-            money += 10000f;
-    }
+            money += 10000;
 
-    public void Event(EventType type)
-    {
-
+        if (Input.GetKeyDown(KeyCode.D))
+            Player.Instance._currentHp = 0;
     }
 }

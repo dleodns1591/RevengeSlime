@@ -24,11 +24,11 @@ public class EnemySpawn : MonoBehaviour
 
     IEnumerator Spawn()
     {
-        int distance = GameManager.instance._distance;
+        int distance = GameManager.instance.currentDistance;
 
         while (true)
         {
-            if (GameManager.instance._isStartGame)
+            if (GameManager.instance.isStartGame)
             {
                 int randomSpawn = Random.Range(1, 101);
                 float randomPosY = Random.Range(-3.5f, 0f);

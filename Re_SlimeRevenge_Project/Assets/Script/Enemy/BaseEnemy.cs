@@ -132,51 +132,37 @@ class BaseEnemy
 
 public abstract class Base
 {
-    public int moveSpeed;
-
     public int hp;
     public int attack;
     public int bigBoneNum;
     public int smallBoneNum;
+    public int moveSpeed;
 
     protected Enemy context;
     protected GameObject gameObject;
     protected Transform transform;
     protected Animator animator = null;
 
-    //public void State(Enemy _context, int hp, int attack, int bigBone, int smallBone, int speed)
-    //{
-    //    context = _context;
-    //    gameObject = _context.gameObject;
-    //    transform = _context.transform;
-    //    animator = _context.GetComponent<Animator>();
-
-    //    this.hp = hp;
-    //    this.attack = attack;
-    //    bigBoneNum = bigBone;
-    //    smallBoneNum = smallBone;
-    //    moveSpeed = speed;
-    //}
-
-    private System.Action a;
-    public abstract void Animation();
-}
-
-public class BaseNoob1 : Base
-{
-    public BaseNoob1(Enemy _context)
+    public void State(Enemy _context, int hp, int attack, int bigBoneNum, int smallBoneNum, int moveSpeed)
     {
         context = _context;
         gameObject = _context.gameObject;
         transform = _context.transform;
         animator = _context.GetComponent<Animator>();
 
-        hp = 1;
-        attack = 0;
-        bigBoneNum = 1;
-        smallBoneNum = 0;
-        moveSpeed = -2;
+        this.hp = hp;
+        this.attack = attack;
+        this.bigBoneNum = bigBoneNum;
+        this.smallBoneNum = smallBoneNum;
+        this.moveSpeed = moveSpeed;
     }
+
+    public abstract void Animation();
+}
+
+public class BaseNoob1 : Base
+{
+    public BaseNoob1(Enemy _context) => State(_context, 1, 0, 1, 0, -2);
 
     public override void Animation()
     {
@@ -186,19 +172,7 @@ public class BaseNoob1 : Base
 
 public class BaseNoob2 : Base
 {
-    public BaseNoob2(Enemy _context)
-    {
-        context = _context;
-        gameObject = _context.gameObject;
-        transform = _context.transform;
-        animator = _context.GetComponent<Animator>();
-
-        hp = 1;
-        attack = 0;
-        bigBoneNum = 1;
-        smallBoneNum = 0;
-        moveSpeed = -2;
-    }
+    public BaseNoob2(Enemy _context) => State(_context, 1, 0, 1, 0, -2);
 
     public override void Animation()
     {
@@ -207,19 +181,7 @@ public class BaseNoob2 : Base
 
 public class BaseShieldbearer : Base
 {
-    public BaseShieldbearer(Enemy _context)
-    {
-        context = _context;
-        gameObject = _context.gameObject;
-        transform = _context.transform;
-        animator = _context.GetComponent<Animator>();
-
-        hp = 2;
-        attack = 0;
-        bigBoneNum = 1;
-        smallBoneNum = 1;
-        moveSpeed = -3;
-    }
+    public BaseShieldbearer(Enemy _context) => State(_context, 2, 0, 1, 1, -3);
 
     public override void Animation()
     {
@@ -229,19 +191,7 @@ public class BaseShieldbearer : Base
 
 public class BaseBargate : Base
 {
-    public BaseBargate(Enemy _context)
-    {
-        context = _context;
-        gameObject = _context.gameObject;
-        transform = _context.transform;
-        animator = _context.GetComponent<Animator>();
-
-        hp = 1;
-        attack = 40;
-        bigBoneNum = 0;
-        smallBoneNum = 0;
-        moveSpeed = -3;
-    }
+    public BaseBargate(Enemy _context) => State(_context, 1, 40, 0, 0, -3);
 
     public override void Animation()
     {
@@ -250,19 +200,7 @@ public class BaseBargate : Base
 
 public class BaseSwordman : Base
 {
-    public BaseSwordman(Enemy _context)
-    {
-        context = _context;
-        gameObject = _context.gameObject;
-        transform = _context.transform;
-        animator = _context.GetComponent<Animator>();
-
-        hp = 2;
-        attack = 20;
-        bigBoneNum = 1;
-        smallBoneNum = 1;
-        moveSpeed = -3;
-    }
+    public BaseSwordman(Enemy _context) => State(_context, 2, 20, 1, 1, -3);
 
     public override void Animation()
     {
@@ -282,19 +220,7 @@ public class BaseSwordman : Base
 
 public class BaseArcher : Base
 {
-    public BaseArcher(Enemy _context)
-    {
-        context = _context;
-        gameObject = _context.gameObject;
-        transform = _context.transform;
-        animator = _context.GetComponent<Animator>();
-
-        hp = 2;
-        attack = 10;
-        bigBoneNum = 1;
-        smallBoneNum = 1;
-        moveSpeed = -3;
-    }
+    public BaseArcher(Enemy _context) => State(_context, 2, 10, 1, 1, -3);
 
     public override void Animation()
     {
@@ -334,19 +260,7 @@ public class BaseArcher : Base
 
 public class BaseHeavyCavalry : Base
 {
-    public BaseHeavyCavalry(Enemy _context)
-    {
-        context = _context;
-        gameObject = _context.gameObject;
-        transform = _context.transform;
-        animator = _context.GetComponent<Animator>();
-
-        hp = 3;
-        attack = 0;
-        bigBoneNum = 2;
-        smallBoneNum = 0;
-        moveSpeed = -2;
-    }
+    public BaseHeavyCavalry(Enemy _context) => State(_context, 3, 0, 2, 0, -2);
 
     public override void Animation()
     {
@@ -361,19 +275,7 @@ public class BaseHeavyCavalry : Base
 
 public class BaseBerserker : Base
 {
-    public BaseBerserker(Enemy _context)
-    {
-        context = _context;
-        gameObject = _context.gameObject;
-        transform = _context.transform;
-        animator = _context.GetComponent<Animator>();
-
-        hp = 2;
-        attack = 30;
-        bigBoneNum = 1;
-        smallBoneNum = 2;
-        moveSpeed = -5;
-    }
+    public BaseBerserker(Enemy _context) => State(_context, 2, 30, 1, 2, -5);
 
     public override void Animation()
     {

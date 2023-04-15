@@ -22,7 +22,7 @@ public class BackGround : MonoBehaviour
 
     void Move()
     {
-        if (GameManager.instance._isStartGame)
+        if (GameManager.instance.isStartGame)
         {
             // 배경이 moveDirection 방향으로 moveSpeed의 속도로 이동
             transform.localPosition += moveDirection * moveSpeed * Time.deltaTime;

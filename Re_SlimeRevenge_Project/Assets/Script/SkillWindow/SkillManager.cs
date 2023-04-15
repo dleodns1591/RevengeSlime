@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkillManager : MonoBehaviour
 {
     public static SkillManager instance;
+    void Awake() => instance = this;
 
     public GameObject skillWindowPick;
     public List<SkillData> skill = new List<SkillData>();
@@ -17,17 +18,17 @@ public class SkillManager : MonoBehaviour
     public GameObject slimeBomb;
     public GameObject energyBomb;
 
-    public int slimeBombCoolTime;
-    public int energyBombCoolTime;
+    public int slimeBombCoolTime = 0;
+    public int energyBombCoolTime = 0;
 
-    public bool isSlimeBombClick;
-    public bool isEnergyBombClick;
+    public bool isSlimeBombClick = false;
+    public bool isEnergyBombClick = false;
 
-    public bool isSlimeBombCheck;
-    public bool isEnergyBombCheck;
+    public bool isSlimeBombCheck = false;
+    public bool isEnergyBombCheck = false;
 
     [Space(10)]
-    public int skillCount;
+    public int skillCount = 0;
     public GameObject resurrectionPrefab;
     public bool isResurrectionCheck = false;
 
@@ -40,15 +41,7 @@ public class SkillManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-            AddSkill();
-
         StartCoroutine(SKillBomb());
-    }
-
-    private void Awake()
-    {
-        instance = this;
     }
 
     IEnumerator SKillBomb()
@@ -70,8 +63,7 @@ public class SkillManager : MonoBehaviour
 
     public void AddSkill()
     {
-        GameObject summon = Instantiate(skillWindowPick) as GameObject;
-        summon.transform.SetParent(GameObject.Find("Canvas").transform, false);
+        GameObject summon = Instantiate(skillWindowPick, Vector2.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
 
         var skillUI = summon.GetComponent<SkillUI>();
         int skillIndex = 0;

@@ -50,13 +50,13 @@ public class Bone : MonoBehaviour
             switch(ebone)
             {
                 case Ebone.BigBone:
-                    Player.Instance.currentHp += bigBoneValue + (bigBoneValue * ((int)GameManager.instance.skillCamouflage / 100));
-                    Player.Instance.currentEXP += bigBoneValue + (bigBoneValue * ((int)GameManager.instance.skillIntellect / 100));
+                    Player.Instance._currentHp += bigBoneValue + (bigBoneValue * ((int)GameManager.instance.skillCamouflage / 100));
+                    Player.Instance._currentEXP += bigBoneValue + (bigBoneValue * ((int)GameManager.instance.skillIntellect / 100));
                     break;
 
                 case Ebone.SmallBone:
-                    Player.Instance.currentHp += smallBoneValue + (smallBoneValue * ((int)GameManager.instance.skillCamouflage / 100));
-                    Player.Instance.currentEXP += smallBoneValue + (smallBoneValue * ((int)GameManager.instance.skillIntellect / 100));
+                    Player.Instance._currentHp += smallBoneValue + (smallBoneValue * ((int)GameManager.instance.skillCamouflage / 100));
+                    Player.Instance._currentEXP += smallBoneValue + (smallBoneValue * ((int)GameManager.instance.skillIntellect / 100));
                     break;
             }
 

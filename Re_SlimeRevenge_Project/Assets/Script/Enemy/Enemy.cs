@@ -58,8 +58,8 @@ public class Enemy : MonoBehaviour
                 transform.DOScale(new Vector2(0.1f, 0.1f), waitTime).SetEase(Ease.Linear);
                 transform.DORotate(new Vector3(0, 0, -180), waitTime).SetEase(Ease.Linear);
 
-                Player.Instance.currentHp += bone + Player.Instance.getHP;
-                Player.Instance.currentEXP += bone + Player.Instance.getExperience;
+                Player.Instance._currentHp += bone + Player.Instance.getHP;
+                Player.Instance._currentEXP += bone + Player.Instance.getExperience;
 
                 yield return new WaitForSeconds(2f);
                 Player.Instance.tag = "Player";
@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
                 if (isCollsionAttack == true)
                 {
                     // 공격력 만큼 플레이어 체력 차감
-                    Player.Instance.currentHp -= (baseEnemy.thisBase.attack - Player.Instance.defense);
+                    Player.Instance._currentHp -= (baseEnemy.thisBase.attack - Player.Instance.defense);
 
                     // 무적 처리
                     Player.Instance.eState = Player.EState.Shock;

@@ -32,14 +32,12 @@ public class Resurrection : MonoBehaviour
                 resurrectioBar.SetActive(false);
 
                 Time.timeScale = 1;
-                Player.Instance.currentHp += Player.Instance.maxHp / 2;
 
                 whiteScreen.DOFade(0, 1).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() =>
                 {
                     transform.DOKill();
                     resurrectioBar.transform.DOKill();
                     whiteScreen.DOKill();
-                    UIManager.instance.isDie = false;
                     Destroy(this.gameObject);
                 });
             });

@@ -122,7 +122,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (isOpenCheck)
         {
             Time.timeScale = 1;
-            Player.Instance.currentEXP = 0;
+            Player.Instance._currentEXP = 0;
             SkillWindowClick();
         }
     }
@@ -158,7 +158,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                     case SkillData.Eskill.Exercise:
                         Debug.Log("±ÙÀ°¿îµ¿");
-                        Player.Instance.currentHp += ((Player.Instance.maxHp * 20) / 100);
+                        Player.Instance._currentHp += ((Player.Instance.maxHp * 20) / 100);
                         break;
 
                     case SkillData.Eskill.Predator:
@@ -243,7 +243,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                     case SkillData.Eskill.Exercise:
                         Debug.Log("±ÙÀ°¿îµ¿");
-                        Player.Instance.currentHp += ((Player.Instance.maxHp * 20) / 100);
+                        Player.Instance._currentHp += ((Player.Instance.maxHp * 20) / 100);
                         break;
 
                     case SkillData.Eskill.Predator:
@@ -327,7 +327,7 @@ public class SkillWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                     case SkillData.Eskill.Exercise:
                         Debug.Log("±ÙÀ°¿îµ¿");
-                        Player.Instance.currentHp += ((Player.Instance.maxHp * 20) / 100);
+                        Player.Instance._currentHp += ((Player.Instance.maxHp * 20) / 100);
                         break;
 
                     case SkillData.Eskill.Predator:
