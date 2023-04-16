@@ -24,18 +24,19 @@ public class EnemySpawn : MonoBehaviour
 
     IEnumerator Spawn()
     {
-        int distance = GameManager.instance.currentDistance;
+        ;
 
         while (true)
         {
             if (GameManager.instance.isStartGame)
             {
-                int randomSpawn = Random.Range(1, 101);
+                int randomSpawn = Random.Range(0, 101);
                 float randomPosY = Random.Range(-3.5f, 0f);
 
+                Debug.Log(randomSpawn);
                 Vector2 spawnPos = new Vector2(11, randomPosY);
 
-                if (0 <= distance && distance < 20)
+                if (0 <= GameManager.instance.currentDistance && GameManager.instance.currentDistance < 20)
                 {
                     yield return new WaitForSeconds(4.3f);
 
@@ -45,7 +46,7 @@ public class EnemySpawn : MonoBehaviour
                         Instantiate(enemy[1].enemy, spawnPos, Quaternion.identity, transform);
                 }
 
-                else if (20 <= distance && distance < 45)
+                else if (20 <= GameManager.instance.currentDistance && GameManager.instance.currentDistance < 45)
                 {
                     yield return new WaitForSeconds(4);
 
@@ -55,7 +56,7 @@ public class EnemySpawn : MonoBehaviour
                         Instantiate(enemy[1].enemy, spawnPos, Quaternion.identity, transform);
                 }
 
-                else if (45 <= distance && distance < 70)
+                else if (45 <= GameManager.instance.currentDistance && GameManager.instance.currentDistance < 70)
                 {
                     yield return new WaitForSeconds(3.7f);
 
@@ -67,7 +68,7 @@ public class EnemySpawn : MonoBehaviour
                         Instantiate(enemy[2].enemy, spawnPos, Quaternion.identity, transform);
                 }
 
-                else if (70 <= distance && distance < 95)
+                else if (70 <= GameManager.instance.currentDistance && GameManager.instance.currentDistance < 95)
                 {
                     yield return new WaitForSeconds(3.4f);
 
@@ -81,7 +82,7 @@ public class EnemySpawn : MonoBehaviour
                         Instantiate(enemy[3].enemy, spawnPos, Quaternion.identity, transform);
                 }
 
-                else if (95 <= distance && distance < 120)
+                else if (95 <= GameManager.instance.currentDistance && GameManager.instance.currentDistance < 120)
                 {
                     yield return new WaitForSeconds(3f);
 
@@ -90,14 +91,17 @@ public class EnemySpawn : MonoBehaviour
                     else if (30 < randomSpawn && randomSpawn <= 50)
                         Instantiate(enemy[1].enemy, spawnPos, Quaternion.identity, transform);
                     else if (50 < randomSpawn && randomSpawn <= 75)
+                    {
                         Instantiate(enemy[2].enemy, spawnPos, Quaternion.identity, transform);
+                        Debug.Log("asdf");
+                    }
                     else if (75 < randomSpawn && randomSpawn <= 85)
                         Instantiate(enemy[3].enemy, spawnPos, Quaternion.identity, transform);
                     else
                         Instantiate(enemy[4].enemy, spawnPos, Quaternion.identity, transform);
                 }
 
-                else if (120 <= distance && distance < 145)
+                else if (120 <= GameManager.instance.currentDistance && GameManager.instance.currentDistance < 145)
                 {
                     yield return new WaitForSeconds(2.8f);
 
@@ -117,7 +121,7 @@ public class EnemySpawn : MonoBehaviour
                         Instantiate(enemy[7].enemy, spawnPos, Quaternion.identity, transform);
                 }
 
-                else if (145 <= distance && distance < 170)
+                else if (145 <= GameManager.instance.currentDistance && GameManager.instance.currentDistance < 170)
                 {
                     yield return new WaitForSeconds(2.6f);
 
@@ -139,7 +143,7 @@ public class EnemySpawn : MonoBehaviour
                         Instantiate(enemy[7].enemy, spawnPos, Quaternion.identity, transform);
                 }
 
-                else if (170 <= distance && distance < 200)
+                else if (170 <= GameManager.instance.currentDistance && GameManager.instance.currentDistance < 200)
                 {
                     yield return new WaitForSeconds(2.4f);
 
@@ -161,7 +165,7 @@ public class EnemySpawn : MonoBehaviour
                         Instantiate(enemy[7].enemy, spawnPos, Quaternion.identity, transform);
                 }
 
-                else if (200 <= distance)
+                else if (200 <= GameManager.instance.currentDistance)
                 {
                     yield return new WaitForSeconds(2);
 
